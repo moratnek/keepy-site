@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サポート — Keepy</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      background: #FAFAF7;
+      color: #2C2A26;
+      line-height: 1.7;
+    }
+
+    /* ヘッダー */
+    header {
+      border-bottom: 0.5px solid #E8E4DC;
+      padding: 16px 24px;
+    }
+    .header-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-icon svg { border-radius: 10px; display: block; }
+    .header-title { font-size: 16px; font-weight: 500; color: #2C2A26; }
+    .header-sub { font-size: 12px; color: #8C8880; }
+
+    /* コンテンツ */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    .page-title {
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+    .page-sub {
+      font-size: 14px;
+      color: #8C8880;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 15px;
+      font-weight: 500;
+      color: #2C2A26;
+      margin: 40px 0 12px;
+      padding-bottom: 10px;
+      border-bottom: 0.5px solid #E8E4DC;
+    }
+    p { font-size: 14px; color: #2C2A26; margin-bottom: 12px; }
+    a { color: #3B5FCC; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* FAQ */
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      border: 0.5px solid #E8E4DC;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2C2A26;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      user-select: none;
+    }
+    .faq-q .chevron {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      color: #3B5FCC;
+    }
+    .faq-q.open .chevron { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 0 16px 14px;
+      font-size: 14px;
+      color: #8C8880;
+      line-height: 1.7;
+      border-top: 0.5px solid #F2EDE3;
+      padding-top: 12px;
+    }
+    .faq-a.open { display: block; }
+
+    /* 連絡先 */
+    .contact-box {
+      background: #EEF3FF;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 12px;
+      border: 0.5px solid #C5D3F5;
+    }
+    .contact-box .contact-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1A3A8C;
+      margin-bottom: 6px;
+    }
+    .contact-box p { color: #3B5FCC; margin-bottom: 6px; }
+    .contact-box .hint {
+      font-size: 12px;
+      color: #8C8880;
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* バージョン */
+    .version-box {
+      background: #F2EDE3;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 12px;
+      border: 0.5px solid #E8E4DC;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .version-item .label { font-size: 11px; color: #8C8880; margin-bottom: 2px; }
+    .version-item .value { font-size: 14px; font-weight: 500; color: #2C2A26; }
+
+    /* フッター */
+    footer {
+      border-top: 0.5px solid #E8E4DC;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    footer nav {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 14px;
+    }
+    footer nav a { font-size: 13px; color: #3B5FCC; text-decoration: none; }
+    footer nav a:hover { text-decoration: underline; }
+    footer p { font-size: 12px; color: #8C8880; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-icon">
+        <svg width="36" height="36" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+          <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+          <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+          <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
+          <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+          <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+          <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+        </svg>
+      </div>
+      <div>
+        <div class="header-title">Keepy</div>
+        <div class="header-sub">サブスク・契約・大切なものを一冊に</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 class="page-title">サポート</h1>
+    <p class="page-sub">お困りのことがあればこちらをご確認ください。</p>
+
+    <h2>よくある質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        データはどこに保存されますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">すべてのデータはお使いの端末内にAES-256暗号化されて保存されます。外部サーバーへの送信は一切行いません。開発者もデータを閲覧することはできません。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        復活カギ（リカバリーコード）をなくしてしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">復活カギはデータ復元に必要な唯一の手段です。紛失した場合、バックアップファイルからのデータ復元はできません。アプリを再インストールして新たにデータを登録しなおしていただく必要があります。復活カギは必ず1Passwordなど安全な場所に保管してください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        機種変更したらデータが消えてしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">機種変更前に「設定 → バックアップ → バックアップを書き出す」からデータをバックアップしてください。新しい端末での初回起動時に「バックアップから復元」を選択してデータを引き継ぐことができます。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        家族がパスコードを忘れてしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">オーナーが「設定 → 家族を管理 → 該当する家族 → パスコードをリセット」からパスコードをリセットできます。リセット後、家族が次回ログイン時に新しいパスコードを設定できます。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Face IDで認証できません。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">Face IDの認証に失敗した場合、iOSのデバイスパスコード入力画面に自動で切り替わります。ご家族の方がご利用の場合は、認証画面下部の「ご家族の方はこちら」からパスコードでログインしてください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        誤ってデータを削除してしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">削除したデータはゴミ箱に移動し、設定で指定した期間（デフォルト90日）保持されます。「設定 → データ管理 → ゴミ箱」から復元することができます。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        iPadでも使えますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">はい、iPadでもご利用いただけます。iPhoneのデータをiPadで引き継ぐには、iPhoneで「設定 → バックアップ → iCloud Driveに自動バックアップ」を有効にした後、iPadで「バックアップから復元」を選択してください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        通知が届きません。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">iOSの「設定 → 通知 → Keepy」から通知が許可されているかご確認ください。また、Keepy内の「設定 → 通知設定」でも各通知のオン・オフを確認できます。</div>
+    </div>
+
+    <h2>お問い合わせ</h2>
+    <p>FAQで解決しない場合は、以下からお問い合わせください。返信までに数日お時間をいただく場合があります。</p>
+    <div class="contact-box">
+      <p class="contact-title">メールでのお問い合わせ</p>
+      <p><a href="mailto:keepy_support@icloud.com">keepy_support@icloud.com</a></p>
+      <div class="hint">
+        お問い合わせの際は以下をご記載いただくとスムーズです。<br>
+        · iOSのバージョン　· Keepyのバージョン　· 問題の発生状況
+      </div>
+    </div>
+
+    <h2>バージョン情報</h2>
+    <div class="version-box">
+      <div class="version-item">
+        <div class="label">最新バージョン</div>
+        <div class="value">1.0.0</div>
+      </div>
+      <div class="version-item">
+        <div class="label">対応iOS</div>
+        <div class="value">iOS 17以上</div>
+      </div>
+      <div class="version-item">
+        <div class="label">対応デバイス</div>
+        <div class="value">iPhone / iPad</div>
+      </div>
+      <div class="version-item">
+        <div class="label">販売形態</div>
+        <div class="value">買い切り</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <nav>
+      <a href="index.html">トップ</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </nav>
+    <p>© 2026 Keepy. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggle(el) {
+      el.classList.toggle('open');
+      el.nextElementSibling.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
