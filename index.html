@@ -7,7 +7,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
       background: #FAFAF7;
       color: #2C2A26;
       line-height: 1.7;
@@ -17,7 +17,7 @@
     .hero {
       max-width: 640px;
       margin: 0 auto;
-      padding: 80px 24px 64px;
+      padding: 80px 24px 56px;
       text-align: center;
     }
     .icon-wrap {
@@ -49,11 +49,52 @@
       font-size: 15px;
       font-weight: 500;
       text-decoration: none;
-      margin-bottom: 56px;
       transition: opacity 0.15s;
     }
     .badge:hover { opacity: 0.85; }
-    .badge-sub { font-size: 12px; color: #8C8880; display: block; margin-bottom: 56px; }
+    .badge-meta {
+      font-size: 12px;
+      color: #8C8880;
+      margin-top: 12px;
+      margin-bottom: 56px;
+    }
+    .badge-meta strong { color: #2C2A26; }
+
+    /* スクリーンショットギャラリー */
+    .screenshots {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 72px;
+    }
+    .screenshots-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .phone-frame {
+      flex-shrink: 0;
+      width: 180px;
+      background: #1A1A1A;
+      border-radius: 36px;
+      padding: 8px;
+      box-shadow: 0 24px 48px rgba(44,42,38,0.18);
+    }
+    .phone-frame img {
+      width: 100%;
+      border-radius: 28px;
+      display: block;
+    }
+    .phone-frame.center {
+      width: 200px;
+      border-radius: 40px;
+      padding: 9px;
+      box-shadow: 0 28px 56px rgba(44,42,38,0.24);
+      align-self: flex-start;
+    }
+    .phone-frame.center img { border-radius: 31px; }
 
     /* 特徴セクション */
     .features {
@@ -104,6 +145,71 @@
       color: #8C8880;
       line-height: 1.6;
     }
+
+    /* 価格セクション */
+    .pricing {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 56px 24px 0;
+    }
+    .pricing-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #8C8880;
+      letter-spacing: 0.5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .pricing-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
+      border: 0.5px solid #E8E4DC;
+    }
+    .pricing-card.premium {
+      background: #EEF3FF;
+      border-color: #C5D3F5;
+    }
+    .pricing-card .plan-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: #8C8880;
+      margin-bottom: 6px;
+    }
+    .pricing-card.premium .plan-name { color: #3B5FCC; }
+    .pricing-card .price {
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: #2C2A26;
+      margin-bottom: 14px;
+    }
+    .pricing-card.premium .price { color: #1A3A8C; }
+    .pricing-card .price small {
+      font-size: 13px;
+      font-weight: 400;
+      color: #8C8880;
+    }
+    .pricing-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pricing-card ul li {
+      font-size: 12px;
+      color: #2C2A26;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .pricing-card ul li::before { content: "·"; color: #8C8880; flex-shrink: 0; }
+    .pricing-card.premium ul li::before { content: "✓"; color: #3B5FCC; flex-shrink: 0; }
 
     /* セキュリティバナー */
     .security {
@@ -164,6 +270,14 @@
       font-size: 12px;
       color: #8C8880;
     }
+
+    @media (max-width: 480px) {
+      .pricing-cards { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .screenshots-scroll { flex-wrap: nowrap; justify-content: flex-start; }
+      .phone-frame { width: 150px; }
+      .phone-frame.center { width: 165px; }
+    }
   </style>
 </head>
 <body>
@@ -184,8 +298,23 @@
     <h1>Keepy</h1>
     <p class="tagline">サブスク・契約・大切なものを一冊に</p>
     <a class="badge" href="#">App Storeでダウンロード（準備中）</a>
-    <span class="badge-sub">iOS 17以上 · 買い切り · 無料お試し予定</span>
+    <p class="badge-meta">iOS 17以上 · <strong>¥2,480</strong> 買い切り · 無料で試せます</p>
   </section>
+
+  <!-- 実際のスクリーンショット -->
+  <div class="screenshots">
+    <div class="screenshots-scroll">
+      <div class="phone-frame">
+        <img src="images/ss_05_settings.png" alt="設定画面" loading="lazy">
+      </div>
+      <div class="phone-frame center">
+        <img src="images/ss_01_list.png" alt="サブスク一覧" loading="lazy">
+      </div>
+      <div class="phone-frame">
+        <img src="images/ss_02_detail.png" alt="サブスク詳細" loading="lazy">
+      </div>
+    </div>
+  </div>
 
   <section class="features">
     <div class="features-inner">
@@ -196,29 +325,58 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
           </div>
           <h3>サブスク一括管理</h3>
-          <p>月払い・年払いを一覧で把握。更新日前に通知でお知らせ。</p>
+          <p>200件以上のサービスから選ぶだけ。月払い・年払いの合計を自動計算。更新日前に通知でお知らせ。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background: #FDF0EB;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9623A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <h3>家族への終活ノート</h3>
-          <p>大切なメッセージ・資産・連絡先を家族へ安全に残せます。</p>
+          <p>大切なメッセージ・資産・連絡先を家族へ安全に残せます。家族専用パスコードでアクセス管理。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background: #EAF3DE;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A9E4E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
-          <h3>資産・書類管理</h3>
-          <p>銀行・カード・保険・重要書類の保管場所をまとめて記録。</p>
+          <h3>資産・カード管理</h3>
+          <p>銀行口座・クレジットカード・証券・保険・重要書類の保管場所をまとめて記録。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background: #FDF8F0;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C0885A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </div>
           <h3>スマート通知</h3>
-          <p>無料トライアル終了・縛り解除・有効期限を事前にお知らせ。</p>
+          <p>無料トライアル終了・縛り解除・有効期限・90日以上使っていないサービスを事前にお知らせ。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 価格プラン -->
+  <section class="pricing">
+    <p class="pricing-title">料金プラン</p>
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <p class="plan-name">無料</p>
+        <p class="price">¥0</p>
+        <ul>
+          <li>サブスク 3件まで</li>
+          <li>クレジットカード 1枚</li>
+          <li>金融資産 1件</li>
+          <li>終活ノート（連絡先・メッセージ）</li>
+          <li>セキュリティ機能フル対応</li>
+        </ul>
+      </div>
+      <div class="pricing-card premium">
+        <p class="plan-name">プレミアム</p>
+        <p class="price">¥2,480 <small>買い切り</small></p>
+        <ul>
+          <li>サブスク 無制限</li>
+          <li>クレジットカード 無制限</li>
+          <li>金融資産・証券 無制限</li>
+          <li>モノ・書類管理</li>
+          <li>すべての機能を永久解放</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -230,7 +388,7 @@
       </div>
       <div>
         <h3>すべてのデータは端末内に</h3>
-        <p>AES-256暗号化でデータを保護。外部サーバーへの送信は一切行いません。Face IDとリカバリーコードで安全に守ります。</p>
+        <p>AES-256暗号化でデータを保護。外部サーバーへの送信は一切行いません。Face IDとリカバリーコードで安全に守ります。開発者もデータを閲覧できません。</p>
       </div>
     </div>
   </section>

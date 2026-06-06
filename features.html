@@ -268,6 +268,19 @@
       width: 240px;
       filter: drop-shadow(0 24px 48px rgba(44,42,38,0.15));
     }
+    .phone-img-wrap {
+      width: 220px;
+      background: #1A1A1A;
+      border-radius: 40px;
+      padding: 8px;
+      box-shadow: 0 24px 48px rgba(44,42,38,0.20);
+      flex-shrink: 0;
+    }
+    .phone-img-wrap img {
+      width: 100%;
+      border-radius: 32px;
+      display: block;
+    }
 
     /* ── セパレーター ── */
     .section-divider {
@@ -403,138 +416,17 @@
     <a class="btn-secondary" href="#subscriptions">使い方を見る</a>
   </div>
 
-  <!-- ヒーローモックアップ（3画面） -->
+  <!-- ヒーローモックアップ（実際のスクリーンショット3画面） -->
   <div style="display:flex; gap:16px; justify-content:center; align-items:flex-end; flex-wrap:wrap;">
-
-    <!-- 画面1: サブスク一覧 -->
-    <svg width="180" height="360" viewBox="0 0 390 780" style="filter:drop-shadow(0 20px 40px rgba(44,42,38,0.18)); border-radius:40px;" role="img" aria-label="サブスク一覧画面">
-      <rect width="390" height="780" rx="40" fill="#FAFAF7"/>
-      <!-- ステータスバー -->
-      <rect x="0" y="0" width="390" height="52" rx="40" fill="#FAFAF7"/>
-      <text x="32" y="34" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">9:41</text>
-      <!-- ナビ -->
-      <text x="24" y="90" font-size="22" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">サブスク</text>
-      <!-- サマリーカード -->
-      <rect x="16" y="104" width="358" height="72" rx="14" fill="#EEF3FF"/>
-      <text x="28" y="128" font-size="11" fill="#3B5FCC" font-family="-apple-system,sans-serif">今月の合計</text>
-      <text x="28" y="156" font-size="24" font-weight="500" fill="#1A3A8C" font-family="-apple-system,sans-serif" letter-spacing="-0.5">¥12,480</text>
-      <text x="200" y="128" font-size="11" fill="#3B5FCC" font-family="-apple-system,sans-serif">月換算ベース</text>
-      <text x="200" y="156" font-size="18" font-weight="500" fill="#1A3A8C" font-family="-apple-system,sans-serif">¥9,130</text>
-      <!-- リスト行1 Netflix -->
-      <rect x="16" y="192" width="358" height="64" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="204" width="40" height="40" rx="10" fill="#E50914"/>
-      <text x="52" y="229" text-anchor="middle" font-size="16" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">N</text>
-      <text x="78" y="222" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">Netflix</text>
-      <text x="78" y="240" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">6月15日 · 残14日</text>
-      <text x="354" y="228" text-anchor="end" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">¥1,490</text>
-      <!-- リスト行2 Spotify -->
-      <rect x="16" y="264" width="358" height="64" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="276" width="40" height="40" rx="10" fill="#1DB954"/>
-      <text x="52" y="301" text-anchor="middle" font-size="12" fill="#fff" font-family="-apple-system,sans-serif">♪</text>
-      <text x="78" y="294" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">Spotify</text>
-      <text x="78" y="312" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">6月20日 · 残19日</text>
-      <text x="354" y="300" text-anchor="end" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">¥980</text>
-      <!-- リスト行3 Adobe（警告） -->
-      <rect x="16" y="336" width="358" height="64" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="348" width="40" height="40" rx="10" fill="#FF0000"/>
-      <text x="52" y="373" text-anchor="middle" font-size="13" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Ai</text>
-      <text x="78" y="366" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">Adobe CC</text>
-      <text x="78" y="384" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">6月3日 · 残2日</text>
-      <text x="354" y="372" text-anchor="end" font-size="14" font-weight="500" fill="#B8453A" font-family="-apple-system,sans-serif">¥6,480</text>
-      <!-- 残日数バッジ -->
-      <rect x="300" y="383" width="62" height="18" rx="9" fill="#FCEBEB"/>
-      <text x="331" y="395" text-anchor="middle" font-size="10" fill="#B8453A" font-family="-apple-system,sans-serif">残2日 ⚠</text>
-      <!-- リスト行4 iCloud -->
-      <rect x="16" y="408" width="358" height="64" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="420" width="40" height="40" rx="10" fill="#007AFF"/>
-      <text x="52" y="445" text-anchor="middle" font-size="13" fill="#fff" font-family="-apple-system,sans-serif">☁</text>
-      <text x="78" y="438" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">iCloud+</text>
-      <text x="78" y="456" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">毎月3日 · 月換算</text>
-      <text x="354" y="444" text-anchor="end" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">¥1,300</text>
-      <!-- タブバー -->
-      <rect x="0" y="700" width="390" height="80" fill="#FAFAF7"/>
-      <line x1="0" y1="700" x2="390" y2="700" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="60" y="712" width="60" height="32" rx="16" fill="#EEF3FF"/>
-      <text x="90" y="732" text-anchor="middle" font-size="11" font-weight="500" fill="#3B5FCC" font-family="-apple-system,sans-serif">サブスク</text>
-      <text x="170" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">資産管理</text>
-      <text x="250" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">終活ノート</text>
-      <text x="330" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">設定</text>
-    </svg>
-
-    <!-- 画面2: 通知（中央・少し大きく） -->
-    <svg width="200" height="400" viewBox="0 0 390 780" style="filter:drop-shadow(0 24px 48px rgba(44,42,38,0.22)); border-radius:40px;" role="img" aria-label="通知画面">
-      <rect width="390" height="780" rx="40" fill="#1C1C1E"/>
-      <text x="32" y="54" font-size="14" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">9:41</text>
-      <!-- 日付 -->
-      <text x="195" y="110" text-anchor="middle" font-size="28" font-weight="300" fill="#fff" font-family="-apple-system,sans-serif">水曜日</text>
-      <text x="195" y="146" text-anchor="middle" font-size="48" font-weight="200" fill="#fff" font-family="-apple-system,sans-serif">3</text>
-      <!-- 通知1: 更新日 -->
-      <rect x="16" y="180" width="358" height="88" rx="16" fill="rgba(255,255,255,0.12)"/>
-      <rect x="28" y="196" width="36" height="36" rx="9" fill="#3B5FCC"/>
-      <text x="46" y="219" text-anchor="middle" font-size="18" fill="#fff" font-family="-apple-system,sans-serif">🔖</text>
-      <text x="74" y="212" font-size="13" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy</text>
-      <text x="74" y="230" font-size="12" fill="rgba(255,255,255,0.8)" font-family="-apple-system,sans-serif">Adobe CCの更新まで2日</text>
-      <text x="74" y="248" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">¥6,480 が請求されます</text>
-      <!-- 通知2: 休眠 -->
-      <rect x="16" y="280" width="358" height="88" rx="16" fill="rgba(255,255,255,0.12)"/>
-      <rect x="28" y="296" width="36" height="36" rx="9" fill="#C0885A"/>
-      <text x="46" y="319" text-anchor="middle" font-size="18" fill="#fff" font-family="-apple-system,sans-serif">😴</text>
-      <text x="74" y="312" font-size="13" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy</text>
-      <text x="74" y="330" font-size="12" fill="rgba(255,255,255,0.8)" font-family="-apple-system,sans-serif">Huluを90日以上使っていません</text>
-      <text x="74" y="348" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">¥3,078 が経過しています</text>
-      <!-- 通知3: 月次 -->
-      <rect x="16" y="380" width="358" height="88" rx="16" fill="rgba(255,255,255,0.12)"/>
-      <rect x="28" y="396" width="36" height="36" rx="9" fill="#7A9E4E"/>
-      <text x="46" y="419" text-anchor="middle" font-size="18" fill="#fff" font-family="-apple-system,sans-serif">📊</text>
-      <text x="74" y="412" font-size="13" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy · 月次レポート</text>
-      <text x="74" y="430" font-size="12" fill="rgba(255,255,255,0.8)" font-family="-apple-system,sans-serif">6月の合計: ¥12,480</text>
-      <text x="74" y="448" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">先月比 +¥980</text>
-    </svg>
-
-    <!-- 画面3: 終活ノート -->
-    <svg width="180" height="360" viewBox="0 0 390 780" style="filter:drop-shadow(0 20px 40px rgba(44,42,38,0.18)); border-radius:40px;" role="img" aria-label="終活ノート画面">
-      <rect width="390" height="780" rx="40" fill="#FAFAF7"/>
-      <rect x="0" y="0" width="390" height="52" rx="40" fill="#FAFAF7"/>
-      <text x="32" y="34" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">9:41</text>
-      <!-- 家族モードバナー -->
-      <rect x="0" y="52" width="390" height="32" fill="#FDF0EB"/>
-      <text x="195" y="72" text-anchor="middle" font-size="11" fill="#8C3015" font-family="-apple-system,sans-serif">閲覧モード（妻）· 編集不可</text>
-      <!-- タブ名 -->
-      <text x="24" y="120" font-size="22" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">終活ノート</text>
-      <!-- チェックリストセクション -->
-      <text x="24" y="154" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">手続きチェックリスト</text>
-      <!-- チェック行1 -->
-      <rect x="16" y="164" width="358" height="52" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="178" width="24" height="24" rx="6" fill="#EAF3DE" stroke="#7A9E4E" stroke-width="1.5"/>
-      <path d="M32 190 L36 194 L44 182" fill="none" stroke="#7A9E4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="64" y="192" font-size="13" fill="#2C2A26" font-family="-apple-system,sans-serif">Netflix 解約完了</text>
-      <text x="64" y="207" font-size="10" fill="#7A9E4E" font-family="-apple-system,sans-serif">✓ 手続き完了</text>
-      <!-- チェック行2 -->
-      <rect x="16" y="224" width="358" height="52" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="238" width="24" height="24" rx="6" fill="#F2EDE3" stroke="#E8E4DC" stroke-width="1.5"/>
-      <text x="64" y="252" font-size="13" fill="#2C2A26" font-family="-apple-system,sans-serif">Adobe CC 解約手続き</text>
-      <text x="64" y="267" font-size="10" fill="#D9623A" font-family="-apple-system,sans-serif">未着手</text>
-      <!-- チェック行3 -->
-      <rect x="16" y="284" width="358" height="52" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <rect x="28" y="298" width="24" height="24" rx="6" fill="#F2EDE3" stroke="#E8E4DC" stroke-width="1.5"/>
-      <text x="64" y="312" font-size="13" fill="#2C2A26" font-family="-apple-system,sans-serif">銀行口座の名義変更</text>
-      <text x="64" y="327" font-size="10" fill="#D9623A" font-family="-apple-system,sans-serif">未着手</text>
-      <!-- メッセージセクション -->
-      <text x="24" y="360" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">家族へのメッセージ</text>
-      <rect x="16" y="370" width="358" height="64" rx="12" fill="#FDF0EB" stroke="#F2C4AE" stroke-width="0.5"/>
-      <text x="28" y="394" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">妻へ</text>
-      <text x="28" y="412" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">長い間ありがとう。大切なことを...</text>
-      <rect x="28" y="424" width="200" height="4" rx="2" fill="#F2C4AE"/>
-      <!-- タブバー -->
-      <rect x="0" y="700" width="390" height="80" fill="#FAFAF7"/>
-      <line x1="0" y1="700" x2="390" y2="700" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="90" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">サブスク</text>
-      <text x="170" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">資産管理</text>
-      <rect x="210" y="712" width="80" height="32" rx="16" fill="#FDF0EB"/>
-      <text x="250" y="732" text-anchor="middle" font-size="11" font-weight="500" fill="#D9623A" font-family="-apple-system,sans-serif">終活ノート</text>
-      <text x="330" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">設定</text>
-    </svg>
-
+    <div style="width:160px; background:#1A1A1A; border-radius:34px; padding:7px; box-shadow:0 20px 40px rgba(44,42,38,0.18);">
+      <img src="images/ss_05_settings.png" alt="設定画面" style="width:100%; border-radius:28px; display:block;" loading="lazy">
+    </div>
+    <div style="width:188px; background:#1A1A1A; border-radius:38px; padding:8px; box-shadow:0 28px 56px rgba(44,42,38,0.24); margin-bottom:-20px;">
+      <img src="images/ss_01_list.png" alt="サブスク一覧" style="width:100%; border-radius:30px; display:block;" loading="lazy">
+    </div>
+    <div style="width:160px; background:#1A1A1A; border-radius:34px; padding:7px; box-shadow:0 20px 40px rgba(44,42,38,0.18);">
+      <img src="images/ss_02_detail.png" alt="サブスク詳細" style="width:100%; border-radius:28px; display:block;" loading="lazy">
+    </div>
   </div>
 </section>
 
@@ -565,11 +457,11 @@
   <div class="feature-text">
     <span class="feature-label indigo">📋 サブスク管理</span>
     <h2>すべてのサブスクを、<br>ひとつの画面で。</h2>
-    <p>Netflix、Spotify、Adobe CCなど、あらゆるサービスを登録。月払い・年払いを統一して「実際の引き落とし額」と「月換算額」を自動計算します。</p>
+    <p>Netflix、Spotify、Disney+など、あらゆるサービスを登録。月払い・年払いを統一して「今月の合計」と「月換算額」を自動計算します。</p>
     <div class="feature-points">
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--indigo);"></div>
-        <span>主要100以上のサービスをプリセットから選ぶだけで登録</span>
+        <span>200件以上のサービスをプリセットから選ぶだけで登録。サービスロゴも自動表示</span>
       </div>
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--indigo);"></div>
@@ -586,49 +478,9 @@
     </div>
   </div>
   <div class="phone-wrap">
-    <svg class="phone-frame" viewBox="0 0 390 780" role="img" aria-label="サブスク一覧の詳細画面">
-      <rect width="390" height="780" rx="40" fill="#FAFAF7"/>
-      <rect x="0" y="0" width="390" height="52" rx="40" fill="#FAFAF7"/>
-      <text x="32" y="34" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">9:41</text>
-      <!-- 戻るボタン -->
-      <text x="24" y="86" font-size="14" fill="#3B5FCC" font-family="-apple-system,sans-serif">‹ サブスク</text>
-      <!-- サービス名 -->
-      <text x="195" y="86" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">Adobe CC</text>
-      <!-- ロゴ -->
-      <rect x="155" y="102" width="80" height="80" rx="20" fill="#FF0000"/>
-      <text x="195" y="152" text-anchor="middle" font-size="28" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Ai</text>
-      <!-- 金額 -->
-      <rect x="60" y="196" width="270" height="64" rx="16" fill="#F2EDE3"/>
-      <text x="195" y="222" text-anchor="middle" font-size="28" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif" letter-spacing="-0.5">¥6,480</text>
-      <text x="195" y="248" text-anchor="middle" font-size="13" fill="#8C8880" font-family="-apple-system,sans-serif">/月</text>
-      <!-- 情報行 -->
-      <rect x="16" y="276" width="358" height="44" rx="0" fill="transparent"/>
-      <line x1="16" y1="276" x2="374" y2="276" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="24" y="300" font-size="13" fill="#8C8880" font-family="-apple-system,sans-serif">次回更新日</text>
-      <text x="366" y="300" text-anchor="end" font-size="13" fill="#2C2A26" font-family="-apple-system,sans-serif">2026年6月3日</text>
-      <line x1="16" y1="320" x2="374" y2="320" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="24" y="344" font-size="13" fill="#8C8880" font-family="-apple-system,sans-serif">決済方法</text>
-      <text x="366" y="344" text-anchor="end" font-size="13" fill="#2C2A26" font-family="-apple-system,sans-serif">VISA *4242</text>
-      <line x1="16" y1="364" x2="374" y2="364" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="24" y="388" font-size="13" fill="#8C8880" font-family="-apple-system,sans-serif">カテゴリ</text>
-      <text x="366" y="388" text-anchor="end" font-size="13" fill="#2C2A26" font-family="-apple-system,sans-serif">仕事</text>
-      <line x1="16" y1="408" x2="374" y2="408" stroke="#E8E4DC" stroke-width="0.5"/>
-      <!-- 警告バナー -->
-      <rect x="16" y="424" width="358" height="52" rx="12" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
-      <text x="28" y="447" font-size="12" font-weight="500" fill="#B8453A" font-family="-apple-system,sans-serif">⚠ 更新まで2日です</text>
-      <text x="28" y="464" font-size="11" fill="#B8453A" font-family="-apple-system,sans-serif">6月3日に¥6,480が引き落とされます</text>
-      <!-- 解約ボタン -->
-      <rect x="16" y="490" width="358" height="48" rx="12" fill="#EEF3FF"/>
-      <text x="195" y="519" text-anchor="middle" font-size="14" fill="#3B5FCC" font-family="-apple-system,sans-serif">解約方法を確認する</text>
-      <!-- 値上げ履歴 -->
-      <text x="24" y="560" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">料金の変遷</text>
-      <rect x="16" y="570" width="358" height="72" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="28" y="594" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">2024年1月〜</text>
-      <text x="354" y="594" text-anchor="end" font-size="12" fill="#2C2A26" font-family="-apple-system,sans-serif">¥6,480/月</text>
-      <line x1="28" y1="606" x2="362" y2="606" stroke="#F2EDE3" stroke-width="0.5"/>
-      <text x="28" y="626" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">2022年6月〜</text>
-      <text x="354" y="626" text-anchor="end" font-size="12" fill="#2C2A26" font-family="-apple-system,sans-serif">¥5,680/月</text>
-    </svg>
+    <div class="phone-img-wrap">
+      <img src="images/ss_01_list.png" alt="サブスク一覧画面" loading="lazy">
+    </div>
   </div>
 </section>
 
@@ -660,40 +512,9 @@
     </div>
   </div>
   <div class="phone-wrap">
-    <svg class="phone-frame" viewBox="0 0 390 780" role="img" aria-label="通知センターの画面">
-      <rect width="390" height="780" rx="40" fill="#1C1C1E"/>
-      <text x="32" y="54" font-size="14" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">9:41</text>
-      <text x="195" y="130" text-anchor="middle" font-size="56" font-weight="200" fill="#fff" font-family="-apple-system,sans-serif">3</text>
-      <text x="195" y="162" text-anchor="middle" font-size="22" font-weight="300" fill="rgba(255,255,255,0.7)" font-family="-apple-system,sans-serif">水曜日</text>
-      <!-- 通知1 -->
-      <rect x="16" y="190" width="358" height="92" rx="18" fill="rgba(255,255,255,0.13)"/>
-      <rect x="28" y="206" width="40" height="40" rx="10" fill="#3B5FCC"/>
-      <text x="48" y="231" text-anchor="middle" font-size="22" fill="#fff" font-family="-apple-system,sans-serif">🔖</text>
-      <text x="80" y="218" font-size="12" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy</text>
-      <text x="80" y="238" font-size="13" fill="rgba(255,255,255,0.9)" font-family="-apple-system,sans-serif">Adobe CCの更新まで2日です</text>
-      <text x="80" y="258" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">6月3日に¥6,480が引き落とされます</text>
-      <!-- 通知2 -->
-      <rect x="16" y="294" width="358" height="92" rx="18" fill="rgba(255,255,255,0.13)"/>
-      <rect x="28" y="310" width="40" height="40" rx="10" fill="#C0885A"/>
-      <text x="48" y="335" text-anchor="middle" font-size="22" fill="#fff" font-family="-apple-system,sans-serif">😴</text>
-      <text x="80" y="322" font-size="12" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy · 休眠検知</text>
-      <text x="80" y="342" font-size="13" fill="rgba(255,255,255,0.9)" font-family="-apple-system,sans-serif">Huluを90日以上使っていません</text>
-      <text x="80" y="362" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">¥3,078が経過。解約を検討しますか？</text>
-      <!-- 通知3 -->
-      <rect x="16" y="398" width="358" height="92" rx="18" fill="rgba(255,255,255,0.13)"/>
-      <rect x="28" y="414" width="40" height="40" rx="10" fill="#7A9E4E"/>
-      <text x="48" y="439" text-anchor="middle" font-size="22" fill="#fff" font-family="-apple-system,sans-serif">📊</text>
-      <text x="80" y="426" font-size="12" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy · 月次レポート</text>
-      <text x="80" y="446" font-size="13" fill="rgba(255,255,255,0.9)" font-family="-apple-system,sans-serif">6月の合計: ¥12,480</text>
-      <text x="80" y="466" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">先月比 +¥980 · 年間換算 ¥149,760</text>
-      <!-- 通知4 -->
-      <rect x="16" y="502" width="358" height="92" rx="18" fill="rgba(255,255,255,0.13)"/>
-      <rect x="28" y="518" width="40" height="40" rx="10" fill="#D9623A"/>
-      <text x="48" y="543" text-anchor="middle" font-size="22" fill="#fff" font-family="-apple-system,sans-serif">🎉</text>
-      <text x="80" y="530" font-size="12" font-weight="500" fill="#fff" font-family="-apple-system,sans-serif">Keepy · 無料トライアル</text>
-      <text x="80" y="550" font-size="13" fill="rgba(255,255,255,0.9)" font-family="-apple-system,sans-serif">Disney+の無料期間が2日後に終了</text>
-      <text x="80" y="570" font-size="11" fill="rgba(255,255,255,0.5)" font-family="-apple-system,sans-serif">今解約すれば0円です</text>
-    </svg>
+    <div class="phone-img-wrap">
+      <img src="images/ss_02_detail.png" alt="サブスク詳細画面" loading="lazy">
+    </div>
   </div>
 </section>
 
@@ -725,57 +546,9 @@
     </div>
   </div>
   <div class="phone-wrap">
-    <svg class="phone-frame" viewBox="0 0 390 780" role="img" aria-label="終活ノートの画面">
-      <rect width="390" height="780" rx="40" fill="#FAFAF7"/>
-      <rect x="0" y="0" width="390" height="52" rx="40" fill="#FAFAF7"/>
-      <text x="32" y="34" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">9:41</text>
-      <!-- 家族バナー -->
-      <rect x="0" y="52" width="390" height="28" fill="#FDF0EB"/>
-      <text x="195" y="70" text-anchor="middle" font-size="11" fill="#8C3015" font-family="-apple-system,sans-serif">👁 閲覧モード（妻） · 編集不可</text>
-      <!-- タイトル -->
-      <text x="24" y="116" font-size="22" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">終活ノート</text>
-      <!-- チェックリストカード -->
-      <rect x="16" y="130" width="358" height="116" rx="14" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="28" y="152" font-size="12" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">✅ 手続きチェックリスト</text>
-      <rect x="28" y="162" width="332" height="6" rx="3" fill="#E8E4DC"/>
-      <rect x="28" y="162" width="100" height="6" rx="3" fill="#7A9E4E"/>
-      <text x="28" y="186" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">3件完了 / 8件中</text>
-      <!-- ミニチェック行 -->
-      <rect x="28" y="196" width="16" height="16" rx="4" fill="#EAF3DE" stroke="#7A9E4E" stroke-width="1"/>
-      <path d="M30 204 L33 207 L40 199" fill="none" stroke="#7A9E4E" stroke-width="1.5" stroke-linecap="round"/>
-      <text x="52" y="208" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">Netflix 解約</text>
-      <rect x="140" y="196" width="16" height="16" rx="4" fill="#F2EDE3" stroke="#E8E4DC" stroke-width="1"/>
-      <text x="164" y="208" font-size="11" fill="#2C2A26" font-family="-apple-system,sans-serif">Adobe CC 解約</text>
-      <rect x="28" y="220" width="16" height="16" rx="4" fill="#F2EDE3" stroke="#E8E4DC" stroke-width="1"/>
-      <text x="52" y="232" font-size="11" fill="#2C2A26" font-family="-apple-system,sans-serif">銀行口座の名義変更</text>
-      <!-- 緊急連絡先カード -->
-      <text x="24" y="268" font-size="12" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">📋 緊急連絡先</text>
-      <rect x="16" y="278" width="170" height="80" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="28" y="300" font-size="10" fill="#8C8880" font-family="-apple-system,sans-serif">かかりつけ医</text>
-      <text x="28" y="318" font-size="13" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">田中クリニック</text>
-      <text x="28" y="336" font-size="11" fill="#3B5FCC" font-family="-apple-system,sans-serif">📞 03-1234-5678</text>
-      <rect x="204" y="278" width="170" height="80" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="216" y="300" font-size="10" fill="#8C8880" font-family="-apple-system,sans-serif">弁護士</text>
-      <text x="216" y="318" font-size="13" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">山田法律事務所</text>
-      <text x="216" y="336" font-size="11" fill="#3B5FCC" font-family="-apple-system,sans-serif">📞 03-9876-5432</text>
-      <!-- メッセージ -->
-      <text x="24" y="382" font-size="12" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">💌 メッセージ</text>
-      <rect x="16" y="392" width="358" height="72" rx="12" fill="#FDF0EB" stroke="#F2C4AE" stroke-width="0.5"/>
-      <text x="28" y="414" font-size="14" font-weight="500" fill="#D9623A" font-family="-apple-system,sans-serif">妻へ</text>
-      <text x="28" y="434" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">長い間ありがとう。いくつか伝え...</text>
-      <rect x="28" y="448" width="180" height="4" rx="2" fill="#F2C4AE"/>
-      <rect x="16" y="474" width="358" height="60" rx="12" fill="#fff" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="28" y="496" font-size="14" font-weight="500" fill="#2C2A26" font-family="-apple-system,sans-serif">葬儀について</text>
-      <text x="28" y="514" font-size="12" fill="#8C8880" font-family="-apple-system,sans-serif">○○斎場に相談済みです。連絡先...</text>
-      <!-- タブバー -->
-      <rect x="0" y="700" width="390" height="80" fill="#FAFAF7"/>
-      <line x1="0" y1="700" x2="390" y2="700" stroke="#E8E4DC" stroke-width="0.5"/>
-      <text x="90" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">サブスク</text>
-      <text x="170" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">資産管理</text>
-      <rect x="210" y="712" width="80" height="32" rx="16" fill="#FDF0EB"/>
-      <text x="250" y="732" text-anchor="middle" font-size="11" font-weight="500" fill="#D9623A" font-family="-apple-system,sans-serif">終活ノート</text>
-      <text x="330" y="732" text-anchor="middle" font-size="11" fill="#8C8880" font-family="-apple-system,sans-serif">設定</text>
-    </svg>
+    <div class="phone-img-wrap">
+      <img src="images/ss_04_ending.png" alt="終活ノート画面" loading="lazy">
+    </div>
   </div>
 </section>
 
@@ -818,7 +591,7 @@
     <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
   </svg>
   <h2>サブスクを管理して、<br>大切なものを残そう。</h2>
-  <p>iOS 17以上 · 買い切り · サーバーなし</p>
+  <p>iOS 17以上 · <strong>¥2,480</strong> 買い切り · サーバーなし · 無料で試せます</p>
   <a class="btn-primary" href="#">App Storeでダウンロード（準備中）</a>
 </section>
 
