@@ -76,25 +76,17 @@
     }
     .phone-frame {
       flex-shrink: 0;
-      width: 180px;
+      width: 190px;
       background: #1A1A1A;
-      border-radius: 36px;
-      padding: 8px;
-      box-shadow: 0 24px 48px rgba(44,42,38,0.18);
+      border-radius: 38px;
+      padding: 9px;
+      box-shadow: 0 24px 48px rgba(44,42,38,0.20);
     }
     .phone-frame img {
       width: 100%;
-      border-radius: 28px;
+      border-radius: 30px;
       display: block;
     }
-    .phone-frame.center {
-      width: 200px;
-      border-radius: 40px;
-      padding: 9px;
-      box-shadow: 0 28px 56px rgba(44,42,38,0.24);
-      align-self: flex-start;
-    }
-    .phone-frame.center img { border-radius: 31px; }
 
     /* 特徴セクション */
     .features {
@@ -275,8 +267,7 @@
       .pricing-cards { grid-template-columns: 1fr; }
       .feature-grid { grid-template-columns: 1fr; }
       .screenshots-scroll { flex-wrap: nowrap; justify-content: flex-start; }
-      .phone-frame { width: 150px; }
-      .phone-frame.center { width: 165px; }
+      .phone-frame { width: 155px; }
     }
   </style>
 </head>
@@ -307,7 +298,7 @@
       <div class="phone-frame">
         <img src="images/ss_05_settings.png" alt="設定画面" loading="lazy">
       </div>
-      <div class="phone-frame center">
+      <div class="phone-frame">
         <img src="images/ss_01_list.png" alt="サブスク一覧" loading="lazy">
       </div>
       <div class="phone-frame">
