@@ -398,6 +398,7 @@
     </a>
     <nav class="header-nav">
       <a href="#subscriptions">サブスク管理</a>
+      <a href="#schedule">スケジュール</a>
       <a href="#notifications">通知</a>
       <a href="#ending-note">終活ノート</a>
       <a href="#security">セキュリティ</a>
@@ -419,13 +420,13 @@
   <!-- ヒーローモックアップ（実際のスクリーンショット3画面） -->
   <div style="display:flex; gap:16px; justify-content:center; align-items:center; flex-wrap:wrap;">
     <div style="width:175px; background:#1A1A1A; border-radius:36px; padding:8px; box-shadow:0 24px 48px rgba(44,42,38,0.20);">
-      <img src="images/ss_05_settings.png" alt="設定画面" style="width:100%; border-radius:28px; display:block;" loading="lazy">
-    </div>
-    <div style="width:175px; background:#1A1A1A; border-radius:36px; padding:8px; box-shadow:0 24px 48px rgba(44,42,38,0.20);">
       <img src="images/ss_01_list.png" alt="サブスク一覧" style="width:100%; border-radius:28px; display:block;" loading="lazy">
     </div>
     <div style="width:175px; background:#1A1A1A; border-radius:36px; padding:8px; box-shadow:0 24px 48px rgba(44,42,38,0.20);">
       <img src="images/ss_02_detail.png" alt="サブスク詳細" style="width:100%; border-radius:28px; display:block;" loading="lazy">
+    </div>
+    <div style="width:175px; background:#1A1A1A; border-radius:36px; padding:8px; box-shadow:0 24px 48px rgba(44,42,38,0.20);">
+      <img src="images/ss_03_schedule.png" alt="スケジュール" style="width:100%; border-radius:28px; display:block;" loading="lazy">
     </div>
   </div>
 </section>
@@ -469,6 +470,10 @@
       </div>
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--indigo);"></div>
+        <span>使わなくなったサブスクは「解約」ボタンで記録。再開もワンタップで簡単に</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--indigo);"></div>
         <span>解約した分の「節約できた金額」を自動で集計</span>
       </div>
       <div class="feature-point">
@@ -486,8 +491,42 @@
 
 <div class="section-divider"></div>
 
-<!-- 機能2: 通知 -->
-<section class="feature-section reverse" id="notifications">
+<!-- 機能2: スケジュール表示 -->
+<section class="feature-section reverse" id="schedule">
+  <div class="feature-text">
+    <span class="feature-label green">📅 スケジュール表示</span>
+    <h2>いつ、いくら引き落とされるか<br>一目でわかる。</h2>
+    <p>月カレンダー形式で今月・翌月の支払日と金額を確認。年払いの更新月には自動でアラートバナーを表示し、うっかり高額引き落としを防ぎます。</p>
+    <div class="feature-points">
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>月払い・年払いの次回支払日をカレンダーに自動マッピング</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>日付をタップするとその日の支払い一覧が展開表示</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>年払いの更新月はアラートバナーで事前に通知</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>支払い履歴から実際の月額支出を正確に集計</span>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone-img-wrap">
+      <img src="images/ss_03_schedule.png" alt="スケジュール画面" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 機能3: 通知 -->
+<section class="feature-section" id="notifications">
   <div class="feature-text">
     <span class="feature-label amber" style="background:#FDF8F0; color:#C0885A;">🔔 スマート通知</span>
     <h2>更新日を、<br>見逃さない。</h2>
@@ -520,8 +559,8 @@
 
 <div class="section-divider"></div>
 
-<!-- 機能3: 終活ノート -->
-<section class="feature-section" id="ending-note">
+<!-- 機能4: 終活ノート -->
+<section class="feature-section reverse" id="ending-note">
   <div class="feature-text">
     <span class="feature-label terra">💌 終活ノート</span>
     <h2>大切な人へ、<br>残せるノート。</h2>
