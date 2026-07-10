@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使い方ガイド — Keepy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FAFAF7;
+      --bg2:       #F2EDE3;
+      --indigo:    #3B5FCC;
+      --indigo-lt: #EEF3FF;
+      --terra:     #D9623A;
+      --terra-lt:  #FDF0EB;
+      --green:     #7A9E4E;
+      --green-lt:  #EAF3DE;
+      --amber:     #C0885A;
+      --red:       #B8453A;
+      --text:      #2C2A26;
+      --text2:     #8C8880;
+      --border:    #E8E4DC;
+      --white:     #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── ヘッダー ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 12px 24px;
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .header-logo svg { border-radius: 9px; display: block; }
+    .header-logo-text { font-size: 16px; font-weight: 500; color: var(--text); }
+    .header-nav { display: flex; gap: 20px; }
+    .header-nav a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color 0.15s; }
+    .header-nav a:hover { color: var(--indigo); }
+    .header-nav a.current { color: var(--indigo); }
+    .header-cta {
+      background: var(--text); color: #fff; font-size: 13px; font-weight: 500;
+      padding: 8px 18px; border-radius: 20px; text-decoration: none; transition: opacity 0.15s;
+    }
+    .header-cta:hover { opacity: 0.8; }
+
+    /* ── ヒーロー ── */
+    .hero { max-width: 760px; margin: 0 auto; padding: 72px 24px 40px; text-align: center; }
+    .hero-label {
+      display: inline-block; background: var(--indigo-lt); color: var(--indigo);
+      font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px;
+      line-height: 1.25; margin-bottom: 16px; color: var(--text);
+    }
+    .hero h1 em { font-style: normal; color: var(--indigo); }
+    .hero-sub { font-size: 16px; color: var(--text2); max-width: 520px; margin: 0 auto; }
+
+    /* ── 本文コンテナ ── */
+    .guide { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+
+    /* ── 注意喚起ボックス ── */
+    .warn {
+      background: var(--terra-lt); border: 0.5px solid #F0C8B8; border-radius: 16px;
+      padding: 20px 22px; margin-bottom: 40px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .warn-icon {
+      width: 40px; height: 40px; background: var(--terra); border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .warn h3 { font-size: 15px; font-weight: 500; color: var(--terra); margin-bottom: 4px; }
+    .warn p { font-size: 14px; color: #A64B2C; line-height: 1.6; }
+
+    /* ── セクション見出し ── */
+    .guide-section { margin-bottom: 48px; scroll-margin-top: 72px; }
+    .guide-section > h2 {
+      font-size: clamp(20px, 3vw, 26px); font-weight: 500; letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+    .guide-section > .lead { font-size: 15px; color: var(--text2); margin-bottom: 28px; }
+
+    /* ── 番号付きステップ ── */
+    .steps { display: flex; flex-direction: column; gap: 14px; }
+    .step {
+      background: var(--white); border: 0.5px solid var(--border); border-radius: 14px;
+      padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start;
+    }
+    .step-num {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--indigo-lt);
+      color: var(--indigo); font-size: 14px; font-weight: 600; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .step-body p { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section { padding: 24px 24px 72px; text-align: center; }
+    .cta-section h2 { font-size: clamp(20px, 4vw, 28px); font-weight: 500; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .cta-section p { font-size: 14px; color: var(--text2); margin-bottom: 28px; }
+    .btn-primary {
+      background: var(--text); color: #fff; font-size: 15px; font-weight: 500;
+      padding: 13px 28px; border-radius: 14px; text-decoration: none; transition: opacity 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+
+    /* ── フッター ── */
+    footer { border-top: 0.5px solid var(--border); padding: 32px 24px; text-align: center; }
+    footer nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 14px; flex-wrap: wrap; }
+    footer nav a { font-size: 13px; color: var(--indigo); text-decoration: none; }
+    footer nav a:hover { text-decoration: underline; }
+    footer p { font-size: 12px; color: var(--text2); }
+
+    @media (max-width: 680px) {
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-inner">
+    <a class="header-logo" href="index.html">
+      <svg width="28" height="28" viewBox="0 0 1024 1024">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span class="header-logo-text">Keepy</span>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">トップ</a>
+      <a href="features.html">使い方</a>
+      <a href="guide.html" class="current">ガイド</a>
+      <a href="support.html">サポート</a>
+    </nav>
+    <!-- APPSTORE_LINK -->
+    <a class="header-cta" href="#" data-appstore>ダウンロード（準備中）</a>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <span class="hero-label">使い方ガイド</span>
+  <h1>家族への引き継ぎを、<em>設定する。</em></h1>
+  <p class="hero-sub">もしものとき、ご家族が困らないように。初回に「共有まで」やり切っておく手順をまとめました。</p>
+</section>
+
+<div class="guide">
+
+  <!-- 注意喚起 -->
+  <div class="warn">
+    <div class="warn-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <div>
+      <h3>いちばん大事なこと：共有を忘れない</h3>
+      <p>オーナーが共有フォルダを家族に共有し忘れると、いざというとき<strong>ご家族がデータにアクセスできません</strong>。初回に「③家族に共有」まで必ずやり切ってください。</p>
+    </div>
+  </div>
+
+  <!-- 引き継ぎ設定ガイド（オンボーディング④の着地） -->
+  <section class="guide-section" id="handover">
+    <h2>家族への引き継ぎ設定ガイド</h2>
+    <p class="lead">下の5ステップを初回に済ませておけば、もしものときご家族が新しい端末でデータを復元し、手続きに必要な情報にたどり着けます。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>家族を登録する</h3>
+          <p>「家族を管理」から、引き継ぐご家族を登録します。ご家族ごとに<strong>家族パスコード</strong>を設定してください（家族モードのログインに使います）。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>共有フォルダを作る</h3>
+          <p>iCloud Drive などに、引き継ぎ用のフォルダを1つ作ります。ここに暗号化ファイルと引き継ぎガイドを書き出します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>家族にフォルダを共有する</h3>
+          <p>作ったフォルダを、引き継ぐご家族と共有します。<strong>この共有を忘れると家族が締め出されます</strong>ので、必ずここまでやり切ってください。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>引き継ぎガイド／暗号化ファイルを書き出す</h3>
+          <p>アプリから、共有フォルダへ<strong>暗号化バックアップ（.enc）</strong>と<strong>引き継ぎガイド</strong>を書き出します。宛先ごとに書き出すと、それぞれのガイドには<strong>そのご本人の家族パスコードだけ</strong>が載ります。「Keepy○○（お名前）」のフォルダが自動で作られ、宛先別に整理されます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>ご家族がアプリで復元する</h3>
+          <p>もしものとき、ご家族は共有フォルダの暗号化ファイルと<strong>復活カギ（8語）</strong>を使って、新しい端末の Keepy にデータを復元します。あとは家族パスコードで家族モードにログインすれば、手続きに必要な情報が揃います。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 将来拡張の器（後から追記） -->
+  <!-- TODO: 初回セットアップ（オンボーディング）の要約セクション -->
+  <!-- TODO: バックアップ・復元の詳細セクション -->
+  <!-- TODO: 機種変更のときのセクション -->
+
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>まずは Keepy を、<br>使ってみる。</h2>
+  <p>iOS 17以上 · iPhone向け · 買い切り · 無料で試せます</p>
+  <!-- APPSTORE_LINK -->
+  <a class="btn-primary" href="#" data-appstore>App Storeでダウンロード（準備中）</a>
+</section>
+
+<!-- フッター -->
+<footer>
+  <nav>
+    <a href="index.html">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">ガイド</a>
+    <a href="support.html">サポート</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </nav>
+  <p>© 2026 Keepy. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
