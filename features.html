@@ -196,6 +196,12 @@
       font-size: 12px;
       color: var(--text2);
     }
+    .stat-source {
+      font-size: 11px;
+      color: var(--text2);
+      text-align: center;
+      margin-top: 16px;
+    }
 
     /* ── 機能セクション共通 ── */
     .feature-section {
@@ -401,6 +407,7 @@
       <a href="#schedule">スケジュール</a>
       <a href="#notifications">通知</a>
       <a href="#ending-note">終活ノート</a>
+      <a href="guide.html">ガイド</a>
       <a href="#security">セキュリティ</a>
     </nav>
     <a class="header-cta" href="#">ダウンロード（準備中）</a>
@@ -409,11 +416,12 @@
 
 <!-- ヒーロー -->
 <section class="hero">
-  <span class="hero-label">iOS / iPadOS 17以上 · 買い切り</span>
+  <span class="hero-label">iOS 17以上 · iPhone向け · 買い切り</span>
   <h1>サブスクを、<em>一冊に。</em><br>大切なものも、一冊に。</h1>
   <p class="hero-sub">毎月いくら払っているか把握できていますか？Keepyは普段のサブスク管理から、家族への大切な記録まで、一冊にまとめます。</p>
   <div class="hero-btns">
-    <a class="btn-primary" href="#">App Storeでダウンロード（準備中）</a>
+    <!-- APPSTORE_LINK -->
+    <a class="btn-primary" href="#" data-appstore>App Storeでダウンロード（準備中）</a>
     <a class="btn-secondary" href="#subscriptions">使い方を見る</a>
   </div>
 
@@ -434,22 +442,23 @@
 <!-- 課題提起 -->
 <section class="problem">
   <div class="problem-inner">
-    <h2>サブスク、何件あるか<br>すぐ言えますか？</h2>
-    <p>毎月自動で引き落とされていく金額。気づけばたくさんのサービスに課金していて、何を使っているかも把握できていない——そんな状態になっていませんか？</p>
+    <h2>使っていないサブスク、<br>放置していませんか？</h2>
+    <p>「多い・高い」よりも問題なのは、解約し忘れと見直し不足。気づかないうちに、使っていないサービスに払い続けていませんか？</p>
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-num">8.3件</div>
-        <div class="stat-label">1人あたりの平均<br>サブスク契約数</div>
+        <div class="stat-num">69.4%</div>
+        <div class="stat-label">解約を検討した<br>経験がある人</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">¥178K</div>
-        <div class="stat-label">年間のサブスク<br>平均支出額</div>
+        <div class="stat-num">約2割</div>
+        <div class="stat-label">使っていないのに<br>解約し忘れている人</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">42%</div>
-        <div class="stat-label">契約を忘れて<br>無駄に払い続けた経験</div>
+        <div class="stat-num">58.5%</div>
+        <div class="stat-label">見直して解約し<br>年1万円ほど節約</div>
       </div>
     </div>
+    <p class="stat-source">出典：ジャストシステム調べ（2024）／家計診断サービス「オカネコ」調べ</p>
   </div>
 </section>
 
@@ -479,6 +488,10 @@
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--indigo);"></div>
         <span>光回線・携帯の縛り期間も管理。解約可能日をお知らせ</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--indigo);"></div>
+        <span>ホーム画面ウィジェットで合計をひと目に。初回は「はじめる準備」で迷わず設定</span>
       </div>
     </div>
   </div>
@@ -552,7 +565,8 @@
   </div>
   <div class="phone-wrap">
     <div class="phone-img-wrap">
-      <img src="images/ss_03_schedule.png" alt="スケジュール画面" loading="lazy">
+      <!-- TODO Phase2: 通知専用スクショに差し替え（現状はスケジュール画像の暫定流用） -->
+      <img src="images/ss_03_schedule.png" alt="通知（暫定：スケジュール画像）" loading="lazy">
     </div>
   </div>
 </section>
@@ -616,7 +630,16 @@
         <div class="feature-point-dot" style="background: var(--terra);"></div>
         <span>手続き完了チェックで、家族が何を対応済みか把握できる</span>
       </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--terra);"></div>
+        <span>宛先ごとの引き継ぎガイド（本人のパスコードだけが載る）を書き出して配布</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--terra);"></div>
+        <span>共有フォルダに暗号化ファイル（.enc）とガイドを保存し、家族が新端末で復活カギから復元</span>
+      </div>
     </div>
+    <a class="btn-secondary" href="guide.html#handover" style="margin-top:20px; display:inline-block; font-size:14px; padding:10px 20px;">引き継ぎの設定方法を見る →</a>
   </div>
   <div class="phone-wrap">
     <div class="phone-img-wrap">
@@ -664,14 +687,16 @@
     <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
   </svg>
   <h2>サブスクを管理して、<br>大切なものを残そう。</h2>
-  <p>iOS 17以上 · <strong>¥2,480</strong> 買い切り · サーバーなし · 無料で試せます</p>
-  <a class="btn-primary" href="#">App Storeでダウンロード（準備中）</a>
+  <p>iOS 17以上 · iPhone向け · <strong>¥2,480</strong> 買い切り · サーバーなし · 無料で試せます</p>
+  <!-- APPSTORE_LINK -->
+  <a class="btn-primary" href="#" data-appstore>App Storeでダウンロード（準備中）</a>
 </section>
 
 <!-- フッター -->
 <footer>
   <nav>
     <a href="index.html">トップ</a>
+    <a href="guide.html">ガイド</a>
     <a href="support.html">サポート</a>
     <a href="privacy.html">プライバシーポリシー</a>
   </nav>
