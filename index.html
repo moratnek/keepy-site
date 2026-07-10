@@ -187,6 +187,12 @@
       font-weight: 400;
       color: #8C8880;
     }
+    .pricing-card .price-note {
+      font-size: 11px;
+      color: #8C8880;
+      margin: -10px 0 14px;
+      line-height: 1.45;
+    }
     .pricing-card ul {
       list-style: none;
       display: flex;
@@ -288,8 +294,9 @@
     </div>
     <h1>Keepy</h1>
     <p class="tagline">サブスク・契約・大切なものを一冊に</p>
-    <a class="badge" href="#">App Storeでダウンロード（準備中）</a>
-    <p class="badge-meta">iOS 17以上 · <strong>¥2,480</strong> 買い切り · 無料で試せます</p>
+    <!-- APPSTORE_LINK -->
+    <a class="badge" href="#" data-appstore>App Storeでダウンロード（準備中）</a>
+    <p class="badge-meta">iOS 17以上 · iPhone向け · <strong>¥2,480</strong> 買い切り · 無料で試せます</p>
   </section>
 
   <!-- 実際のスクリーンショット -->
@@ -322,8 +329,8 @@
           <div class="feature-icon" style="background: #FDF0EB;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9623A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
-          <h3>家族への終活ノート</h3>
-          <p>大切なメッセージ・資産・連絡先を家族へ安全に残せます。家族専用パスコードでアクセス管理。</p>
+          <h3>家族への引き継ぎ</h3>
+          <p>もしものとき、家族が家族モードでログインし手続きに必要な情報へ。宛先ごとの引き継ぎガイドを暗号化して安全に配布できます。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background: #EAF3DE;">
@@ -358,14 +365,15 @@
         </ul>
       </div>
       <div class="pricing-card premium">
-        <p class="plan-name">プレミアム</p>
-        <p class="price">¥2,480 <small>買い切り</small></p>
+        <p class="plan-name">プレミアム（買い切り）</p>
+        <p class="price">¥2,480 <small>早期割引価格</small></p>
+        <p class="price-note">先着100名 または 1.0公開から1か月後は ¥3,480 予定</p>
         <ul>
-          <li>サブスク 無制限</li>
-          <li>クレジットカード・資産 無制限</li>
+          <li>サブスク・カード・資産 無制限</li>
           <li>終活ノート（連絡先・メッセージ）</li>
+          <li>家族への引き継ぎ配布</li>
           <li>モノ・書類管理</li>
-          <li>すべての機能を永久解放</li>
+          <li>追加課金なし・サーバー維持費なし</li>
         </ul>
       </div>
     </div>
@@ -385,8 +393,9 @@
 
   <footer>
     <nav>
-      <a href="support.html">サポート</a>
       <a href="features.html">使い方</a>
+      <a href="guide.html">ガイド</a>
+      <a href="support.html">サポート</a>
       <a href="privacy.html">プライバシーポリシー</a>
     </nav>
     <p>© 2026 Keepy. All rights reserved.</p>
