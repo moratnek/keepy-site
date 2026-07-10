@@ -180,6 +180,7 @@
   <div class="container">
     <h1 class="page-title">サポート</h1>
     <p class="page-sub">お困りのことがあればこちらをご確認ください。</p>
+    <p style="background:#EEF3FF; border:0.5px solid #C5D3F5; border-radius:12px; padding:12px 16px; font-size:13px; margin-bottom:32px;">家族への引き継ぎの設定は <a href="guide.html#handover"><strong>使い方ガイド</strong></a> で手順を詳しく説明しています。</p>
 
     <h2>よくある質問</h2>
 
@@ -236,7 +237,7 @@
         iPadでも使えますか？
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">はい、iPadでもご利用いただけます。iPhoneのデータをiPadで引き継ぐには、iPhoneで「設定 → バックアップ → iCloud Driveに自動バックアップ」を有効にした後、iPadで「バックアップから復元」を選択してください。</div>
+      <div class="faq-a">Keepy は iPhone 向けのアプリです。iPad でも互換モード（iPhone サイズの表示）で動作しますが、iPad 専用の最適化はしていません。iPhone でのご利用を前提に設計しています。</div>
     </div>
 
     <div class="faq-item">
@@ -263,6 +264,46 @@
       <div class="faq-a">iOSの「設定 → 通知 → Keepy」から通知が許可されているかご確認ください。また、Keepy内の「設定 → 通知設定」でも各通知のオン・オフを確認できます。</div>
     </div>
 
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        「はじめる準備」（オンボーディング）とは何ですか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">初めて使うとき、口座・カード・サブスクの登録と家族への引き継ぎを順番にご案内する画面です。あとで続きをやる場合は、ホームの「はじめる準備」チェックリストから各項目を登録できます（すべて済むと自動で消えます）。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        別の端末で、引き継いだデータを見るには？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">ご家族が新しい端末で見るには、ロック画面下部の「別のバックアップから復元」を選び、共有された暗号化ファイルと復活カギ（8語）で復元します。手順は <a href="guide.html#handover">使い方ガイド</a> をご覧ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        この端末のデータを初期化するには？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">「設定 → データ管理」から端末内のデータを初期化できます（暗号化キーを削除し、最初のセットアップ画面に戻ります）。初期化するとこの端末の内容は消えるため、事前にバックアップと復活カギの控えをご用意ください。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        家族への引き継ぎはどう配布しますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">共有フォルダに暗号化ファイル（.enc）と引き継ぎガイドを書き出し、宛先ごとに自動で作られる「Keepy○○（お名前）」フォルダで個別に共有します。各ガイドには宛先ご本人の家族パスコードだけが載ります。設定の流れは <a href="guide.html#handover">使い方ガイド</a> へ。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        不具合が起きたときは？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">「設定 → お問い合わせ」からメールで報告できます。このとき、<strong>直近のエラー内容（画面名・メッセージ・時刻）</strong>とアプリ／iOS／端末の情報が自動で本文に添えられます。カード番号や口座などの<strong>個人情報はスクラブ（伏字）</strong>され、載りません。※アプリが強制終了するクラッシュは自動記録の対象外です。</div>
+    </div>
+
     <h2>お問い合わせ</h2>
     <p>FAQで解決しない場合は、以下からお問い合わせください。返信までに数日お時間をいただく場合があります。</p>
     <div class="contact-box">
@@ -286,7 +327,7 @@
       </div>
       <div class="version-item">
         <div class="label">対応デバイス</div>
-        <div class="value">iPhone / iPad</div>
+        <div class="value">iPhone</div>
       </div>
       <div class="version-item">
         <div class="label">販売形態</div>
@@ -299,6 +340,7 @@
     <nav>
       <a href="index.html">トップ</a>
       <a href="features.html">使い方</a>
+      <a href="guide.html">ガイド</a>
       <a href="privacy.html">プライバシーポリシー</a>
     </nav>
     <p>© 2026 Keepy. All rights reserved.</p>
