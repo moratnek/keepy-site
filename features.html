@@ -404,7 +404,7 @@
     </a>
     <nav class="header-nav">
       <a href="#subscriptions">サブスク管理</a>
-      <a href="#schedule">スケジュール</a>
+      <a href="#schedule">レポート</a>
       <a href="#notifications">通知</a>
       <a href="#ending-note">終活ノート</a>
       <a href="guide.html">ガイド</a>
@@ -428,7 +428,7 @@
   <!-- ヒーローモックアップ（実際のスクリーンショット3画面） -->
   <div style="display:flex; gap:16px; justify-content:center; align-items:center; flex-wrap:wrap;">
     <div style="width:175px; background:#1A1A1A; border-radius:36px; padding:8px; box-shadow:0 24px 48px rgba(44,42,38,0.20);">
-      <img src="images/ss_03_schedule.png" alt="カレンダービュー" style="width:100%; border-radius:28px; display:block;" loading="lazy">
+      <img src="images/ss_03_schedule.png" alt="支出レポート" style="width:100%; border-radius:28px; display:block;" loading="lazy">
     </div>
     <div style="width:175px; background:#1A1A1A; border-radius:36px; padding:8px; box-shadow:0 24px 48px rgba(44,42,38,0.20);">
       <img src="images/ss_06_family_subscriptions.png" alt="サブスク一覧（家族モード）" style="width:100%; border-radius:28px; display:block;" loading="lazy">
@@ -461,6 +461,36 @@
     <p class="stat-source">出典：ジャストシステム調べ（2024）／家計診断サービス「オカネコ」調べ</p>
   </div>
 </section>
+
+<!-- 機能0: かんたんに始められる -->
+<section class="feature-section reverse" id="onboarding">
+  <div class="feature-text">
+    <span class="feature-label green">🚀 かんたんスタート</span>
+    <h2>はじめてでも、<br>迷わず始められる。</h2>
+    <p>「はじめる準備」チェックリストが、口座・カード・サブスクの登録を順番にご案内。支払い元から先に登録するので、家族も「何がどこから引き落とされるか」を一目で辿れます。</p>
+    <div class="feature-points">
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>口座→カード→サブスクの順で、支払いのつながりが自然に整う</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>「はじめる準備」で登録もれを防ぎ、最初の一歩で迷わない</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--green);"></div>
+        <span>各ステップはスキップでき、あとから登録もできる</span>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone-img-wrap">
+      <img src="images/ss_checklist_home.png" alt="はじめる準備チェックリスト" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
 
 <!-- 機能1: サブスク管理 -->
 <section class="feature-section" id="subscriptions">
@@ -504,34 +534,34 @@
 
 <div class="section-divider"></div>
 
-<!-- 機能2: スケジュール表示 -->
+<!-- 機能2: 支出レポート -->
 <section class="feature-section reverse" id="schedule">
   <div class="feature-text">
-    <span class="feature-label indigo">📅 スケジュール表示</span>
-    <h2>いつ、いくら引き落とされるか<br>一目でわかる。</h2>
-    <p>月カレンダー形式で今月・翌月の支払日と金額を確認。年払いの更新月には自動でアラートバナーを表示し、うっかり高額引き落としを防ぎます。</p>
+    <span class="feature-label indigo">📊 支出レポート</span>
+    <h2>毎月の支出を、<br>ひと目で振り返る。</h2>
+    <p>月ごとの支出をグラフで確認。支払済みと予定を分けて表示し、カテゴリ別の内訳まで把握できます。</p>
     <div class="feature-points">
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--green);"></div>
-        <span>月払い・年払いの次回支払日をカレンダーに自動マッピング</span>
+        <span>月ごとの支出推移をバーグラフで表示・タップで月を切替</span>
       </div>
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--green);"></div>
-        <span>日付をタップするとその日の支払い一覧が展開表示</span>
+        <span>支払済み／予定／合計を分けて集計</span>
       </div>
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--green);"></div>
-        <span>年払いの更新月はアラートバナーで事前に通知</span>
+        <span>カテゴリ別の内訳をグラフで可視化</span>
       </div>
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--green);"></div>
-        <span>支払い履歴から実際の月額支出を正確に集計</span>
+        <span>その月の支払いを日付順に一覧表示</span>
       </div>
     </div>
   </div>
   <div class="phone-wrap">
     <div class="phone-img-wrap">
-      <img src="images/ss_03_schedule.png" alt="スケジュール画面" loading="lazy">
+      <img src="images/ss_03_schedule.png" alt="支出レポート画面" loading="lazy">
     </div>
   </div>
 </section>
@@ -565,8 +595,7 @@
   </div>
   <div class="phone-wrap">
     <div class="phone-img-wrap">
-      <!-- TODO Phase2: 通知専用スクショに差し替え（現状はスケジュール画像の暫定流用） -->
-      <img src="images/ss_03_schedule.png" alt="通知（暫定：スケジュール画像）" loading="lazy">
+      <img src="images/ss_notification.jpg" alt="ロック画面に届く更新3日前の通知" loading="lazy">
     </div>
   </div>
 </section>
