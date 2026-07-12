@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使い方マニュアル — Keepy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FAFAF7;
+      --bg2:       #F2EDE3;
+      --indigo:    #3B5FCC;
+      --indigo-lt: #EEF3FF;
+      --terra:     #D9623A;
+      --terra-lt:  #FDF0EB;
+      --green:     #7A9E4E;
+      --green-lt:  #EAF3DE;
+      --amber:     #C0885A;
+      --red:       #B8453A;
+      --text:      #2C2A26;
+      --text2:     #8C8880;
+      --border:    #E8E4DC;
+      --white:     #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── ヘッダー ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 12px 24px;
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .header-logo svg { border-radius: 9px; display: block; }
+    .header-logo-text { font-size: 16px; font-weight: 500; color: var(--text); }
+    .header-nav { display: flex; gap: 20px; }
+    .header-nav a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color 0.15s; }
+    .header-nav a:hover { color: var(--indigo); }
+    .header-nav a.current { color: var(--indigo); }
+    .header-cta {
+      background: var(--text); color: #fff; font-size: 13px; font-weight: 500;
+      padding: 8px 18px; border-radius: 20px; text-decoration: none; transition: opacity 0.15s;
+    }
+    .header-cta:hover { opacity: 0.8; }
+
+    /* ── ヒーロー ── */
+    .hero { max-width: 760px; margin: 0 auto; padding: 72px 24px 40px; text-align: center; }
+    .hero-label {
+      display: inline-block; background: var(--indigo-lt); color: var(--indigo);
+      font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px;
+      line-height: 1.25; margin-bottom: 16px; color: var(--text);
+    }
+    .hero h1 em { font-style: normal; color: var(--indigo); }
+    .hero-sub { font-size: 16px; color: var(--text2); max-width: 520px; margin: 0 auto; }
+
+    /* ── 目次 ── */
+    .toc { max-width: 760px; margin: 0 auto; padding: 0 24px 40px; }
+    .toc-group { margin-bottom: 18px; }
+    .toc-group-label {
+      font-size: 12px; font-weight: 600; color: var(--text2); letter-spacing: 0.6px;
+      margin-bottom: 8px;
+    }
+    .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-links a {
+      background: var(--white); border: 0.5px solid var(--border); border-radius: 100px;
+      font-size: 13px; color: var(--text); text-decoration: none; padding: 7px 16px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .toc-links a:hover { border-color: var(--indigo); color: var(--indigo); }
+
+    /* ── 本文コンテナ ── */
+    .guide { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+
+    /* ── グループ見出し ── */
+    .group-head {
+      font-size: 13px; font-weight: 600; color: var(--indigo); letter-spacing: 0.8px;
+      border-top: 0.5px solid var(--border); padding-top: 36px; margin-bottom: 24px;
+    }
+
+    /* ── セクション ── */
+    .guide-section { margin-bottom: 48px; scroll-margin-top: 72px; }
+    .guide-section > h2 {
+      font-size: clamp(19px, 3vw, 24px); font-weight: 500; letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+    .guide-section > .lead { font-size: 14.5px; color: var(--text2); margin-bottom: 20px; }
+    .guide-section p.body-text { font-size: 14.5px; margin-bottom: 12px; }
+
+    /* ── 番号付きステップ ── */
+    .steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .step {
+      background: var(--white); border: 0.5px solid var(--border); border-radius: 14px;
+      padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--indigo-lt);
+      color: var(--indigo); font-size: 13px; font-weight: 600; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-body h3 { font-size: 14.5px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .step-body p { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
+
+    /* ── 補足カード・注意 ── */
+    .note {
+      background: var(--indigo-lt); border-radius: 12px; padding: 14px 18px;
+      font-size: 13.5px; color: var(--text); margin-bottom: 16px; line-height: 1.65;
+    }
+    .note strong { color: var(--indigo); }
+    .caution {
+      background: var(--terra-lt); border: 0.5px solid #F0C8B8; border-radius: 12px;
+      padding: 14px 18px; font-size: 13.5px; color: #A64B2C; margin-bottom: 16px; line-height: 1.65;
+    }
+    .caution strong { color: var(--terra); }
+
+    /* ── 通知一覧テーブル ── */
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; background: var(--white); border-radius: 12px; overflow: hidden; }
+    th, td { border-bottom: 0.5px solid var(--border); padding: 10px 14px; font-size: 13px; text-align: left; vertical-align: top; }
+    th { background: var(--bg2); font-weight: 600; color: var(--text); white-space: nowrap; }
+    td:first-child { white-space: nowrap; font-weight: 500; }
+    tr:last-child td { border-bottom: none; }
+
+    /* ── リンク ── */
+    a.inline { color: var(--indigo); }
+
+    /* ── フッター ── */
+    footer { border-top: 0.5px solid var(--border); padding: 32px 24px; text-align: center; }
+    footer nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 14px; flex-wrap: wrap; }
+    footer nav a { font-size: 13px; color: var(--indigo); text-decoration: none; }
+    footer nav a:hover { text-decoration: underline; }
+    footer p { font-size: 12px; color: var(--text2); }
+
+    @media (max-width: 680px) {
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-inner">
+    <a class="header-logo" href="index.html">
+      <svg width="28" height="28" viewBox="0 0 1024 1024">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span class="header-logo-text">Keepy</span>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html">トップ</a>
+      <a href="features.html">使い方</a>
+      <a href="guide.html">ガイド</a>
+      <a href="manual.html" class="current">マニュアル</a>
+      <a href="support.html">サポート</a>
+    </nav>
+    <!-- APPSTORE_LINK -->
+    <a class="header-cta" href="#" data-appstore>ダウンロード（準備中）</a>
+  </div>
+</header>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <span class="hero-label">使い方マニュアル</span>
+  <h1>細かな使い方を、<em>わかりやすく。</em></h1>
+  <p class="hero-sub">トピックごとに、操作の手順と仕組みを説明します。困ったときは <a class="inline" href="support.html">サポート（FAQ）</a> もご覧ください。</p>
+</section>
+
+<!-- 目次 -->
+<nav class="toc" aria-label="目次">
+  <div class="toc-group">
+    <div class="toc-group-label">🔐 データを守る</div>
+    <div class="toc-links">
+      <a href="#backup">バックアップの基本</a>
+      <a href="#recovery-code">復活カギ（8語）</a>
+      <a href="#device-change">機種変更・復元</a>
+    </div>
+  </div>
+  <div class="toc-group">
+    <div class="toc-group-label">🔔 通知に応える</div>
+    <div class="toc-links">
+      <a href="#checkin">「まだ使ってる？」チェックイン</a>
+      <a href="#price-change">金額変更の予告</a>
+      <a href="#foreign-currency">外貨建てサブスク</a>
+    </div>
+  </div>
+  <div class="toc-group">
+    <div class="toc-group-label">📊 画面の見方</div>
+    <div class="toc-links">
+      <a href="#report">レポートと見直し候補</a>
+      <a href="#cancel">解約の記録と再開</a>
+    </div>
+  </div>
+  <div class="toc-group">
+    <div class="toc-group-label">👨‍👩‍👧 家族</div>
+    <div class="toc-links">
+      <a href="#family-mode">家族モード</a>
+      <a href="#handover-link">家族への引き継ぎ設定</a>
+    </div>
+  </div>
+  <div class="toc-group">
+    <div class="toc-group-label">⚙️ その他</div>
+    <div class="toc-links">
+      <a href="#notifications">通知の種類一覧</a>
+      <a href="#widget">ウィジェット</a>
+      <a href="#premium">プレミアム（買い切り）</a>
+    </div>
+  </div>
+</nav>
+
+<div class="guide">
+
+  <!-- ═══ データを守る ═══ -->
+  <div class="group-head">🔐 データを守る</div>
+
+  <section class="guide-section" id="backup">
+    <h2>バックアップの基本</h2>
+    <p class="lead">Keepy のデータはこの iPhone の中にだけあります。端末の故障・紛失に備えて、バックアップを作っておきましょう。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>設定 → バックアップ を開く</h3>
+          <p>はじめてバックアップを作るとき、復元に必要な<strong>復活カギ（英単語8語）</strong>が発行されます。必ず控えてください。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>書き出し先を選んで保存</h3>
+          <p>iCloud Drive の「Keepy」フォルダなどに、<strong>暗号化ファイル（.enc）</strong>として保存されます。このファイルは暗号化済みなので、復活カギがない限り誰にも中身を読めません。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>自動バックアップをオンにする（おすすめ）</h3>
+          <p>オンにしておくと、<strong>データに変更があったときだけ</strong>、アプリを閉じたタイミングで自動的に書き出します。変更がなければ何もしないので、電池や通信を無駄にしません。</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">オフラインで書き出した場合は「<strong>オンライン時に同期</strong>」と表示されます。ファイル自体は保存済みで、インターネットにつながったときに iCloud へアップロードされます。</div>
+    <p class="body-text">バックアップが30日以上古くなると、通知でお知らせします。</p>
+  </section>
+
+  <section class="guide-section" id="recovery-code">
+    <h2>復活カギ（英単語8語）</h2>
+    <p class="lead">バックアップを開けられる、たったひとつのカギです。</p>
+    <p class="body-text">はじめてバックアップを作るときに、英単語8語の「復活カギ」が発行されます。バックアップファイル（.enc）はこのカギで暗号化されているため、復元にはカギが必要です。</p>
+    <div class="caution"><strong>順番まで含めてカギです。</strong>8語の並び順が1つでも違うと復元できません。また、復活カギをなくすとバックアップは誰にも開けません——開発者にも復元できない設計です。</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">✓</div>
+        <div class="step-body">
+          <h3>おすすめの保管方法</h3>
+          <p>紙に書いて、通帳や重要書類と同じ場所に保管するのが確実です。家族へ渡す「引き継ぎガイドPDF」にも復活カギを載せられます（載せるかどうかは書き出し時に選べます）。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-section" id="device-change">
+    <h2>機種変更・復元</h2>
+    <p class="lead">新しい iPhone への引っ越しは「バックアップ＋復活カギ」で行います。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>旧端末で最新のバックアップを書き出す</h3>
+          <p>設定 → バックアップから手動で書き出し、iCloud Drive に保存されていることを確認します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>新端末で「別のバックアップから復元する」</h3>
+          <p>新しい iPhone に Keepy をインストールして開き、最初の画面で「<strong>別のバックアップから復元する</strong>」を選びます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>バックアップファイルと復活カギで復元</h3>
+          <p>iCloud Drive から .enc ファイルを選び、<strong>復活カギ（8語）</strong>を順番どおりに入力すると、データがすべて戻ります。</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">プレミアム（買い切り）は<strong>同じ Apple ID なら自動で復元</strong>されます。反映されない場合は、設定 → プレミアム購入画面の「購入を復元する」を押してください。</div>
+  </section>
+
+  <!-- ═══ 通知に応える ═══ -->
+  <div class="group-head">🔔 通知に応える</div>
+
+  <section class="guide-section" id="checkin">
+    <h2>「まだ使ってる？」チェックイン</h2>
+    <p class="lead">しばらく利用状況を聞いていないサブスクは、更新日の前に Keepy から質問が届きます。</p>
+    <p class="body-text">通知「◯◯の更新まで3日。まだ使っていますか？」をタップすると、3択で答えられます。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>よく使ってる／たまに使う</h3>
+          <p>そのまま利用中として記録されます。次の更新前は、金額をお知らせする通常の通知になります。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>使ってない</h3>
+          <p>その場で「解約すると年間いくら節約になるか」を提示します。レポートの<strong>見直し候補</strong>にも並び、解約を検討しやすくなります。</p>
+        </div>
+      </div>
+    </div>
+    <p class="body-text">回答はいつでも、サブスクの詳細画面「使用頻度を記録する」から変えられます。回答から時間が経つと（約90日）、更新前にまた質問します。</p>
+  </section>
+
+  <section class="guide-section" id="price-change">
+    <h2>金額変更の予告</h2>
+    <p class="lead">値上げの発表を見かけたら、忘れないうちに Keepy に登録しておきましょう。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>詳細画面 →「金額変更を予告する」</h3>
+          <p>変更日と新しい金額を入力します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>14日前に通知が届く</h3>
+          <p>「◯◯の料金がまもなく変わります」と事前にお知らせします。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>変更日が来たら、金額は自動で切り替わる</h3>
+          <p>予告しておいた新金額が、変更日に月額へ自動反映されます。手で書き換える必要はありません。</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">金額変更の予告は<strong>ご自身で登録する機能</strong>です。Keepy が各サービスの値上げを自動で検知するわけではありません。</div>
+  </section>
+
+  <section class="guide-section" id="foreign-currency">
+    <h2>外貨建てサブスク</h2>
+    <p class="lead">ドル建てなど、毎月の請求額が為替で変わるサブスクのための機能です。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>登録フォームで「外貨」をオンにする</h3>
+          <p>通貨と金額を入力すると、円換算の目安額で集計されます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>請求の翌日、「実際はいくら？」の通知</h3>
+          <p>一覧と詳細にも「実績入力待ち」バッジが付きます。明細を見て、実際に引き落とされた円額を入力してください。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>実績を入れると、目安も賢くなる</h3>
+          <p>入力した実額で支払い履歴が確定し、円換算の目安も直近の実績に合わせて自動更新されます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 画面の見方 ═══ -->
+  <div class="group-head">📊 画面の見方</div>
+
+  <section class="guide-section" id="report">
+    <h2>レポートと見直し候補</h2>
+    <p class="lead">サブスク画面の上部で「レポート」に切り替えると、支出の全体像が見えます。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>支出推移のグラフ</h3>
+          <p>月ごとの支払い実績をバーで表示します。点線のバーは今後の予定額。<strong>バーをタップすると、その月の内訳に切り替わります</strong>。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>支払済み／予定／合計 と カテゴリ別内訳</h3>
+          <p>選んだ月の支払済み・これからの予定・合計を分けて集計。「カテゴリ別内訳」でエンタメ・仕事などの割合も見られます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>見直し候補</h3>
+          <p>チェックインで「使ってない」と答えたサブスクが、<strong>解約した場合の年間節約額</strong>つきで並びます。その場で「解約する」（記録）か「まだ使う」を選べます。</p>
+        </div>
+      </div>
+    </div>
+    <p class="body-text">年払いサブスクの更新月には、見逃さないようバナーでお知らせします。</p>
+  </section>
+
+  <section class="guide-section" id="cancel">
+    <h2>解約の記録と再開</h2>
+    <p class="lead">Keepy の「解約する」は記録です。実際の解約手続きはサービス側で行います。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>実際の解約手続きへ直行</h3>
+          <p>詳細画面の「<strong>App Store で解約手続き</strong>」などのボタンから、そのサブスクの決済方法に合った解約ページへ直接移動できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Keepy に「解約済み」を記録</h3>
+          <p>「解約する」を押すと Keepy 上で解約済みとして記録され、通知も止まります。<strong>実際の解約が済んだことにはならない</strong>ので、手続きはサービス側で必ず行ってください。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>いつでも再開できる</h3>
+          <p>解約済みのサブスクは一覧の「解約済み」に残ります。また使い始めたら、詳細画面の「利用中に戻す」で再開してください。完全に消したい場合は削除（ゴミ箱へ移動）します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 家族 ═══ -->
+  <div class="group-head">👨‍👩‍👧 家族</div>
+
+  <section class="guide-section" id="family-mode">
+    <h2>家族モード</h2>
+    <p class="lead">もしものとき、ご家族が「見るだけ」でアクセスできる専用モードです。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>オーナーが家族を登録</h3>
+          <p>設定 →「家族を管理する」からご家族を登録し、それぞれに<strong>家族パスコード</strong>を設定します。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>家族はロック画面の「ご家族はこちら」から</h3>
+          <p>名前を選んで家族パスコードを入力すると、家族モードで開きます。<strong>閲覧のみで、内容の編集はできません</strong>。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>チェックリストで手続きを進める</h3>
+          <p>解約が必要なサービスが優先度順に並んだチェックリストが表示されます。上から順に手続きし、済んだものは「手続き完了」を記録できます。</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">メッセージは<strong>宛先に選ばれたご家族だけ</strong>が読めます。ほかのご家族には表示されません。</div>
+  </section>
+
+  <section class="guide-section" id="handover-link">
+    <h2>家族への引き継ぎ設定</h2>
+    <p class="lead">共有フォルダの作成から書き出しまで、初回にやり切る5ステップは専用ガイドにまとめています。</p>
+    <p class="body-text"><a class="inline" href="guide.html#handover">→ 家族への引き継ぎ設定ガイドを見る</a></p>
+  </section>
+
+  <!-- ═══ その他 ═══ -->
+  <div class="group-head">⚙️ その他</div>
+
+  <section class="guide-section" id="notifications">
+    <h2>通知の種類一覧</h2>
+    <p class="lead">Keepy が送る通知は次のとおりです。設定 → 通知設定で「更新前の通知」「月次レポート」のオン・オフを切り替えられます（iPhone 側の通知許可も必要です）。</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>通知</th><th>タイミング</th></tr>
+        <tr><td>更新リマインダー</td><td>請求日の前（サブスクごとに設定・はじめは3日前）。利用状況によって「まだ使っていますか？」の質問や解約の提案に変わります</td></tr>
+        <tr><td>無料トライアル終了</td><td>終了の2日前</td></tr>
+        <tr><td>金額変更</td><td>予告した変更日の14日前</td></tr>
+        <tr><td>縛り期間の終了</td><td>60日前と当日</td></tr>
+        <tr><td>モノ・書類の期限</td><td>3ヶ月前と当日</td></tr>
+        <tr><td>月次レポート</td><td>毎月1日の朝</td></tr>
+        <tr><td>年間レポート</td><td>毎年1月1日の朝</td></tr>
+        <tr><td>実績入力（外貨）</td><td>請求日の翌日</td></tr>
+        <tr><td>バックアップが古い</td><td>前回から30日経過</td></tr>
+        <tr><td>引き継ぎガイドが古い</td><td>前回の書き出しから6ヶ月経過</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="guide-section" id="widget">
+    <h2>ウィジェット</h2>
+    <p class="lead">アプリを開かなくても、ホーム画面で今月の支払いがわかります。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>ホーム画面を長押し → 「＋」→ Keepy</h3>
+          <p>小サイズは<strong>今月の合計と今日の支払い</strong>、中サイズは<strong>今日の支払いを最大3件</strong>表示します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-section" id="premium">
+    <h2>プレミアム（買い切り）</h2>
+    <p class="lead">無料のまま試して、足りなくなったら一度だけのお支払いで無制限に。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>無料でできること</h3>
+          <p>サブスク3件・カード1枚・口座1件まで登録できます。セキュリティ機能はすべて使えます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>プレミアムで解放されること</h3>
+          <p>登録件数がすべて無制限になり、終活ノートの連絡先・メッセージもフルに使えます。<strong>買い切り ¥2,480</strong>。月額や追加課金はありません。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>機種変更しても引き継がれる</h3>
+          <p>同じ Apple ID なら自動で復元されます。反映されないときは購入画面の「購入を復元する」を押してください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- フッター -->
+<footer>
+  <nav>
+    <a href="index.html">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">ガイド</a>
+    <a href="manual.html">マニュアル</a>
+    <a href="support.html">サポート</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+  </nav>
+  <p>© 2026 Keepy. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
