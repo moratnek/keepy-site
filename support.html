@@ -144,6 +144,7 @@
       text-align: center;
     }
     footer nav {
+      flex-wrap: wrap;
       display: flex;
       justify-content: center;
       gap: 24px;
@@ -337,17 +338,27 @@
 
     <h2>運営者情報</h2>
     <div class="version-box">
-      <div class="version-item">
-        <div class="label">運営者</div>
-        <div class="value">Keepy（個人事業主）</div>
+      <div class="version-item" style="grid-column: 1 / -1;">
+        <div class="label">事業内容 / Business</div>
+        <div class="value">iOSアプリの企画・開発・運営</div>
+        <div style="font-size:12px; color:#8C8880; margin-top:2px;">Planning, development and operation of iOS apps — “Keepy”, a subscription &amp; life-planning management app</div>
       </div>
       <div class="version-item">
-        <div class="label">代表</div>
+        <div class="label">運営者 / Operator</div>
+        <div class="value">Keepy（個人事業主）</div>
+        <div style="font-size:12px; color:#8C8880; margin-top:2px;">Keepy (sole proprietorship)</div>
+      </div>
+      <div class="version-item">
+        <div class="label">代表 / Representative</div>
         <div class="value">Kentaro Morita</div>
       </div>
       <div class="version-item">
-        <div class="label">お問い合わせ</div>
+        <div class="label">お問い合わせ / Contact</div>
         <div class="value"><a href="mailto:info@keepy.jp">info@keepy.jp</a></div>
+      </div>
+      <div class="version-item">
+        <div class="label">特定商取引法に基づく表記</div>
+        <div class="value"><a href="tokushoho.html">こちら / Legal disclosure</a></div>
       </div>
     </div>
   </div>
@@ -359,6 +370,7 @@
       <a href="guide.html">ガイド</a>
       <a href="manual.html">マニュアル</a>
       <a href="privacy.html">プライバシーポリシー</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
     </nav>
     <p>© 2026 Keepy. All rights reserved.</p>
   </footer>
