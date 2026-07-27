@@ -124,7 +124,23 @@
     }
     .step-body h3 { font-size: 14.5px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
     .step-body p { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
-    .step-shot { display: block; width: 100%; max-width: 280px; height: auto; margin: 14px auto 0; border: 0.5px solid #E8E4DC; border-radius: 18px; }
+    .topic-card {
+      position: relative; border-radius: 18px; padding: 20px;
+      display: flex; gap: 22px; align-items: center; margin-bottom: 14px;
+    }
+    .topic-card.flip { flex-direction: row-reverse; }
+    .topic-card.tint-indigo { background: var(--indigo-lt); }
+    .topic-card.tint-terra  { background: var(--terra-lt); }
+    .topic-card .steps { flex: 1; margin-bottom: 0; }
+    .phone {
+      flex-shrink: 0; width: 210px; background: #1A1917; border-radius: 30px; padding: 6px;
+      box-shadow: 0 12px 28px rgba(44, 42, 38, 0.16);
+    }
+    .phone img { display: block; width: 100%; height: auto; border-radius: 25px; }
+    @media (max-width: 620px) {
+      .topic-card, .topic-card.flip { flex-direction: column; padding: 16px; }
+      .phone { width: 190px; }
+    }
 
     /* ── 補足カード・注意 ── */
     .note {
@@ -248,8 +264,8 @@
   <section class="guide-section" id="backup">
     <h2>バックアップの基本</h2>
     <p class="lead">Keepy のデータはこの iPhone の中にだけあります。端末の故障・紛失に備えて、バックアップを作っておきましょう。</p>
-    <img class="step-shot" src="img/manual/backup.png" width="750" height="1629" loading="lazy" alt="バックアップ画面。手動バックアップと復元、家族に残す・引き継ぎの入り口">
-    <div class="steps">
+    <div class="topic-card tint-indigo">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -272,6 +288,8 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/backup.png" width="750" height="1629" loading="lazy" alt="バックアップ画面。手動バックアップと復元、家族に残す・引き継ぎの入り口"></div>
+    </div>
     <div class="note">オフラインで書き出した場合は「<strong>オンライン時に同期</strong>」と表示されます。ファイル自体は保存済みで、インターネットにつながったときに iCloud へアップロードされます。</div>
     <p class="body-text">バックアップが30日以上古くなると、通知でお知らせします。</p>
   </section>
@@ -279,10 +297,10 @@
   <section class="guide-section" id="recovery-code">
     <h2>復活カギ（英単語8語）</h2>
     <p class="lead">バックアップを開けられる、たったひとつのカギです。</p>
-    <img class="step-shot" src="img/manual/recovery.png" width="750" height="1629" loading="lazy" alt="復活カギの控えシート。英単語8語と「8語をコピー」ボタン">
     <p class="body-text">はじめてバックアップを作るときに、英単語8語の「復活カギ」が発行されます。バックアップファイル（.enc）はこのカギで暗号化されているため、復元にはカギが必要です。</p>
     <div class="caution"><strong>順番まで含めてカギです。</strong>8語の並び順が1つでも違うと復元できません。また、復活カギをなくすとバックアップは誰にも開けません——開発者にも復元できない設計です。</div>
-    <div class="steps">
+    <div class="topic-card tint-terra flip">
+      <div class="steps">
       <div class="step">
         <div class="step-num">✓</div>
         <div class="step-body">
@@ -291,13 +309,15 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/recovery.png" width="750" height="1629" loading="lazy" alt="復活カギの控えシート。英単語8語と「8語をコピー」ボタン"></div>
+    </div>
   </section>
 
   <section class="guide-section" id="device-change">
     <h2>機種変更・復元</h2>
     <p class="lead">新しい iPhone への引っ越しは「バックアップ＋復活カギ」で行います。</p>
-    <img class="step-shot" src="img/manual/restore.png" width="750" height="1629" loading="lazy" alt="初回画面。「新しくはじめる」と「バックアップから復元する」の2択">
-    <div class="steps">
+    <div class="topic-card tint-indigo">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -320,6 +340,8 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/restore.png" width="750" height="1629" loading="lazy" alt="初回画面。「新しくはじめる」と「バックアップから復元する」の2択"></div>
+    </div>
     <div class="note">プレミアム（買い切り）は<strong>同じ Apple ID なら自動で復元</strong>されます。反映されない場合は、設定 → プレミアム購入画面の「購入を復元する」を押してください。</div>
   </section>
 
@@ -329,9 +351,9 @@
   <section class="guide-section" id="checkin">
     <h2>「まだ使ってる？」チェックイン</h2>
     <p class="lead">しばらく利用状況を聞いていないサブスクは、更新日の前に Keepy から質問が届きます。</p>
-    <img class="step-shot" src="img/manual/checkin.png" width="750" height="1629" loading="lazy" alt="チェックインシート。「最近どのくらい使っていますか？」に3択で回答">
     <p class="body-text">通知「◯◯の更新まで3日。まだ使っていますか？」をタップすると、3択で答えられます。</p>
-    <div class="steps">
+    <div class="topic-card tint-terra flip">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -347,14 +369,16 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/checkin.png" width="750" height="1629" loading="lazy" alt="チェックインシート。「最近どのくらい使っていますか？」に3択で回答"></div>
+    </div>
     <p class="body-text">回答はいつでも、サブスクの詳細画面「使用頻度を記録する」から変えられます。回答から時間が経つと（約90日）、更新前にまた質問します。</p>
   </section>
 
   <section class="guide-section" id="price-change">
     <h2>金額変更の予告</h2>
     <p class="lead">値上げの発表を見かけたら、忘れないうちに Keepy に登録しておきましょう。</p>
-    <img class="step-shot" src="img/manual/pricechange.png" width="750" height="1629" loading="lazy" alt="金額変更を予告するシート。変更予定日と変更後の金額を入力">
-    <div class="steps">
+    <div class="topic-card tint-indigo">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -377,14 +401,16 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/pricechange.png" width="750" height="1629" loading="lazy" alt="金額変更を予告するシート。変更予定日と変更後の金額を入力"></div>
+    </div>
     <div class="note">金額変更の予告は<strong>ご自身で登録する機能</strong>です。Keepy が各サービスの値上げを自動で検知するわけではありません。</div>
   </section>
 
   <section class="guide-section" id="foreign-currency">
     <h2>外貨建てサブスク</h2>
     <p class="lead">ドル建てなど、毎月の請求額が為替で変わるサブスクのための機能です。</p>
-    <img class="step-shot" src="img/manual/foreign.png" width="750" height="1629" loading="lazy" alt="登録フォームの海外通貨決済。$USDの金額とJPY目安の2段入力">
-    <div class="steps">
+    <div class="topic-card tint-terra flip">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -407,6 +433,8 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/foreign.png" width="750" height="1629" loading="lazy" alt="登録フォームの海外通貨決済。$USDの金額とJPY目安の2段入力"></div>
+    </div>
   </section>
 
   <!-- ═══ 画面の見方 ═══ -->
@@ -415,8 +443,8 @@
   <section class="guide-section" id="report">
     <h2>レポートと見直し候補</h2>
     <p class="lead">サブスク画面の上部で「レポート」に切り替えると、支出の全体像が見えます。</p>
-    <img class="step-shot" src="img/manual/report.png" width="750" height="1629" loading="lazy" alt="レポート画面。支出推移グラフ・支払済み/予定/合計・見直し候補・月の支払い一覧">
-    <div class="steps">
+    <div class="topic-card tint-indigo">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -439,14 +467,16 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/report.png" width="750" height="1629" loading="lazy" alt="レポート画面。支出推移グラフ・支払済み/予定/合計・見直し候補・月の支払い一覧"></div>
+    </div>
     <p class="body-text">年払いサブスクの更新月には、見逃さないようバナーでお知らせします。</p>
   </section>
 
   <section class="guide-section" id="cancel">
     <h2>解約の記録と再開</h2>
     <p class="lead">Keepy の「解約する」は記録です。実際の解約手続きはサービス側で行います。</p>
-    <img class="step-shot" src="img/manual/cancel.png" width="750" height="1629" loading="lazy" alt="詳細画面の解約・削除ボタン。解約は記録のみで後から戻せる">
-    <div class="steps">
+    <div class="topic-card tint-terra flip">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -469,6 +499,8 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/cancel.png" width="750" height="1629" loading="lazy" alt="詳細画面の解約・削除ボタン。解約は記録のみで後から戻せる"></div>
+    </div>
   </section>
 
   <!-- ═══ 家族 ═══ -->
@@ -477,8 +509,8 @@
   <section class="guide-section" id="family-mode">
     <h2>家族モード</h2>
     <p class="lead">もしものとき、ご家族が「見るだけ」でアクセスできる専用モードです。</p>
-    <img class="step-shot" src="img/manual/family.png" width="750" height="1629" loading="lazy" alt="家族モードの画面。上部に「閲覧モード（花子）・編集不可」の帯">
-    <div class="steps">
+    <div class="topic-card tint-indigo">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -501,6 +533,8 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/family.png" width="750" height="1629" loading="lazy" alt="家族モードの画面。上部に「閲覧モード（花子）・編集不可」の帯"></div>
+    </div>
     <div class="note">メッセージは<strong>宛先に選ばれたご家族だけ</strong>が読めます。ほかのご家族には表示されません。</div>
   </section>
 
@@ -516,7 +550,6 @@
   <section class="guide-section" id="notifications">
     <h2>通知の種類一覧</h2>
     <p class="lead">Keepy が送る通知は次のとおりです。設定 → 通知設定で「更新前の通知」「月次レポート」のオン・オフを切り替えられます（iPhone 側の通知許可も必要です）。</p>
-    <img class="step-shot" src="img/manual/notifications.png" width="750" height="1629" loading="lazy" alt="通知設定画面。更新前の通知・月次レポート・伏字オプションのトグル">
     <div class="table-wrap">
       <table>
         <tr><th>通知</th><th>タイミング</th></tr>
@@ -537,7 +570,8 @@
   <section class="guide-section" id="widget">
     <h2>ウィジェット</h2>
     <p class="lead">アプリを開かなくても、ホーム画面で今月の支払いがわかります。</p>
-    <div class="steps">
+    <div class="topic-card tint-terra flip">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -546,13 +580,15 @@
         </div>
       </div>
     </div>
+      <div class="phone"><img src="img/manual/notifications.png" width="750" height="1629" loading="lazy" alt="通知設定画面。更新前の通知・月次レポート・伏字オプションのトグル"></div>
+    </div>
   </section>
 
   <section class="guide-section" id="premium">
     <h2>プレミアム（買い切り）</h2>
     <p class="lead">無料のまま試して、足りなくなったら一度だけのお支払いで無制限に。</p>
-    <img class="step-shot" src="img/manual/premium.png" width="750" height="1629" loading="lazy" alt="プレミアム（買い切り）の購入画面">
-    <div class="steps">
+    <div class="topic-card tint-indigo">
+      <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
@@ -574,6 +610,8 @@
           <p>同じ Apple ID なら自動で復元されます。反映されないときは購入画面の「購入を復元する」を押してください。</p>
         </div>
       </div>
+    </div>
+      <div class="phone"><img src="img/manual/premium.png" width="750" height="1629" loading="lazy" alt="プレミアム（買い切り）の購入画面"></div>
     </div>
   </section>
 
