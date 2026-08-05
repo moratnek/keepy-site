@@ -1,0 +1,29 @@
+/* Keepy 共通スタイル（2026-08-05 分離）
+ * ヘッダー・フッター・基本色の単一ソース。7ページの <style> に複製されていた
+ * 共通ルールをここへ集約した（CSS の47%が重複していた）。
+ * ページ固有の差分（privacy/support/tokushoho の footer padding 28px・index の
+ * footer nav margin 16px）は各ページの <style> に残してある＝後勝ちで上書きされる。
+ * 変更するときはここを1回直せば全ページに効く。 */
+
+:root { --bg: #FAFAF7; --bg2: #F2EDE3; --indigo: #3B5FCC; --indigo-lt: #EEF3FF; --terra: #D9623A; --terra-lt: #FDF0EB; --green: #7A9E4E; --green-lt: #EAF3DE; --amber: #C0885A; --red: #B8453A; --text: #2C2A26; --text2: #8C8880; --border: #E8E4DC; --white: #FFFFFF; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,247,0.92); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border); padding: 12px 24px; }
+.header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.header-logo svg { border-radius: 9px; display: block; }
+.header-logo-text { font-size: 16px; font-weight: 500; color: var(--text); }
+.header-nav { display: flex; gap: 20px; }
+.header-nav a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color 0.15s; }
+.header-nav a.current { color: var(--indigo); }
+.header-nav a:hover { color: var(--indigo); }
+.header-cta { background: var(--text); color: #fff; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 20px; text-decoration: none; transition: opacity 0.15s; }
+.header-cta:hover { opacity: 0.8; }
+footer { border-top: 0.5px solid var(--border); padding: 32px 24px; text-align: center; }
+footer nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 14px; flex-wrap: wrap; }
+footer nav a { font-size: 13px; color: #8C8880; text-decoration: none; transition: color 0.15s; }
+footer nav a.current { color: #3B5FCC; }
+footer nav a:hover { color: #3B5FCC; }
+footer p { font-size: 12px; color: var(--text2); }
+footer p.credit { margin-bottom: 6px; }
+footer p.credit a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
+footer p.credit a:hover { color: #3B5FCC; text-decoration: underline; }

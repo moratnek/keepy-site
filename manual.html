@@ -14,34 +14,11 @@
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="keepy.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg:        #FAFAF7;
-      --bg2:       #F2EDE3;
-      --indigo:    #3B5FCC;
-      --indigo-lt: #EEF3FF;
-      --terra:     #D9623A;
-      --terra-lt:  #FDF0EB;
-      --green:     #7A9E4E;
-      --green-lt:  #EAF3DE;
-      --amber:     #C0885A;
-      --red:       #B8453A;
-      --text:      #2C2A26;
-      --text2:     #8C8880;
-      --border:    #E8E4DC;
-      --white:     #FFFFFF;
-    }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
 
     /* ── ヘッダー ── */
     header {
@@ -53,26 +30,6 @@
       border-bottom: 0.5px solid var(--border);
       padding: 12px 24px;
     }
-    .header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .header-logo svg { border-radius: 9px; display: block; }
-    .header-logo-text { font-size: 16px; font-weight: 500; color: var(--text); }
-    .header-nav { display: flex; gap: 20px; }
-    .header-nav a { font-size: 13px; color: var(--text2); text-decoration: none; transition: color 0.15s; }
-    .header-nav a:hover { color: var(--indigo); }
-    .header-nav a.current { color: var(--indigo); }
-    .header-cta {
-      background: var(--text); color: #fff; font-size: 13px; font-weight: 500;
-      padding: 8px 18px; border-radius: 20px; text-decoration: none; transition: opacity 0.15s;
-    }
-    .header-cta:hover { opacity: 0.8; }
 
     /* ── ヒーロー ── */
     .hero { max-width: 760px; margin: 0 auto; padding: 72px 24px 40px; text-align: center; }
@@ -177,16 +134,9 @@
 
     /* ── フッター ── */
     footer { border-top: 0.5px solid var(--border); padding: 32px 24px; text-align: center; }
-    footer nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 14px; flex-wrap: wrap; }
-    footer nav a { font-size: 13px; color: #8C8880; text-decoration: none; transition: color 0.15s; }
-    footer nav a:hover { color: #3B5FCC; }
-    footer nav a.current { color: #3B5FCC; }
-    footer p { font-size: 12px; color: var(--text2); }
     /* Logo.dev 無料プランの帰属表示（商用利用で必須）。
        ⚠️ rel="noreferrer" を付けないこと＝リファラが渡らないと検証に落ちる */
     footer p.credit { margin-bottom: 6px; }
-    footer p.credit a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
-    footer p.credit a:hover { color: #3B5FCC; text-decoration: underline; }
 
     @media (max-width: 680px) {
       .header-nav { display: none; }

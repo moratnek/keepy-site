@@ -14,14 +14,9 @@
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="keepy.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Helvetica Neue", sans-serif;
-      background: #FAFAF7;
-      color: #2C2A26;
-      line-height: 1.7;
-    }
 
     /* ヘッダー（標準・manual.html と同一様式） */
     header {
@@ -33,26 +28,6 @@
       border-bottom: 0.5px solid #E8E4DC;
       padding: 12px 24px;
     }
-    .header-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .header-logo svg { border-radius: 9px; display: block; }
-    .header-logo-text { font-size: 16px; font-weight: 500; color: #2C2A26; }
-    .header-nav { display: flex; gap: 20px; }
-    .header-nav a { font-size: 13px; color: #8C8880; text-decoration: none; transition: color 0.15s; }
-    .header-nav a:hover { color: #3B5FCC; }
-    .header-nav a.current { color: #3B5FCC; }
-    .header-cta {
-      background: #2C2A26; color: #fff; font-size: 13px; font-weight: 500;
-      padding: 8px 18px; border-radius: 20px; text-decoration: none; transition: opacity 0.15s;
-    }
-    .header-cta:hover { opacity: 0.8; }
     @media (max-width: 680px) {
       .header-nav { display: none; }
     }
@@ -180,22 +155,9 @@
       padding: 28px 24px;
       text-align: center;
     }
-    footer nav {
-      flex-wrap: wrap;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 14px;
-    }
-    footer nav a { font-size: 13px; color: #8C8880; text-decoration: none; transition: color 0.15s; }
-    footer nav a:hover { color: #3B5FCC; }
-    footer nav a.current { color: #3B5FCC; }
-    footer p { font-size: 12px; color: #8C8880; }
     /* Logo.dev 無料プランの帰属表示（商用利用で必須）。
        ⚠️ rel="noreferrer" を付けないこと＝リファラが渡らないと検証に落ちる */
     footer p.credit { margin-bottom: 6px; }
-    footer p.credit a { color: #8C8880; text-decoration: none; transition: color 0.15s; }
-    footer p.credit a:hover { color: #3B5FCC; text-decoration: underline; }
   </style>
 </head>
 <body>
