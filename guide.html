@@ -48,6 +48,19 @@
     /* ── 本文コンテナ ── */
     .guide { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
 
+    /* ── STEP 内の補足（共有手順・2026-08-05） ── */
+    .step-hint { font-size: 13px; color: var(--text2); margin-top: 10px; }
+    .share-tips {
+      background: rgba(255,255,255,0.65); border: 0.5px solid var(--border); border-radius: 12px;
+      padding: 14px 16px; margin-top: 14px; font-size: 13px; line-height: 1.7;
+    }
+    .share-tips-title { font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .share-tips ol { padding-left: 18px; margin: 0 0 10px; }
+    .share-tips li { margin-bottom: 6px; }
+    .share-tips-links { color: var(--text2); font-size: 12.5px; }
+    .share-tips-links a { color: var(--indigo); text-decoration: none; }
+    .share-tips-links a:hover { text-decoration: underline; }
+
     /* ── 注意喚起ボックス ── */
     .warn {
       background: var(--terra-lt); border: 0.5px solid #F0C8B8; border-radius: 16px;
@@ -190,6 +203,7 @@
           <p class="step-label">STEP 2</p>
           <h3>共有フォルダを作る</h3>
           <p>iCloud Drive などに、引き継ぎ用のフォルダを1つ作ります。ここに暗号化ファイルと引き継ぎガイドを書き出します。</p>
+          <p class="step-hint">ファイルアプリの「ブラウズ」→「iCloud Drive」で、右上の「⋯」→「新規フォルダ」から作れます（例：Keepy）。</p>
         </div>
         <div class="phone"><img srcset="img/guide/step2_folder-211.png 211w, img/guide/step2_folder-422.png 422w, img/guide/step2_folder.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step2_folder.png" width="750" height="1629" loading="lazy" alt="バックアップ画面の「家族と共有するフォルダ」。「共有フォルダを設定」から家族がアクセスできるフォルダを選ぶ"></div>
       </div>
@@ -199,6 +213,19 @@
           <p class="step-label">STEP 3</p>
           <h3>家族にフォルダを共有する</h3>
           <p>作ったフォルダを、引き継ぐご家族と共有します。<strong>この共有を忘れると家族が締め出されます</strong>ので、必ずここまでやり切ってください。</p>
+          <div class="share-tips">
+            <p class="share-tips-title">共有するときの3つの注意</p>
+            <ol>
+              <li>共有方法は必ず<strong>「共同作業」</strong>を選んでください。「コピーを送信」を選ぶと、その時点のコピーが送られるだけで、<strong>以後の更新がご家族に届きません</strong>。</li>
+              <li>アクセス権は「参加依頼した人のみ」＋<strong>「閲覧のみ」</strong>がおすすめです（ご家族は読むだけなので、誤ってファイルを消す事故を防げます）。</li>
+              <li><strong>ご家族が参加依頼を承諾したら完了</strong>です。送っただけではまだ共有されていません。</li>
+            </ol>
+            <p class="share-tips-links">くわしい画面操作（Apple 公式ガイド）：<br>
+              <a href="https://support.apple.com/ja-jp/guide/iphone/iph17f9f92a6/ios" target="_blank" rel="noopener">iPhone で共有する</a> ·
+              <a href="https://support.apple.com/ja-jp/guide/mac-help/mchl91854a7a/mac" target="_blank" rel="noopener">Mac で共有する</a> ·
+              <a href="https://support.apple.com/ja-jp/guide/icloud/mm708256356b/icloud" target="_blank" rel="noopener">パソコンのブラウザで共有する</a>
+            </p>
+          </div>
         </div>
         <div class="phone"><img srcset="img/guide/step3_share-211.png 211w, img/guide/step3_share-422.png 422w, img/guide/step3_share.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step3_share.png" width="750" height="1629" loading="lazy" alt="家族ごとの共有フォルダに「Keepy花子」が作られ、「共有した」ボタンで共有状況を記録できる"></div>
       </div>
