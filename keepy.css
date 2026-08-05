@@ -27,3 +27,10 @@ footer p { font-size: 12px; color: var(--text2); }
 footer p.credit { margin-bottom: 6px; }
 footer p.credit a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
 footer p.credit a:hover { color: #3B5FCC; text-decoration: underline; }
+
+/* 画像は常に縦横比を保つ（2026-08-05 追加）。
+ * width/height 属性（レイアウトのガタつき防止用）を付けた画像に対し、ページ側の CSS が
+ * width: 100% だけ指定して height を放置すると、高さが属性値の px に固定されたまま
+ * 幅だけ縮む＝縦伸びする（実際に index/features の15枚が 2倍の縦伸びで公開された）。
+ * author CSS は presentational hint（属性）より必ず優先されるため、この1行で全ページ防げる。 */
+img { height: auto; }
