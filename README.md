@@ -1,41 +1,46 @@
 # keepy-site
 
-Keepyアプリの公式サイト（GitHub Pages）
+Keepy アプリの公式サイト。**GitHub Pages が `main` を直配信**しているため、`main` への push ＝即公開。
 
-## ファイル構成
+- 公開URL: **https://keepy.jp**（カスタムドメイン・`CNAME` 参照。2026-07-18 に github.io から移行・HTTPS 有効）
+- リポジトリ: https://github.com/moratnek/keepy-site
 
-```
-index.html    — トップページ
-privacy.html  — プライバシーポリシー
-support.html  — サポートページ
-```
-
-## 公開URL（GitHub Pages設定後）
+## ファイル構成（7ページ・2026-08-05 現在）
 
 ```
-トップ:               https://moratnek.github.io/keepy-site/
-プライバシーポリシー:  https://moratnek.github.io/keepy-site/privacy.html
-サポート:             https://moratnek.github.io/keepy-site/support.html
+index.html      — トップ（ヒーロー・スクショ・料金・セキュリティ）
+features.html   — 使い方（機能紹介 9節・交互レイアウト）
+guide.html      — 引き継ぎガイド（#handover＝アプリのオンボーディング④の着地先）
+manual.html     — 使い方マニュアル
+support.html    — サポート（FAQ・問い合わせ）
+privacy.html    — プライバシーポリシー
+tokushoho.html  — 特定商取引法に基づく表記（日英併記）
+
+keepy.css       — 共通スタイルの単一ソース（ヘッダー・フッター・:root 変数・body）
+                  ページ固有のスタイルは各ページの <style> に残す
+images/         — 機能紹介・トップ用スクショ（750px・width/height 属性つき）
+img/            — マニュアル・ガイド用スクショ／favicon／OGP（同じく 750px 作法）
+docs/           — 内部の設計メモ（.gitignore 対象・公開されない）
 ```
 
-## App Store申請時に使用するURL
+## App Store 申請で使用している URL
 
-- **プライバシーポリシーURL**: `https://moratnek.github.io/keepy-site/privacy.html`
-- **サポートURL**: `https://moratnek.github.io/keepy-site/support.html`
+- プライバシーポリシー: `https://keepy.jp/privacy.html`
+- サポート: `https://keepy.jp/support.html`
 
-## 修正が必要な箇所
+## 編集時のルール
 
-以下の仮データを実際の情報に置き換えてください。
+- **共通の見た目（ヘッダー・フッター・基本色）は `keepy.css` を1回直す**。各ページの `<style>` に複製しない
+  （2026-08-05 に単一ソース化。それ以前は7ページに手で複製されていた）
+- **画像は 750px にリサイズして置く**（最大表示幅 220px × Retina 3x に十分。原寸を置くと1枚 2MB 超になる）。
+  `<img>` には `width`/`height` 属性と `loading="lazy"` を付ける
+- 料金・機能の記述は**アプリの実態と一致させる**（無料枠=サブスク3件/カード1枚/資産1件・¥2,480 買い切り）
+- 外部リンクの `target="_blank"` には `rel="noopener"` を付ける
+- フッターの **Logo.dev 帰属表示は必須**（無料プランの商用利用条件・2026-08-04 追加）
 
-- `[your-domain]` → 実際のメールアドレスのドメイン
-- `support@[your-domain]` → 実際のサポートメールアドレス
-- `moratnek` → GitHubのユーザー名
-- `最終更新日: 2026年XX月XX日` → 実際の公開日
-- App Storeのリンク → 公開後に更新
+## 公開時に残っている作業（App Store 審査通過後）
 
-## GitHub Pagesの設定方法
-
-1. このリポジトリをGitHubに作成（リポジトリ名: `keepy-site`）
-2. Settings → Pages → Source: `Deploy from a branch`
-3. Branch: `main` / `/ (root)` を選択
-4. Save → 数分後に公開される
+- `<!-- APPSTORE_LINK -->` マーカー（**全7ページ・10箇所**）を実リンク
+  `https://apps.apple.com/jp/app/id6786194974` に差し替え
+- 1.0 公開から1ヶ月後（または先着100名到達時）に **¥2,480 → ¥3,480 へ値上げ**し、
+  index.html の料金表を実態化（Obsidian Dashboard のリリースTODO 参照）
