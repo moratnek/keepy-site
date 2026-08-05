@@ -412,7 +412,7 @@
   <div class="feature-text">
     <span class="feature-label green">🚀 かんたんスタート</span>
     <h2>はじめてでも、<br>迷わず始められる。</h2>
-    <p>「はじめる準備」チェックリストが、口座・カード・サブスクの登録を順番にご案内。支払い元から先に登録するので、家族も「何がどこから引き落とされるか」を一目で辿れます。</p>
+    <p>「はじめる準備」チェックリストが、口座・カード・サブスクの登録を順番にご案内。Apple IDやPayPal経由の支払いも、引き落とし元のカード・口座まで紐づけられるので、「何がどこから引き落とされるか」をサブスク→カード→口座の順にたどれます。</p>
     <div class="feature-points">
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--green);"></div>
@@ -615,16 +615,50 @@
 
 <div class="section-divider"></div>
 
+<!-- 機能3.5: カード引き落とし（2026-08-05 追加・build 16/17 の訴求） -->
+<section class="feature-section reverse" id="card-withdrawal">
+  <div class="feature-text">
+    <span class="feature-label indigo">💳 カード引き落とし</span>
+    <h2>どのカードから、<br>いくら落ちるか。</h2>
+    <p>サブスクをカードに紐づけると、カードごとの月額合計をひと目で確認。引き落とし日を設定すれば、前日に「明日は◯◯カードの引き落とし日です」とKeepy登録分の合計金額つきで通知します。請求が来てから驚く、をなくします。</p>
+    <div class="feature-points">
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--indigo);"></div>
+        <span>券面デザインのカード一覧に月額合計を表示。引き落とし日の前日9時に通知（金額はKeepyに登録したサブスク分の参考値）</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--indigo);"></div>
+        <span>Apple IDやPayPal経由の支払いも、引き落とし元のカード・口座まで紐づけ</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--indigo);"></div>
+        <span>口座詳細では「この口座からの引き落とし」をカード経由・直接に分けて合算</span>
+      </div>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone-img-wrap">
+      <img width="345" height="750" src="images/ss_cards.png" alt="カード一覧。券面ごとにサブスク月額の合計を表示" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
 <!-- 機能4: 終活ノート -->
-<section class="feature-section reverse" id="ending-note">
+<section class="feature-section" id="ending-note">
   <div class="feature-text">
     <span class="feature-label terra">💌 終活ノート</span>
     <h2>大切な人へ、<br>残せるノート。</h2>
-    <p>もしものときに備えて、家族への連絡先・メッセージ・資産情報をまとめておけます。家族がログインするだけで、手続きに必要な情報がすべて揃います。</p>
+    <p>もしものときに備えて、家族への連絡先・メッセージ・口座や積立などの資産情報をまとめておけます。家族がログインするだけで、手続きに必要な情報がすべて揃います。</p>
     <div class="feature-points">
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--terra);"></div>
         <span>手続きチェックリストで家族が迷わず動ける</span>
+      </div>
+      <div class="feature-point">
+        <div class="feature-point-dot" style="background: var(--terra);"></div>
+        <span>iPhoneの文字サイズ設定に合わせて表示。読みやすい大きさで使えます</span>
       </div>
       <div class="feature-point">
         <div class="feature-point-dot" style="background: var(--terra);"></div>
@@ -650,7 +684,7 @@
 <div class="section-divider"></div>
 
 <!-- 機能5: 家族モード -->
-<section class="feature-section" id="family-mode">
+<section class="feature-section reverse" id="family-mode">
   <div class="feature-text">
     <span class="feature-label terra">👨‍👩‍👧 家族モード</span>
     <h2>もしものとき、<br>家族がすぐ動ける。</h2>
