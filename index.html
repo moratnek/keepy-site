@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="keepy.css?v=2">
+  <link rel="stylesheet" href="keepy.css?v=3">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -78,19 +78,6 @@
       padding-bottom: 8px;
       justify-content: center;
       flex-wrap: wrap;
-    }
-    .phone-frame {
-      flex-shrink: 0;
-      width: 190px;
-      background: #1A1A1A;
-      border-radius: 38px;
-      padding: 9px;
-      box-shadow: 0 24px 48px rgba(44,42,38,0.20);
-    }
-    .phone-frame img {
-      width: 100%;
-      border-radius: 30px;
-      display: block;
     }
 
     /* 特徴セクション */
@@ -272,7 +259,6 @@
       .pricing-cards { grid-template-columns: 1fr; }
       .feature-grid { grid-template-columns: 1fr; }
       .screenshots-scroll { flex-wrap: nowrap; justify-content: flex-start; }
-      .phone-frame { width: 155px; }
     }
   </style>
 </head>
@@ -301,13 +287,13 @@
   <!-- 実際のスクリーンショット -->
   <div class="screenshots">
     <div class="screenshots-scroll">
-      <div class="phone-frame">
+      <div class="phone">
         <img width="750" height="1629" src="images/ss_01_list.png" alt="サブスク一覧" loading="lazy">
       </div>
-      <div class="phone-frame">
+      <div class="phone">
         <img width="750" height="1629" src="images/ss_02_detail.png" alt="サブスク詳細" loading="lazy">
       </div>
-      <div class="phone-frame">
+      <div class="phone">
         <img width="750" height="1629" src="images/ss_04_ending.png" alt="終活ノート" loading="lazy">
       </div>
     </div>

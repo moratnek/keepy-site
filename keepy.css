@@ -34,3 +34,21 @@ footer p.credit a:hover { color: #3B5FCC; text-decoration: underline; }
  * 幅だけ縮む＝縦伸びする（実際に index/features の15枚が 2倍の縦伸びで公開された）。
  * author CSS は presentational hint（属性）より必ず優先されるため、この1行で全ページ防げる。 */
 img { height: auto; }
+
+/* ── スマホ枠の単一ソース（2026-08-05 統一・Kentaro 承認＝デスクトップ225/モバイル200） ──
+ * それまで5種類の幅（175/190/210/220/225）と2色のベゼル・4種の角丸/影がページごとに
+ * 手作りされていた。225 は「全ページの制約を満たすことが実運用で実証されている最大値」
+ * ＝guide が最小容器（760px）でテキスト列と共存できていた実績値。
+ * 画像は幅750px（中身211px×3x=633≤750 で Retina 3x 充足）＝この統一で画像は触っていない。 */
+.phone {
+  flex-shrink: 0;
+  width: 225px;
+  background: #1A1917;
+  border-radius: 32px;
+  padding: 7px;
+  box-shadow: 0 14px 32px rgba(44,42,38,0.18);
+}
+.phone img { display: block; width: 100%; height: auto; border-radius: 25px; }
+@media (max-width: 620px) {
+  .phone { width: 200px; }
+}
