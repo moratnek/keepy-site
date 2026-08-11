@@ -196,6 +196,7 @@
     <div class="toc-group-label">📊 画面の見方</div>
     <div class="toc-links">
       <a href="#report">レポートと見直し候補</a>
+      <a href="#payment-method">決済方法（どこから引き落とされるか）</a>
       <a href="#cancel">解約の記録と再開</a>
     </div>
   </div>
@@ -439,6 +440,37 @@
     <p class="body-text">年払いサブスクの更新月には、見逃さないようバナーでお知らせします。</p>
   </section>
 
+  <section class="guide-section" id="payment-method">
+    <h2>決済方法（どこから引き落とされるか）</h2>
+    <p class="lead">「Apple ID決済（楽天カード）」のような支払いの組み合わせを<strong>決済方法</strong>として登録し、サブスクに紐づけられます。</p>
+    <div class="topic-card tint-indigo">
+      <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>サブスクの登録画面で「決済方法を選ぶ」</h3>
+          <p>保存済みの決済方法から選ぶか、その場で新しく作れます。経由サービス（Apple ID決済・Google Play決済・d払い・auかんたん決済・ソフトバンクまとめて支払い・PayPal など）と、引き落とし元のカード・口座の組み合わせです。<strong>カードから直接引き落とされる場合は、経由サービス「なし」でカードだけを選びます</strong>。未設定のままでも保存できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>編集すると、使っている全サブスクに反映</h3>
+          <p>資産管理タブの「決済方法」に、登録した組み合わせが使用件数つきで並びます。<strong>編集すると、その決済方法を使っている全サブスクにまとめて反映</strong>されます（カードを乗り換えたときに1回直すだけ）。編集画面には使用中のサブスクの一覧も表示され、タップで詳細に移動できます。過去の支払い記録は変わりません。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>カード・口座の画面で「どこからいくら落ちるか」</h3>
+          <p>決済方法を設定したサブスクは、カード詳細の「このカードから引き落とされるサブスク」や口座詳細の集計に自動で入ります。解約手続きのボタンも決済方法に合わせて変わります（Apple ID決済なら App Store の解約ページへ直行）。</p>
+        </div>
+      </div>
+    </div>
+      <div class="phone"><img srcset="img/manual/payment-211.png 211w, img/manual/payment-422.png 422w, img/manual/payment.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/payment.png" width="750" height="1629" loading="lazy" alt="資産管理タブの決済方法一覧。組み合わせごとに使用件数を表示"></div>
+    </div>
+  </section>
+
   <section class="guide-section" id="cancel">
     <h2>解約の記録と再開</h2>
     <p class="lead">Keepy の「解約する」は記録です。実際の解約手続きはサービス側で行います。</p>
@@ -516,7 +548,7 @@
 
   <section class="guide-section" id="notifications">
     <h2>通知の種類一覧</h2>
-    <p class="lead">Keepy が送る通知は次のとおりです。設定 → 通知設定で「更新前の通知」「月次レポート」のオン・オフを切り替えられます（iPhone 側の通知許可も必要です）。</p>
+    <p class="lead">Keepy が送る通知は次のとおりです。設定 → 通知設定で「更新前の通知」「月次・年間レポート」「カード引き落とし通知」のオン・オフを切り替えられます（iPhone 側の通知許可も必要です）。</p>
     <div class="table-wrap">
       <table>
         <tr><th>通知</th><th>タイミング</th></tr>
@@ -525,6 +557,7 @@
         <tr><td>金額変更</td><td>予告した変更日の14日前</td></tr>
         <tr><td>縛り期間の終了</td><td>60日前と当日</td></tr>
         <tr><td>モノ・書類の期限</td><td>3ヶ月前と当日</td></tr>
+        <tr><td>カード引き落とし</td><td>カードに設定した引き落とし日の前日朝。Keepy 登録分の合計金額つき（参考値）</td></tr>
         <tr><td>月次レポート（先月のまとめ）</td><td>毎月1日の朝。タップするとレポート画面で先月のまとめが開きます</td></tr>
         <tr><td>年間レポート</td><td>毎年1月1日の朝</td></tr>
         <tr><td>実績入力（外貨）</td><td>請求日の翌日</td></tr>
