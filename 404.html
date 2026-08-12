@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページが見つかりません — Keepy</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="/img/favicon-180.png">
+  <!-- 404 は任意の存在しないパスで表示されるため、参照はすべて絶対パス -->
+  <link rel="stylesheet" href="/keepy.css?v=4">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* 本文が短いページなので、フッターを画面の下端まで押し下げる */
+    body { display: flex; flex-direction: column; min-height: 100dvh; }
+    main { flex: 1; }
+
+    .notfound {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 96px 24px 120px;
+      text-align: center;
+    }
+    .notfound-code {
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: var(--indigo);
+      margin-bottom: 12px;
+    }
+    .notfound h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .notfound p {
+      font-size: 14px;
+      color: var(--text2);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .notfound-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 26px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-secondary {
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 26px;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 0.5px solid var(--border);
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-secondary:hover { background: var(--border); }
+    .btn-secondary:active { transform: scale(0.98); }
+  </style>
+</head>
+<body class="has-nav">
+
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="/index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page" href="/index.html">トップ</a>
+      <a class="page" href="/features.html">使い方</a>
+      <a class="page" href="/guide.html">引き継ぎガイド</a>
+      <a class="page" href="/manual.html">マニュアル</a>
+      <a class="page" href="/support.html">サポート</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- モバイル用フルスクリーンメニュー -->
+  <div class="menu-veil" id="menuVeil">
+    <a href="/index.html">トップ</a>
+    <a href="/features.html">使い方</a>
+    <a href="/guide.html">引き継ぎガイド</a>
+    <a href="/manual.html">マニュアル</a>
+    <a href="/support.html">サポート</a>
+  </div>
+
+  <main class="notfound">
+    <div class="notfound-code">404</div>
+    <h1>ページが見つかりません</h1>
+    <p>お探しのページは移動したか、URL が変わった可能性があります。<br>トップページ、またはサポートからお探しください。</p>
+    <div class="notfound-links">
+      <a class="btn-primary" href="/index.html">トップへ戻る</a>
+      <a class="btn-secondary" href="/support.html">サポート</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="#" data-appstore>App Store でダウンロード（準備中）</a>
+    </div>
+    <nav>
+      <a href="/index.html">トップ</a>
+      <a href="/features.html">使い方</a>
+      <a href="/guide.html">引き継ぎガイド</a>
+      <a href="/manual.html">マニュアル</a>
+      <a href="/support.html">サポート</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/tokushoho.html">特定商取引法に基づく表記</a>
+    </nav>
+    <p class="credit"><a href="https://logo.dev">Logos provided by Logo.dev</a></p>
+    <p>© 2026 Keepy. All rights reserved.</p>
+  </footer>
+
+  <script src="/keepy.js?v=1"></script>
+</body>
+</html>

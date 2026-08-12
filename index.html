@@ -6,7 +6,7 @@
   <title>Keepy — サブスク・契約・大切なものを一冊に</title>
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="apple-touch-icon" href="img/favicon-180.png">
-  <meta name="description" content="サブスク・契約・大切なものを一冊に。サブスク管理と家族への引き継ぎができるiPhoneアプリ「Keepy」。">
+  <meta name="description" content="サブスク・契約・大切なものを一冊に。サブスク管理と家族への引き継ぎができるiPhoneアプリ「Keepy」。データはすべて端末内に保存されます。">
   <meta property="og:title" content="Keepy — サブスク・契約・大切なものを一冊に">
   <meta property="og:description" content="サブスク・契約・大切なものを一冊に。サブスク管理と家族への引き継ぎができるiPhoneアプリ「Keepy」。">
   <meta property="og:url" content="https://keepy.jp/">
@@ -14,369 +14,971 @@
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="keepy.css?v=3">
+  <link rel="stylesheet" href="keepy.css?v=4">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ================================================================
+       Keepy トップページ — C案（A: soft-skill × B: taste v2 統合）
+       2026-08-12 に旧トップから全面刷新。試作＝docs/redesign/proto_hybrid.html
+       色・ナビ・フッターは keepy.css（全ページ共通の単一ソース）にある。
+       ここに置くのはトップ固有のものだけ。
+       A から: 浮遊ピル型ナビ / 二重ベゼル / 150px級余白 / Eyebrow /
+               キャプション付き横スナップレール / rise アニメーション
+       B から: ゴシック体 / インディゴ1色ロック / 物語順の機能展開 /
+               プレミアム主役の料金 / クロージング
+       調整:   セキュリティは明るいライトインディゴ基調（夜色にしない）
+       アクセント色ルール: UIアクセントはインディゴ #3B5FCC 1色。
+       テラコッタはアプリアイコン（ブランド資産）内にのみ現れる。
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ヒーロー */
-    .hero {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 80px 24px 56px;
-      text-align: center;
+    /* 色・ナビ・フッター・基本設定は keepy.css（全ページの単一ソース）。
+       ここに書くのはトップページ固有のものだけ。 */
+    body { line-height: 1.8; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+
+    /* トップだけフッターのダウンロードボタンを出さない。
+       すぐ上のクロージング（「大切なものを、今日から一冊に。」）に
+       同じボタンがあり、250px も離れずに2つ並んで見えるため。
+       他ページはフッターが唯一の導線なので、そちらでは出す。 */
+    footer .footer-cta { display: none; }
+
+    ::selection { background: rgba(59, 95, 204, 0.18); }
+
+    /* 紙の質感：固定ノイズ（スクロール要素には付けない） */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
     }
-    .icon-wrap {
-      margin: 0 auto 28px;
-      width: 96px;
-      height: 96px;
+
+    .glow {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(90px);
     }
-    .icon-wrap svg { border-radius: 22px; display: block; }
-    h1 {
-      font-size: 32px;
-      font-weight: 500;
-      letter-spacing: -0.6px;
-      margin-bottom: 10px;
-      color: #2C2A26;
-    }
-    .tagline {
-      font-size: 16px;
-      color: #8C8880;
-      margin-bottom: 36px;
-    }
-    .badge {
+
+    /* ================================================================
+       共通パーツ
+       ================================================================ */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #2C2A26;
-      color: #fff;
-      border-radius: 14px;
-      padding: 13px 28px;
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--ink-soft);
+      background: rgba(44, 42, 38, 0.04);
+      box-shadow: 0 0 0 1px var(--hairline), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 5px; height: 5px;
+      border-radius: 999px;
+      background: var(--indigo);
+    }
+
+    /* Double-Bezel：外殻＋内核の二重構造 */
+    .shell {
+      background: var(--shell);
+      border-radius: 2rem;
+      padding: 0.4rem;
+      box-shadow: 0 0 0 1px var(--hairline);
+    }
+    .core {
+      background: #FFFFFF;
+      border-radius: calc(2rem - 0.4rem);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.9),
+        0 24px 60px -32px rgba(44, 42, 38, 0.22);
+      height: 100%;
+    }
+
+    /* Button-in-Button CTA（インディゴ） */
+    .btn-island {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 999px;
+      padding: 10px 10px 10px 26px;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
-      transition: opacity 0.15s;
+      background: var(--indigo);
+      color: #fff;
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.2),
+        0 18px 40px -18px rgba(36, 64, 143, 0.55);
+      transition: transform 0.6s var(--ease-lux), box-shadow 0.6s var(--ease-lux);
     }
-    .badge:hover { opacity: 0.85; }
-    .badge-meta {
-      font-size: 12px;
-      color: #8C8880;
-      margin-top: 12px;
-      margin-bottom: 56px;
-    }
-    .badge-meta strong { color: #2C2A26; }
-
-    /* スクリーンショットギャラリー */
-    .screenshots {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px 72px;
-    }
-    .screenshots-scroll {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* 特徴セクション */
-    .features {
-      background: #F2EDE3;
-      padding: 56px 24px;
-    }
-    .features-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .features-title {
-      font-size: 13px;
-      font-weight: 500;
-      color: #8C8880;
-      letter-spacing: 0.5px;
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .feature-card {
-      background: #fff;
-      border-radius: 14px;
-      padding: 20px;
-      border: 0.5px solid #E8E4DC;
-    }
-    .feature-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
+    .btn-island .orb {
+      width: 36px; height: 36px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-    }
-    .feature-icon svg { display: block; }
-    .feature-card h3 {
       font-size: 14px;
-      font-weight: 500;
-      color: #2C2A26;
-      margin-bottom: 4px;
+      transition: transform 0.6s var(--ease-lux);
     }
-    .feature-card p {
-      font-size: 12px;
-      color: #8C8880;
-      line-height: 1.6;
+    .btn-island:hover:not(.is-disabled) { transform: translateY(-2px); }
+    .btn-island:hover:not(.is-disabled) .orb { transform: translate(3px, -1px) scale(1.05); }
+    .btn-island:active:not(.is-disabled) { transform: scale(0.98); }
+    .btn-island.is-disabled {
+      cursor: default;
+      background: rgba(44, 42, 38, 0.34);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16);
+      pointer-events: none;
     }
 
-    /* 価格セクション */
-    .pricing {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 56px 24px 0;
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 13px 26px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 0 1px var(--hairline-strong), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      transition: transform 0.6s var(--ease-lux), background-color 0.6s var(--ease-lux);
     }
-    .pricing-title {
-      font-size: 13px;
-      font-weight: 500;
-      color: #8C8880;
-      letter-spacing: 0.5px;
-      text-align: center;
-      margin-bottom: 20px;
+    .btn-ghost:hover { background: #fff; transform: translateY(-2px); }
+    .btn-ghost:active { transform: scale(0.98); }
+
+    /* スクロール登場 */
+    .rise {
+      opacity: 0;
+      transform: translateY(56px);
+      filter: blur(10px);
+      transition:
+        opacity 1s var(--ease-lux),
+        transform 1s var(--ease-lux),
+        filter 1s var(--ease-lux);
+      transition-delay: var(--d, 0s);
+      will-change: transform, opacity;
     }
-    .pricing-cards {
+    .rise.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+    /* 実機フレーム */
+    .device {
+      background: #1A1917;
+      border-radius: 44px;
+      padding: 9px;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 40px 90px -30px rgba(44, 42, 38, 0.45);
+    }
+    .device img { width: 100%; border-radius: 36px; }
+
+    /* セクション見出し */
+    .section-head { max-width: 640px; margin-bottom: 64px; }
+    .section-head .eyebrow { margin-bottom: 26px; }
+    .section-head h2 {
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+    .section-head p { font-size: 15px; color: var(--ink-soft); }
+
+    /* ================================================================
+       ヒーロー
+       ================================================================ */
+    .hero {
+      position: relative;
+      padding: 176px 0 150px;
+      overflow: hidden;
+    }
+    .hero .glow-a { top: -160px; left: -180px; width: 560px; height: 560px; background: rgba(59, 95, 204, 0.10); }
+    .hero .glow-b { bottom: -220px; right: -140px; width: 620px; height: 620px; background: rgba(59, 95, 204, 0.06); }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 64px;
+      align-items: center;
+      position: relative;
     }
-    .pricing-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 22px 20px;
-      border: 0.5px solid #E8E4DC;
+    .hero-copy .eyebrow { margin-bottom: 34px; }
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 800;
+      line-height: 1.26;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      text-wrap: balance;
     }
-    .pricing-card.premium {
-      background: #EEF3FF;
-      border-color: #C5D3F5;
+    .hero h1 em {
+      font-style: normal;
+      color: var(--indigo);
     }
-    .pricing-card .plan-name {
+    .hero-lede {
+      font-size: 16px;
+      color: var(--ink-soft);
+      max-width: 30em;
+      margin-bottom: 44px;
+    }
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .hero-meta {
       font-size: 12px;
-      font-weight: 500;
-      color: #8C8880;
-      margin-bottom: 6px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
     }
-    .pricing-card.premium .plan-name { color: #3B5FCC; }
-    .pricing-card .price {
-      font-size: 24px;
-      font-weight: 500;
-      letter-spacing: -0.5px;
-      color: #2C2A26;
+    .hero-meta strong { color: var(--ink); font-weight: 700; }
+
+    .hero-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 560px;
+    }
+    .hero-stage .device-main {
+      width: 264px;
+      transform: rotate(-2deg);
+      position: relative;
+      z-index: 2;
+    }
+    .hero-stage .device-back {
+      width: 230px;
+      position: absolute;
+      top: 72px;
+      right: 2%;
+      transform: rotate(3deg);
+      z-index: 1;
+      opacity: 0.96;
+    }
+
+    /* ================================================================
+       スクリーンショットの横スナップレール
+       ================================================================ */
+    .rail-section { padding: 0 0 150px; }
+    .rail-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 44px;
+    }
+    .rail-head h2 {
+      font-size: clamp(22px, 2.8vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+    .rail-hint { font-size: 12px; color: var(--muted); letter-spacing: 0.12em; }
+    .rail {
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      padding: 8px 32px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+    .rail::-webkit-scrollbar { display: none; }
+    .rail figure {
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      width: 216px;
+    }
+    .rail .device { border-radius: 38px; padding: 7px; }
+    .rail .device img { border-radius: 32px; }
+    .rail figcaption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ================================================================
+       機能ストーリー（物語順のスプリット）
+       ================================================================ */
+    .story { padding: 0 0 150px; }
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(36px, 5vw, 80px);
+      align-items: center;
+    }
+    .story-grid.rev { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .story-copy .eyebrow { margin-bottom: 26px; }
+    .story-copy h2 {
+      font-size: clamp(26px, 3.4vw, 38px);
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      margin-bottom: 18px;
+      text-wrap: balance;
+    }
+    .story-copy p {
+      font-size: 15px;
+      color: var(--ink-soft);
       margin-bottom: 14px;
+      max-width: 32em;
     }
-    .pricing-card.premium .price { color: #1A3A8C; }
-    .pricing-card .price small {
-      font-size: 13px;
-      font-weight: 400;
-      color: #8C8880;
+    .story-copy .more {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--indigo);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--indigo-tint-line);
+      padding-bottom: 2px;
+      transition: border-color 0.4s var(--ease-lux);
     }
-    .pricing-card .price-note {
-      font-size: 11px;
-      color: #8C8880;
-      margin: -10px 0 14px;
-      line-height: 1.45;
+    .story-copy .more:hover { border-color: var(--indigo); }
+
+    /* スクショの舞台＝二重ベゼルのカードの中に実機を置く */
+    .story-stage-core {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      border-radius: calc(2rem - 0.4rem);
+      background:
+        radial-gradient(ellipse 120% 90% at 50% 110%, rgba(59, 95, 204, 0.09), transparent 60%),
+        #FFFFFF;
     }
-    .pricing-card ul {
-      list-style: none;
+    .story-stage-core .device { position: absolute; width: 236px; }
+    .story-stage-core .d1 { left: 14%; top: 48px; z-index: 2; transform: rotate(-2deg); }
+    .story-stage-core .d2 { left: 52%; top: 108px; z-index: 1; transform: rotate(4deg) scale(0.95); }
+    .story-grid.rev .story-stage-core .d1 { left: 10%; }
+    .story-grid.rev .story-stage-core .d2 { left: 48%; transform: rotate(-4deg) scale(0.95); }
+
+    /* 帯（引き継ぎセクション）：同系色のまま少し深く */
+    .band {
+      background: var(--cream-deep);
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 120px 0;
+      margin-bottom: 150px;
+    }
+    .band .story-stage-core {
+      background:
+        radial-gradient(ellipse 120% 90% at 50% 110%, rgba(59, 95, 204, 0.09), transparent 60%),
+        #FDFBF6;
+    }
+
+    /* 資産・カード＋通知の2セル */
+    .duo {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 20px;
+    }
+    .duo-core {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      padding: 36px 36px 0;
+      min-height: 480px;
+      overflow: hidden;
+      border-radius: calc(2rem - 0.4rem);
     }
-    .pricing-card ul li {
-      font-size: 12px;
-      color: #2C2A26;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
+    .duo-core h3 {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
     }
-    .pricing-card ul li::before { content: "·"; color: #8C8880; flex-shrink: 0; }
-    .pricing-card.premium ul li::before { content: "✓"; color: #3B5FCC; flex-shrink: 0; }
+    .duo-core > p {
+      color: var(--ink-soft);
+      font-size: 14px;
+      max-width: 34em;
+      margin-bottom: 26px;
+    }
+    .duo-a {
+      background:
+        radial-gradient(ellipse 110% 80% at 80% 110%, rgba(59, 95, 204, 0.13), transparent 60%),
+        var(--indigo-tint);
+    }
+    .duo-a h3 { color: var(--indigo-deep); }
+    .duo-a .device {
+      width: 250px;
+      margin: auto auto -230px;   /* 下端でクロップ */
+    }
+    .duo-b { background: #FFFFFF; }
+    .duo-b .duo-media {
+      margin: auto -36px 0;
+      height: 240px;
+      overflow: hidden;
+    }
+    .duo-b .duo-media img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: bottom;
+      border-radius: 0;
+    }
 
-    /* セキュリティバナー */
-    .security {
-      max-width: 640px;
+    /* ================================================================
+       セキュリティ：ライトインディゴの明るい基調（夜色にしない）
+       ================================================================ */
+    .security { padding: 0 0 150px; }
+    .security-shell {
+      background: rgba(59, 95, 204, 0.08);
+      border-radius: 2.4rem;
+      padding: 0.45rem;
+      box-shadow: 0 0 0 1px rgba(59, 95, 204, 0.10);
+    }
+    .security-core {
+      background:
+        radial-gradient(ellipse 90% 120% at 85% -20%, rgba(59, 95, 204, 0.14), transparent 55%),
+        radial-gradient(ellipse 70% 100% at 0% 115%, rgba(59, 95, 204, 0.08), transparent 55%),
+        var(--indigo-tint);
+      border-radius: calc(2.4rem - 0.45rem);
+      padding: clamp(48px, 6vw, 88px);
+      color: var(--ink);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      position: relative;
+    }
+    .security-core .eyebrow {
+      color: var(--indigo-deep);
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 0 1px var(--indigo-tint-line), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+    }
+    .security-core h2 {
+      font-size: clamp(26px, 3.4vw, 40px);
+      font-weight: 800;
+      line-height: 1.45;
+      letter-spacing: -0.015em;
+      max-width: 21em;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .security-core h2 .hl { color: var(--indigo-deep); }
+    .security-core > p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      max-width: 36em;
+      margin-bottom: 52px;
+    }
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .security-item {
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 1.4rem;
+      padding: 22px 22px 20px;
+      box-shadow: 0 0 0 1px var(--indigo-tint-line), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    }
+    .security-item dt {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--indigo-deep);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .security-item dd {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+
+    /* ================================================================
+       料金：プレミアム主役
+       ================================================================ */
+    .pricing { padding: 0 0 150px; }
+    .pricing .section-head { margin-left: auto; margin-right: auto; text-align: center; }
+    .pricing .section-head .eyebrow { margin-left: auto; margin-right: auto; }
+    .plans {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 24px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 48px 24px;
+      align-items: start;
     }
-    .security-card {
-      background: #EEF3FF;
-      border-radius: 16px;
-      padding: 24px;
-      border: 0.5px solid #C5D3F5;
+    .plan-core { padding: 40px 38px; display: flex; flex-direction: column; height: 100%; }
+    .plan-free { margin-top: 44px; }
+    .plan-name {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .plan-price {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .plan-price small {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-left: 6px;
+    }
+    .plan-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+    .plan-sep { height: 1px; background: var(--hairline); margin-bottom: 26px; }
+    .plan-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .plan-list li {
       display: flex;
-      gap: 16px;
       align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.7;
     }
-    .security-card .lock-icon {
-      width: 44px;
-      height: 44px;
-      background: #3B5FCC;
-      border-radius: 11px;
+    .plan-list .tick {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      margin-top: 2px;
+      border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      background: rgba(44, 42, 38, 0.05);
+      box-shadow: 0 0 0 1px var(--hairline);
     }
-    .security-card h3 {
-      font-size: 15px;
-      font-weight: 500;
-      color: #1A3A8C;
-      margin-bottom: 4px;
+    .plan-premium .core {
+      background:
+        radial-gradient(ellipse 100% 90% at 100% 0%, rgba(59, 95, 204, 0.12), transparent 60%),
+        #FFFFFF;
     }
-    .security-card p {
-      font-size: 13px;
-      color: #3B5FCC;
-      line-height: 1.6;
+    .plan-premium .plan-name { color: var(--indigo); }
+    .plan-premium .plan-price { color: var(--indigo-deep); font-size: 48px; }
+    .plan-premium .plan-list .tick {
+      background: rgba(59, 95, 204, 0.1);
+      box-shadow: 0 0 0 1px rgba(59, 95, 204, 0.18);
+    }
+    .plan-flag {
+      display: inline-flex;
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--indigo-deep);
+      background: var(--indigo-tint);
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 0 1px var(--indigo-tint-line);
     }
 
-    /* フッター */
-    footer {
-      border-top: 0.5px solid #E8E4DC;
-      padding: 32px 24px;
+    /* ================================================================
+       クロージング
+       ================================================================ */
+    .finale {
+      padding: 0 0 150px;
       text-align: center;
     }
-    footer nav {
-      flex-wrap: wrap;
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 16px;
+    .finale .icon-seat {
+      width: 108px;
+      height: 108px;
+      margin: 0 auto 36px;
+      border-radius: 2rem;
+      background: var(--shell);
+      padding: 0.4rem;
+      box-shadow: 0 0 0 1px var(--hairline);
     }
-    /* Logo.dev 無料プランの帰属表示（商用利用で必須）。
-       ⚠️ rel="noreferrer" を付けないこと＝リファラが渡らないと検証に落ちる */
-    footer p.credit { margin-bottom: 6px; }
+    .finale .icon-seat svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: calc(2rem - 0.4rem);
+      box-shadow: 0 22px 50px -22px rgba(44, 42, 38, 0.35);
+    }
+    .finale h2 {
+      font-size: clamp(26px, 3.4vw, 40px);
+      font-weight: 800;
+      line-height: 1.45;
+      letter-spacing: -0.015em;
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+    .finale p { font-size: 15px; color: var(--ink-soft); margin-bottom: 40px; max-width: 38em; margin-left: auto; margin-right: auto; }
+    .finale .hero-meta { display: block; margin-top: 18px; }
 
-    @media (max-width: 480px) {
-      .pricing-cards { grid-template-columns: 1fr; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .screenshots-scroll { flex-wrap: nowrap; justify-content: flex-start; }
+    /* ================================================================
+       フッター
+       ================================================================ */
+    /* ================================================================
+       レスポンシブ
+       ================================================================ */
+    @media (max-width: 980px) {
+      .story-grid, .story-grid.rev { grid-template-columns: 1fr; gap: 40px; }
+      .story-grid.rev .story-visual { order: 2; }
+      .story-visual { max-width: 580px; margin: 0 auto; width: 100%; }
+      .story-stage-core { height: 460px; }
+      .duo { grid-template-columns: 1fr; }
+      .duo-core { min-height: 0; }
+      .duo-a .device { margin-bottom: -190px; }
+      .security-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .plans { grid-template-columns: 1fr; }
+      .plan-free { margin-top: 0; order: 2; }
+    }
+
+    @media (max-width: 768px) {
+      .wrap { padding: 0 16px; }
+
+      .hero { padding: 128px 0 96px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 72px; }
+      .hero-stage { min-height: 0; }
+      /* 回転・重なりはモバイルでは解除（タッチターゲット衝突防止） */
+      .hero-stage .device-main { transform: none; width: min(264px, 78vw); }
+      .hero-stage .device-back { display: none; }
+
+      .rail-section, .story, .security, .pricing, .finale { padding-bottom: 96px; }
+      .band { padding: 72px 0; margin-bottom: 96px; }
+      .rail { padding: 8px 16px 24px; scroll-snap-type: x mandatory; }
+      .rail figure { width: 188px; }
+
+      .story-stage-core { height: 400px; }
+      .story-stage-core .device { width: 176px; transform: none; }
+      .story-stage-core .d1 { left: 6%; top: 40px; }
+      .story-stage-core .d2 { left: 52%; top: 88px; transform: scale(0.96); }
+      .story-grid.rev .story-stage-core .d1 { left: 6%; }
+      .story-grid.rev .story-stage-core .d2 { left: 52%; transform: scale(0.96); }
+
+      .duo-core { padding: 28px 24px 0; }
+      .duo-a .device { width: 200px; margin-bottom: -150px; }
+      .duo-b .duo-media { margin: auto -24px 0; height: 200px; }
+
+      .security-core { padding: 40px 24px; }
+      .security-grid { grid-template-columns: 1fr; }
+
+      .plan-core { padding: 32px 26px; }
+    }
+
+    /* 動きを減らす設定を尊重 */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .rise { opacity: 1; transform: none; filter: none; transition: none; }
+      .menu-veil a { transition: none; }
+      *, *::before, *::after { animation: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <section class="hero">
-    <div class="icon-wrap">
-      <svg width="96" height="96" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 浮遊ピル型ナビ -->
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
         <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
         <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
-        <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
         <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="717" cy="757" r="180" fill="#ffffff"/>
         <circle cx="717" cy="757" r="162" fill="#D9623A"/>
         <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
       </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page current" href="index.html">トップ</a>
+      <a class="page" href="features.html">使い方</a>
+      <a class="page" href="guide.html">引き継ぎガイド</a>
+      <a class="page" href="manual.html">マニュアル</a>
+      <a class="page" href="support.html">サポート</a>
     </div>
-    <h1>Keepy</h1>
-    <p class="tagline">サブスク・契約・大切なものを一冊に</p>
-    <!-- APPSTORE_LINK -->
-    <a class="badge" href="#" data-appstore>App Storeでダウンロード（準備中）</a>
-    <p class="badge-meta">iOS 17以上 · iPhone向け · <strong>¥2,480</strong> 買い切り · 無料で試せます</p>
-  </section>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
 
-  <!-- 実際のスクリーンショット -->
-  <div class="screenshots">
-    <div class="screenshots-scroll">
-      <div class="phone">
-        <img srcset="images/ss_01_list-211.png 211w, images/ss_01_list-422.png 422w, images/ss_01_list.png?v=2 750w" sizes="(max-width: 620px) 186px, 211px" width="750" height="1630" src="images/ss_01_list.png?v=2" alt="サブスク一覧" loading="lazy">
-      </div>
-      <div class="phone">
-        <img srcset="images/ss_02_detail-211.png?v=3 211w, images/ss_02_detail-422.png?v=3 422w, images/ss_02_detail.png?v=3 750w" sizes="(max-width: 620px) 186px, 211px" width="750" height="1630" src="images/ss_02_detail.png?v=3" alt="サブスク詳細" loading="lazy">
-      </div>
-      <div class="phone">
-        <img srcset="images/ss_04_ending-211.png 211w, images/ss_04_ending-422.png 422w, images/ss_04_ending.png?v=2 750w" sizes="(max-width: 620px) 186px, 211px" width="750" height="1630" src="images/ss_04_ending.png?v=2" alt="終活ノート" loading="lazy">
-      </div>
-    </div>
+  <!-- モバイル用フルスクリーンメニュー -->
+  <div class="menu-veil" id="menuVeil">
+    <a href="index.html" class="current">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">引き継ぎガイド</a>
+    <a href="manual.html">マニュアル</a>
+    <a href="support.html">サポート</a>
   </div>
 
-  <section class="features">
-    <div class="features-inner">
-      <p class="features-title">主な機能</p>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon" style="background: #EEF3FF;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+  <!-- ================= ヒーロー ================= -->
+  <header class="hero">
+    <div class="glow glow-a" aria-hidden="true"></div>
+    <div class="glow glow-b" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow rise">サブスク管理 × 家族への引き継ぎ</p>
+          <h1 class="rise" style="--d: 0.08s">サブスク・契約・<br>大切なものを、<br><em>一冊</em>に。</h1>
+          <p class="hero-lede rise" style="--d: 0.16s">毎月のサブスクの管理から、もしものときの家族への引き継ぎまで。記録はすべて、あなたのiPhoneの中だけに。</p>
+          <div class="hero-cta-row rise" style="--d: 0.24s">
+            <!-- APPSTORE_LINK -->
+            <a class="btn-island is-disabled" href="#" data-appstore aria-disabled="true">
+              <span>App Store でダウンロード（準備中）</span>
+              <span class="orb">↗</span>
+            </a>
+            <a class="btn-ghost" href="#subs">機能を見る</a>
           </div>
-          <h3>サブスク一括管理</h3>
-          <p>200件以上のサービスから選ぶだけ。月払い・年払いの合計を自動計算。レポートで毎月の支出を振り返り。解約・再開も管理できます。</p>
+          <p class="hero-meta rise" style="--d: 0.32s">iOS 17以上 · iPhone向け · <strong>¥2,480</strong> 買い切り · 無料で試せます</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: #FDF0EB;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9623A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="hero-stage">
+          <div class="device device-back rise" style="--d: 0.3s">
+            <img srcset="images/ss_monthly_summary-211.png 211w, images/ss_monthly_summary-422.png 422w, images/ss_monthly_summary.png 750w" sizes="230px" width="750" height="1630" src="images/ss_monthly_summary.png" alt="毎月1日に届く先月のまとめ画面" loading="eager">
           </div>
-          <h3>家族への引き継ぎ</h3>
-          <p>もしものとき、家族が家族モードでログインし手続きに必要な情報へ。宛先ごとの引き継ぎガイドを暗号化して安全に配布できます。</p>
+          <div class="device device-main rise" style="--d: 0.18s">
+            <img srcset="images/ss_01_list-211.png 211w, images/ss_01_list-422.png 422w, images/ss_01_list.png 750w" sizes="264px" width="750" height="1630" src="images/ss_01_list.png" alt="Keepyのサブスク一覧画面。今月の合計と更新予定が並ぶ" loading="eager">
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: #EAF3DE;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7A9E4E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          </div>
-          <h3>資産・カード管理</h3>
-          <p>銀行口座・クレジットカード・証券・保険・重要書類の保管場所をまとめて記録。</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= スクリーンショットのレール ================= -->
+  <section class="rail-section">
+    <div class="wrap">
+      <div class="rail-head rise">
+        <h2>アプリの中を、少しだけ。</h2>
+        <span class="rail-hint">横にスクロール →</span>
+      </div>
+    </div>
+    <div class="rail">
+      <figure class="rise">
+        <div class="device">
+          <img srcset="images/ss_02_detail-211.png 211w, images/ss_02_detail-422.png 422w, images/ss_02_detail.png 750w" sizes="216px" width="750" height="1630" src="images/ss_02_detail.png" alt="サブスク詳細画面" loading="lazy">
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: #FDF8F0;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C0885A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <figcaption>サブスク詳細</figcaption>
+      </figure>
+      <figure class="rise" style="--d: 0.08s">
+        <div class="device">
+          <img srcset="images/ss_03_schedule-211.png 211w, images/ss_03_schedule-422.png 422w, images/ss_03_schedule.png 750w" sizes="216px" width="750" height="1630" src="images/ss_03_schedule.png" alt="支払いスケジュール画面" loading="lazy">
+        </div>
+        <figcaption>支払いスケジュール</figcaption>
+      </figure>
+      <figure class="rise" style="--d: 0.16s">
+        <div class="device">
+          <img srcset="images/ss_04_ending-211.png 211w, images/ss_04_ending-422.png 422w, images/ss_04_ending.png 750w" sizes="216px" width="750" height="1630" src="images/ss_04_ending.png" alt="終活ノート画面" loading="lazy">
+        </div>
+        <figcaption>終活ノート</figcaption>
+      </figure>
+      <figure class="rise" style="--d: 0.24s">
+        <div class="device">
+          <img srcset="images/ss_cards-211.png 211w, images/ss_cards-422.png 422w, images/ss_cards.png 750w" sizes="216px" width="750" height="1630" src="images/ss_cards.png" alt="カード管理画面" loading="lazy">
+        </div>
+        <figcaption>カード管理</figcaption>
+      </figure>
+      <figure class="rise" style="--d: 0.32s">
+        <div class="device">
+          <img srcset="images/ss_widgets_home-211.png 211w, images/ss_widgets_home-422.png 422w, images/ss_widgets_home.png 750w" sizes="216px" width="750" height="1630" src="images/ss_widgets_home.png" alt="ホームウィジェット" loading="lazy">
+        </div>
+        <figcaption>ホームウィジェット</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ================= 機能1: サブスク一括管理 ================= -->
+  <section class="story" id="subs">
+    <div class="wrap">
+      <div class="story-grid">
+        <div class="story-copy rise">
+          <p class="eyebrow">サブスク管理</p>
+          <h2>サブスクを、<br>ぜんぶ一冊で。</h2>
+          <p>200件以上のサービスから選ぶだけで登録。月払い・年払いの合計を自動で計算し、レポートで毎月の支出を振り返れます。</p>
+          <p>解約・再開の記録もKeepyの中で。使っていないサービスに気づける仕組みも備えています。</p>
+          <a class="more" href="features.html">使い方をくわしく見る</a>
+        </div>
+        <div class="story-visual shell rise" style="--d: 0.1s">
+          <div class="story-stage-core">
+            <div class="device d1">
+              <img srcset="images/ss_02_detail-211.png 211w, images/ss_02_detail-422.png 422w, images/ss_02_detail.png 750w" sizes="236px" width="750" height="1630" src="images/ss_02_detail.png" alt="サブスク詳細画面。次回更新日と決済方法、支払い履歴" loading="lazy">
+            </div>
+            <div class="device d2">
+              <img srcset="images/ss_03_schedule-211.png 211w, images/ss_03_schedule-422.png 422w, images/ss_03_schedule.png 750w" sizes="236px" width="750" height="1630" src="images/ss_03_schedule.png" alt="月ごとの支払いレポート画面" loading="lazy">
+            </div>
           </div>
-          <h3>スマート通知</h3>
-          <p>無料トライアル終了・縛り解除・有効期限・90日以上使っていないサービスを事前にお知らせ。毎月1日には「先月のまとめ」も届きます。</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 価格プラン -->
-  <section class="pricing">
-    <p class="pricing-title">料金プラン</p>
-    <div class="pricing-cards">
-      <div class="pricing-card">
-        <p class="plan-name">無料</p>
-        <p class="price">¥0</p>
-        <ul>
-          <li>サブスク 3件まで</li>
-          <li>クレジットカード 1枚</li>
-          <li>金融資産 1件</li>
-          <li>セキュリティ機能フル対応</li>
-        </ul>
-      </div>
-      <div class="pricing-card premium">
-        <p class="plan-name">プレミアム（買い切り）</p>
-        <p class="price">¥2,480 <small>早期割引価格</small></p>
-        <p class="price-note">先着100名 または 1.0公開から1か月後は ¥3,480 予定</p>
-        <ul>
-          <li>サブスク・カード・資産・積立 無制限</li>
-          <li>終活ノート（連絡先・メッセージ）</li>
-          <li>家族への引き継ぎ配布</li>
-          <li>モノ・書類管理</li>
-          <li>追加課金なし・サーバー維持費なし</li>
-        </ul>
+  <!-- ================= 機能2: 家族への引き継ぎ（同系色の帯） ================= -->
+  <section class="band" id="family">
+    <div class="wrap">
+      <div class="story-grid rev">
+        <div class="story-visual shell rise" style="--d: 0.1s">
+          <div class="story-stage-core">
+            <div class="device d1">
+              <img srcset="images/ss_04_ending-211.png 211w, images/ss_04_ending-422.png 422w, images/ss_04_ending.png 750w" sizes="236px" width="750" height="1630" src="images/ss_04_ending.png" alt="終活ノートの連絡先画面。医療・法律・金融の窓口を記録" loading="lazy">
+            </div>
+            <div class="device d2">
+              <img srcset="images/ss_06_family_subscriptions-211.png 211w, images/ss_06_family_subscriptions-422.png 422w, images/ss_06_family_subscriptions.png 750w" sizes="236px" width="750" height="1630" src="images/ss_06_family_subscriptions.png" alt="家族モードの閲覧画面。編集不可の閲覧専用表示" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="story-copy rise">
+          <p class="eyebrow">家族への引き継ぎ</p>
+          <h2>もしものときは、<br>家族の手に。</h2>
+          <p>家族は「家族モード」でログインし、手続きに必要な情報を閲覧できます。宛先ごとの引き継ぎガイドは、暗号化して安全に配布。</p>
+          <p>終活ノートには、伝えたい連絡先とメッセージを残せます。</p>
+          <a class="more" href="guide.html">引き継ぎガイドの仕組み</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="security">
-    <div class="security-card">
-      <div class="lock-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <!-- ================= 機能3+4: 資産・カード管理 / スマート通知 ================= -->
+  <section class="story" id="assets">
+    <div class="wrap">
+      <div class="section-head rise">
+        <p class="eyebrow">そのほかの記録</p>
+        <h2>お金まわりの「どこに何が」も、<br>この一冊に。</h2>
       </div>
-      <div>
-        <h3>すべてのデータは端末内に</h3>
-        <p>AES-256暗号化でデータを保護。外部サーバーへの送信は一切行いません。Face IDとリカバリーコードで安全に守ります。開発者もデータを閲覧できません。</p>
+      <div class="duo">
+        <div class="shell rise">
+          <div class="duo-core duo-a">
+            <h3>資産・カード管理</h3>
+            <p>銀行口座・クレジットカード・証券・保険・重要書類の保管場所をまとめて記録できます。</p>
+            <div class="device">
+              <img srcset="images/ss_cards-211.png 211w, images/ss_cards-422.png 422w, images/ss_cards.png 750w" sizes="250px" width="750" height="1630" src="images/ss_cards.png" alt="資産管理画面。登録したクレジットカードの一覧" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="shell rise" style="--d: 0.1s">
+          <div class="duo-core duo-b">
+            <h3>スマート通知</h3>
+            <p>無料トライアル終了・縛り解除・有効期限・90日以上使っていないサービスを事前にお知らせ。毎月1日には「先月のまとめ」も届きます。</p>
+            <div class="duo-media">
+              <img srcset="images/ss_notification-211.jpg 211w, images/ss_notification-422.jpg 422w, images/ss_notification.jpg 750w" sizes="(max-width: 980px) 90vw, 440px" src="images/ss_notification.jpg" alt="ロック画面に届いたKeepyの更新通知" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= セキュリティ（明るいライトインディゴ基調） ================= -->
+  <section class="security" id="security">
+    <div class="wrap">
+      <div class="security-shell rise">
+        <div class="security-core">
+          <p class="eyebrow">セキュリティ</p>
+          <h2>すべてのデータは、<br><span class="hl">あなたの端末の中</span>だけに。</h2>
+          <p>金融と終活の記録を預かるアプリだから、守りの仕組みを最優先に設計しています。外部サーバーへの送信は一切ありません。</p>
+          <dl class="security-grid">
+            <div class="security-item rise" style="--d: 0.06s">
+              <dt>AES-256 暗号化</dt>
+              <dd>保存されるデータはすべて AES-256 で暗号化されます。</dd>
+            </div>
+            <div class="security-item rise" style="--d: 0.12s">
+              <dt>端末内保存</dt>
+              <dd>データは端末内にのみ保存。外部サーバーへの送信は一切行いません。</dd>
+            </div>
+            <div class="security-item rise" style="--d: 0.18s">
+              <dt>Face ID</dt>
+              <dd>Face ID とリカバリーコードで、開くたびに本人確認。</dd>
+            </div>
+            <div class="security-item rise" style="--d: 0.24s">
+              <dt>開発者も閲覧不可</dt>
+              <dd>中身を見られるのは、あなたと託した家族だけ。</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 料金（プレミアム主役） ================= -->
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="section-head rise">
+        <p class="eyebrow">料金プラン</p>
+        <h2>無料で始めて、買い切りで全部。</h2>
+        <p>サブスクではありません。プレミアムは一度の購入で、追加課金なしで使い続けられます。</p>
+      </div>
+      <div class="plans">
+        <div class="shell plan-premium rise">
+          <div class="core plan-core">
+            <span class="plan-flag">早期割引 · 先着100名</span>
+            <p class="plan-name">プレミアム（買い切り）</p>
+            <p class="plan-price">¥2,480<small>早期割引価格</small></p>
+            <p class="plan-note">先着100名、または1.0公開から1か月後には ¥3,480 になる予定です。</p>
+            <div class="plan-sep"></div>
+            <ul class="plan-list">
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>サブスク・カード・資産・積立 無制限</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>終活ノート（連絡先・メッセージ）</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>家族への引き継ぎ配布</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>モノ・書類管理</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#3B5FCC" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>追加課金なし・サーバー維持費なし</li>
+            </ul>
+          </div>
+        </div>
+        <div class="shell plan-free rise" style="--d: 0.1s">
+          <div class="core plan-core">
+            <p class="plan-name">無料プラン</p>
+            <p class="plan-price">¥0</p>
+            <p class="plan-note">まずはここから。期限なくお使いいただけます。</p>
+            <div class="plan-sep"></div>
+            <ul class="plan-list">
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#57534B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>サブスク 3件まで</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#57534B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>クレジットカード 1枚</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#57534B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>金融資産 1件</li>
+              <li><span class="tick"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#57534B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span>セキュリティ機能フル対応</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= クロージング ================= -->
+  <section class="finale">
+    <div class="wrap">
+      <div class="icon-seat rise">
+        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+          <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+          <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+          <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
+          <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+          <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+          <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+        </svg>
+      </div>
+      <h2 class="rise" style="--d: 0.06s">大切なものを、<br>今日から一冊に。</h2>
+      <p class="rise" style="--d: 0.12s">無料で始められます。App Store公開までは、使い方ページで機能をご覧いただけます。</p>
+      <div class="rise" style="--d: 0.18s">
+        <!-- APPSTORE_LINK -->
+        <a class="btn-island is-disabled" href="#" data-appstore aria-disabled="true">
+          <span>App Store でダウンロード（準備中）</span>
+          <span class="orb">↗</span>
+        </a>
+        <span class="hero-meta">iOS 17以上 · iPhone向け</span>
       </div>
     </div>
   </section>
 
   <footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="#" data-appstore>App Store でダウンロード（準備中）</a>
+    </div>
     <nav>
       <a href="index.html" class="current">トップ</a>
       <a href="features.html">使い方</a>
@@ -389,6 +991,30 @@
     <p class="credit"><a href="https://logo.dev">Logos provided by Logo.dev</a></p>
     <p>© 2026 Keepy. All rights reserved.</p>
   </footer>
+
+  <script>
+    // スクロール登場（IntersectionObserver：scroll イベントは使わない）
+    (function () {
+      var items = document.querySelectorAll('.rise');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+
+    // ハンバーガーメニューの開閉は keepy.js（全ページ共通）
+  </script>
+  <script src="keepy.js?v=1"></script>
 
 </body>
 </html>

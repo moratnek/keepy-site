@@ -6,31 +6,18 @@
   <title>サポート — Keepy</title>
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="apple-touch-icon" href="img/favicon-180.png">
-  <meta name="description" content="Keepyのよくある質問とお問い合わせ先。データ保存・復活カギ・機種変更のトラブルはこちら。">
+  <meta name="description" content="Keepyのよくある質問とお問い合わせ先。料金・解約・データ保存・復活カギ・機種変更・家族への引き継ぎはこちら。">
   <meta property="og:title" content="サポート — Keepy">
-  <meta property="og:description" content="Keepyのよくある質問とお問い合わせ先。データ保存・復活カギ・機種変更のトラブルはこちら。">
+  <meta property="og:description" content="Keepyのよくある質問とお問い合わせ先。料金・解約・データ保存・復活カギ・機種変更・家族への引き継ぎはこちら。">
   <meta property="og:url" content="https://keepy.jp/support.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="keepy.css?v=3">
+  <link rel="stylesheet" href="keepy.css?v=4">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ヘッダー（標準・manual.html と同一様式） */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250,250,247,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid #E8E4DC;
-      padding: 12px 24px;
-    }
-    @media (max-width: 680px) {
-      .header-nav { display: none; }
-    }
 
     /* コンテンツ */
     .hero { max-width: 760px; margin: 0 auto; padding: 64px 24px 0; text-align: center; }
@@ -39,7 +26,7 @@
       font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
       margin-bottom: 20px; letter-spacing: 0.3px;
     }
-    .hero h1 { font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px; line-height: 1.25; margin-bottom: 16px; color: #2C2A26; }
+    .hero h1 { font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px; line-height: 1.25; margin-bottom: 16px; color: var(--ink); }
     .hero h1 em { font-style: normal; color: #3B5FCC; }
     .hero-sub { font-size: 16px; color: #8C8880; max-width: 520px; margin: 0 auto; }
 
@@ -63,12 +50,12 @@
     h2 {
       font-size: 15px;
       font-weight: 500;
-      color: #2C2A26;
+      color: var(--ink);
       margin: 40px 0 12px;
       padding-bottom: 10px;
       border-bottom: 0.5px solid #E8E4DC;
     }
-    p { font-size: 14px; color: #2C2A26; margin-bottom: 12px; }
+    p { font-size: 14px; color: var(--ink); margin-bottom: 12px; }
     a { color: #3B5FCC; text-decoration: none; }
 
     /* FAQ */
@@ -83,7 +70,7 @@
       padding: 14px 16px;
       font-size: 14px;
       font-weight: 500;
-      color: #2C2A26;
+      color: var(--ink);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -147,47 +134,45 @@
       gap: 8px;
     }
     .version-item .label { font-size: 11px; color: #8C8880; margin-bottom: 2px; }
-    .version-item .value { font-size: 14px; font-weight: 500; color: #2C2A26; }
+    .version-item .value { font-size: 14px; font-weight: 500; color: var(--ink); }
 
-    /* フッター */
-    footer {
-      border-top: 0.5px solid #E8E4DC;
-      padding: 28px 24px;
-      text-align: center;
-    }
-    /* Logo.dev 無料プランの帰属表示（商用利用で必須）。
-       ⚠️ rel="noreferrer" を付けないこと＝リファラが渡らないと検証に落ちる */
-    footer p.credit { margin-bottom: 6px; }
   </style>
 </head>
-<body>
+<body class="has-nav">
 
-  <header>
-    <div class="header-inner">
-      <a class="header-logo" href="index.html">
-        <svg width="28" height="28" viewBox="0 0 1024 1024">
-          <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
-          <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
-          <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
-          <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
-          <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="717" cy="757" r="180" fill="#ffffff"/>
-          <circle cx="717" cy="757" r="162" fill="#D9623A"/>
-          <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
-        </svg>
-        <span class="header-logo-text">Keepy</span>
-      </a>
-      <nav class="header-nav">
-        <a href="index.html">トップ</a>
-        <a href="features.html">使い方</a>
-        <a href="guide.html">引き継ぎガイド</a>
-        <a href="manual.html">マニュアル</a>
-        <a href="support.html" class="current">サポート</a>
-      </nav>
-      <!-- APPSTORE_LINK -->
-      <a class="header-cta" href="#" data-appstore>ダウンロード（準備中）</a>
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page" href="index.html">トップ</a>
+      <a class="page" href="features.html">使い方</a>
+      <a class="page" href="guide.html">引き継ぎガイド</a>
+      <a class="page" href="manual.html">マニュアル</a>
+      <a class="page current" href="support.html">サポート</a>
     </div>
-  </header>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- モバイル用フルスクリーンメニュー -->
+  <div class="menu-veil" id="menuVeil">
+    <a href="index.html">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">引き継ぎガイド</a>
+    <a href="manual.html">マニュアル</a>
+    <a href="support.html" class="current">サポート</a>
+  </div>
 
   <section class="hero">
     <span class="hero-label">サポート</span>
@@ -202,52 +187,32 @@
 
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
-        データはどこに保存されますか？
+        無料のままどこまで使えますか？
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">すべてのデータはお使いの端末内にAES-256暗号化されて保存されます。外部サーバーへの送信は一切行いません。開発者もデータを閲覧することはできません。</div>
+      <div class="faq-a">サブスク3件・クレジットカード1枚・口座1件まで無料で登録できます。<strong>Face ID・暗号化・バックアップなどのセキュリティ機能は、無料のままフルにお使いいただけます。</strong>件数を増やしたいときや、終活ノート・家族への引き継ぎ配布・モノや書類の管理を使いたいときにプレミアムをご検討ください。</div>
     </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
-        復活カギ（リカバリーコード）をなくしてしまいました。
+        プレミアムは月額ですか？追加課金はありますか？
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">復活カギはデータ復元に必要な唯一の手段です。紛失した場合、バックアップファイルからのデータ復元はできません。アプリを再インストールして新たにデータを登録しなおしていただく必要があります。復活カギは必ず1Passwordなど安全な場所に保管してください。</div>
+      <div class="faq-a"><strong>一度きりのお支払い（買い切り）です。</strong>月額料金も、あとからの追加課金もありません。データは端末内にあり運用サーバーを持たない設計のため、維持費を利用者に請求する必要がないからです。</div>
     </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
-        機種変更したらデータが消えてしまいました。
+        早期割引はいつまでですか？
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">機種変更前に「設定 → バックアップ → バックアップを書き出す」からデータをバックアップしてください。新しい端末での初回起動時に「バックアップから復元」を選択してデータを引き継ぐことができます。</div>
+      <div class="faq-a">先着100名、または公開から1か月後のどちらか早い方までを予定しています。その後は ¥3,480 になる見込みです。<strong>買い切りのため、割引価格で購入されたあとに差額を請求することはありません。</strong></div>
     </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
-        家族がパスコードを忘れてしまいました。
+        古いiPhoneでも使えますか？
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">オーナーが「設定 → 家族を管理 → 該当する家族 → パスコードをリセット」からパスコードをリセットできます。リセット後、家族が次回ログイン時に新しいパスコードを設定できます。</div>
+      <div class="faq-a"><strong>iOS 17 以上</strong>が必要です。お使いの iPhone が iOS 17 に対応していれば（設定 → 一般 → ソフトウェアアップデート で確認できます）、アップデートのうえご利用いただけます。対応していない端末ではインストールできません。</div>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggle(this)">
-        Face IDで認証できません。
-        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">Face IDの認証に失敗した場合、iOSのデバイスパスコード入力画面に自動で切り替わります。ご家族の方がご利用の場合は、認証画面下部の「ご家族の方はこちら」からパスコードでログインしてください。</div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggle(this)">
-        誤ってデータを削除してしまいました。
-        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">削除したデータはゴミ箱に移動し、設定で指定した期間（デフォルト90日）保持されます。「設定 → データ管理 → ゴミ箱」から復元することができます。</div>
-    </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         iPadでも使えますか？
@@ -255,15 +220,13 @@
       </div>
       <div class="faq-a">Keepy は iPhone 向けのアプリです。iPad でも互換モード（iPhone サイズの表示）で動作しますが、iPad 専用の最適化はしていません。iPhone でのご利用を前提に設計しています。</div>
     </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
-        レポート画面とは何ですか？
+        Keepyでサブスクを解約できますか？
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">レポート画面は、月ごとの支出をグラフで振り返れる画面です。サブスク一覧の上部にある「レポート」タブからアクセスできます。支払済みと予定を分けて集計し、カテゴリ別の内訳も確認できます。</div>
+      <div class="faq-a"><strong>Keepy でできるのは「解約した」と記録することまでです。</strong>実際の解約手続きは、契約先のサービス側で行っていただく必要があります。<br><br>詳細画面に手続き先へのリンクがあります。App Store（Apple ID決済）のように管理画面が決まっているものはその画面が直接開き、キャリア決済などサービスごとに手続き先が違うものは「サービス名 解約方法」の検索結果が開きます。手続きを終えたら Keepy 側でも「解約済み」にすると、月額合計から外れて節約額に反映されます。</div>
     </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         解約したサブスクはどこで確認できますか？
@@ -271,7 +234,13 @@
       </div>
       <div class="faq-a">解約済みのサブスクはサブスク一覧の下部「解約済み」セクションにまとめて表示されます。再開する場合は詳細画面から「再開」ボタンをタップしてください。解約済みサブスクは月額合計の計算から除外され、解約で節約できた金額がサマリーカードに表示されます。</div>
     </div>
-
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        レポート画面とは何ですか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">レポート画面は、月ごとの支出をグラフで振り返れる画面です。サブスク一覧の上部にある「レポート」タブからアクセスできます。支払済みと予定を分けて集計し、カテゴリ別の内訳も確認できます。</div>
+    </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         決済方法の「経由サービス」とは何ですか？カード払いはどれを選べばいいですか？
@@ -279,15 +248,6 @@
       </div>
       <div class="faq-a">「経由サービス」は、Apple ID決済やd払いのように、サブスクとカードの間に入る決済サービスのことです。たとえば App Store で契約していて楽天カードから引き落とされるサブスクは、経由サービス「Apple ID決済」＋引き落とし元「楽天カード」の組み合わせで登録します。<strong>カードや口座から直接引き落とされる場合は、経由サービス「なし」を選んで引き落とし元だけを設定してください</strong>。選べる経由サービスは、Apple ID決済・Google Play決済・d払い・auかんたん決済・ソフトバンクまとめて支払い・その他キャリア決済・PayPal・その他です。詳しくは <a href="manual.html#payment-method">マニュアルの「決済方法」</a> をご覧ください。</div>
     </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggle(this)">
-        通知が届きません。
-        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="faq-a">iOSの「設定 → 通知 → Keepy」から通知が許可されているかご確認ください。また、Keepy内の「設定 → 通知設定」でも各通知のオン・オフを確認できます。</div>
-    </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         「はじめる準備」（オンボーディング）とは何ですか？
@@ -295,15 +255,90 @@
       </div>
       <div class="faq-a">初めて使うとき、口座・カード・サブスクの登録と家族への引き継ぎを順番にご案内する画面です。あとで続きをやる場合は、ホームの「はじめる準備」チェックリストから各項目を登録できます（すべて済むと自動で消えます）。</div>
     </div>
-
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
-        別の端末で、引き継いだデータを見るには？
+        ウィジェットが更新されません。
         <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
-      <div class="faq-a">ご家族が新しい端末で見るには、ロック画面下部の「別のバックアップから復元」を選び、共有された暗号化ファイルと復活カギ（8語）で復元します。手順は <a href="guide.html#handover">引き継ぎガイド</a> をご覧ください。</div>
+      <div class="faq-a">ウィジェットは<strong>データを変更したときと、毎朝9時</strong>に更新されます。iOS の判断で表示が遅れることがあるため、すぐに反映したいときは Keepy を一度開いてください。<br><br>ホーム画面を長押し → 「＋」から「Keepy」を選ぶと追加できます（小・中の2サイズ）。「通知に金額・サービス名を出さない」をオンにしている場合は、ウィジェットでも金額が伏せられます。</div>
     </div>
-
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        通知が届きません。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">iOSの「設定 → 通知 → Keepy」から通知が許可されているかご確認ください。また、Keepy内の「設定 → 通知設定」でも各通知のオン・オフを確認できます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        通知が多いので減らしたいです。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">「設定 → 通知設定」で「更新前の通知」「月次・年間レポート」「カード引き落とし通知」をそれぞれオフにできます。更新前の通知は、<strong>サブスクごとに「何日前に通知するか」も変更できます</strong>（登録・編集画面の「更新の何日前に通知」）。<br><br>同じ画面の「通知に金額・サービス名を出さない」をオンにすると、ロック画面に内容が出なくなります。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        カード引き落としの通知に出る金額が、実際の請求額と違います。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">この通知の金額は<strong>「Keepy に登録したサブスク分の合計」＝参考値</strong>です。実際の請求額とは一致しません。<br><br>カードの実際の引き落としは各社の締め日の体系で決まり、買い物などサブスク以外の利用も含まれるためです。Keepy は登録されている分しか知らないため、金額を断言しない表記にしています。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        データはどこに保存されますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">すべてのデータはお使いの端末内にAES-256暗号化されて保存されます。外部サーバーへの送信は一切行いません。開発者もデータを閲覧することはできません。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        アプリを開くたびに認証を求められます／求められません。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">「設定 → セキュリティ情報」の自動ロックで、離れてからロックするまでの時間を<strong>すぐ・30秒・1分（初期設定）・5分・10分</strong>から選べます。すぐにロックしたい場合は「すぐ」、少し離れただけで認証を求められたくない場合は長めにしてください。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        Face IDで認証できません。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">Face IDの認証に失敗した場合、iOSのデバイスパスコード入力画面に自動で切り替わります。ご家族の方がご利用の場合は、認証画面下部の「ご家族の方はこちら」からパスコードでログインしてください。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        誤ってデータを削除してしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">削除したデータはゴミ箱に移動し、設定で指定した期間（デフォルト90日）保持されます。「設定 → データ管理 → ゴミ箱」から復元することができます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        復活カギ（リカバリーコード）をなくしてしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><strong>いまお使いの iPhone が手元にあれば、もう一度確認できます。</strong>「設定 → セキュリティ情報 → 復活カギを確認する」で8語を表示できますので、控え直してください。<br><br>端末を紛失・初期化したあとに復活カギも分からない場合は、バックアップファイル（.enc）を開く手段がなくなり、復元はできません（開発者にも開けない設計です）。復活カギは 1Password などのパスワード管理アプリか、紙に書いて重要書類と一緒に保管してください。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        機種変更したらデータが消えてしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">機種変更前に「設定 → バックアップ → バックアップを書き出す」からデータをバックアップしてください。新しい端末での初回起動時に「バックアップから復元」を選択してデータを引き継ぐことができます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        機種変更したらプレミアムは引き継がれますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">同じ Apple ID をお使いであれば自動で引き継がれます。反映されないときは、アプリ内の購入画面にある「<strong>購入を復元する</strong>」をタップしてください。※プレミアムの権利とアプリのデータは別物です。データの引き継ぎにはバックアップと復活カギが必要です。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        アプリを削除したらデータはどうなりますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a"><strong>端末内のデータは消えます。</strong>Keepy はデータを外部サーバーに置かないため、端末から消すと復元のもとがなくなります。<br><br>入れ直す予定がある場合や、機種変更の前には、必ず「設定 → バックアップ」で暗号化ファイル（.enc）を書き出し、復活カギ（8語）も控えてから削除してください。この2つが揃っていれば、新しい端末で元どおりに戻せます。</div>
+    </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         この端末のデータを初期化するには？
@@ -311,7 +346,13 @@
       </div>
       <div class="faq-a">「設定 → データ管理」から端末内のデータを初期化できます（暗号化キーを削除し、最初のセットアップ画面に戻ります）。初期化するとこの端末の内容は消えるため、事前にバックアップと復活カギの控えをご用意ください。</div>
     </div>
-
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        家族には何が見えますか？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">家族モードは<strong>「見るだけ」</strong>です。追加・編集・削除、バックアップや家族の管理、セキュリティ設定の変更はできません。<br><br>見える範囲はご家族ごとに設定できます。「サブスクを見せる」「資産を見せる」はそれぞれオン・オフでき、<strong>iPhoneのパスコードを見せる設定は既定でオフ</strong>です（必要な方にだけ、登録時の警告を読んだうえでオンにしてください）。ご家族には手続き用のチェックリストが表示され、済んだものに「手続き完了」を付けられます。</div>
+    </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         家族への引き継ぎはどう配布しますか？
@@ -319,7 +360,20 @@
       </div>
       <div class="faq-a">共有フォルダに暗号化ファイル（.enc）と引き継ぎガイドを書き出し、宛先ごとに自動で作られる「Keepy○○（お名前）」フォルダで個別に共有します。各ガイドには宛先ご本人の家族パスコードだけが載ります。設定の流れは <a href="guide.html#handover">引き継ぎガイド</a> へ。</div>
     </div>
-
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        別の端末で、引き継いだデータを見るには？
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">ご家族が新しい端末で見るには、ロック画面下部の「別のバックアップから復元」を選び、共有された暗号化ファイルと復活カギ（8語）で復元します。手順は <a href="guide.html#handover">引き継ぎガイド</a> をご覧ください。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggle(this)">
+        家族がパスコードを忘れてしまいました。
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="faq-a">オーナーが「設定 → 家族を管理 → 該当する家族 → パスコードをリセット」からパスコードをリセットできます。リセット後、家族が次回ログイン時に新しいパスコードを設定できます。</div>
+    </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggle(this)">
         不具合が起きたときは？
@@ -387,6 +441,10 @@
   </div>
 
   <footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="#" data-appstore>App Store でダウンロード（準備中）</a>
+    </div>
     <nav>
       <a href="index.html">トップ</a>
       <a href="features.html">使い方</a>
@@ -406,5 +464,6 @@
       el.nextElementSibling.classList.toggle('open');
     }
   </script>
+  <script src="keepy.js?v=1"></script>
 </body>
 </html>
