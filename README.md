@@ -5,23 +5,35 @@ Keepy アプリの公式サイト。**GitHub Pages が `main` を直配信**し�
 - 公開URL: **https://keepy.jp**（カスタムドメイン・`CNAME` 参照。2026-07-18 に github.io から移行・HTTPS 有効）
 - リポジトリ: https://github.com/moratnek/keepy-site
 
-## ファイル構成（7ページ・2026-08-05 現在）
+## ファイル構成（8ページ・2026-08-12 現在）
 
 ```
-index.html      — トップ（ヒーロー・スクショ・料金・セキュリティ）
+index.html      — トップ（2026-08-12 に全面刷新。物語順の機能紹介・料金・セキュリティ）
 features.html   — 使い方（機能紹介 9節・交互レイアウト）
 guide.html      — 引き継ぎガイド（#handover＝アプリのオンボーディング④の着地先）
 manual.html     — 使い方マニュアル
 support.html    — サポート（FAQ・問い合わせ）
 privacy.html    — プライバシーポリシー
 tokushoho.html  — 特定商取引法に基づく表記（日英併記）
+404.html        — 存在しない URL の受け皿（GitHub Pages がルートの 404.html を自動で使う）
 
-keepy.css       — 共通スタイルの単一ソース（ヘッダー・フッター・:root 変数・body）
+keepy.css       — 共通スタイルの単一ソース（色・浮遊ナビ・フッター・body）
                   ページ固有のスタイルは各ページの <style> に残す
+keepy.js        — 共通スクリプト（モバイルのメニュー開閉だけ）
 images/         — 機能紹介・トップ用スクショ（750px・width/height 属性つき）
 img/            — マニュアル・ガイド用スクショ／favicon／OGP（同じく 750px 作法）
-docs/           — 内部の設計メモ（.gitignore 対象・公開されない）
+docs/           — 内部の設計メモ・デザイン試作（.gitignore 対象・公開されない）
 ```
+
+## デザイン（2026-08-12 刷新）
+
+- クリーム地（`#FBF7EF`）＋**インディゴ1色**のアクセント。テラコッタはアプリアイコンの中だけ
+- ヘッダーは**画面の上に浮くピル型ナビ**（全ページ共通）。768px 以下はハンバーガー→全画面メニュー
+  - トップだけ「ページ内の行き先（サブスク管理・引き継ぎ・料金）｜他ページ（使い方・サポート）」を
+    細い縦線で分けている
+  - **ナビは `position: fixed` ＝場所を取らない**ので、下位ページは `<body class="has-nav">` で
+    上の余白を確保する。これを外すと本文がナビの下に潜る
+- 試作と比較検討の記録は `docs/redesign/`（proto_soft / proto_taste / proto_hybrid / nav_options）
 
 ## App Store 申請で使用している URL
 
@@ -40,7 +52,9 @@ docs/           — 内部の設計メモ（.gitignore 対象・公開されな�
 
 ## 公開時に残っている作業（App Store 審査通過後）
 
-- `<!-- APPSTORE_LINK -->` マーカー（**全7ページ・10箇所**）を実リンク
-  `https://apps.apple.com/jp/app/id6786194974` に差し替え
+- `<!-- APPSTORE_LINK -->` マーカー（**全7ページ・11箇所**＝features 3／guide 2／index 2／
+  manual・privacy・support・tokushoho 各1。2026-08-12 実測）を実リンク
+  `https://apps.apple.com/jp/app/id6786194974` に差し替え。
+  バッジは `href="#"` の間だけ無効化してあるので、URL を入れれば自動で押せるようになる
 - 1.0 公開から1ヶ月後（または先着100名到達時）に **¥2,480 → ¥3,480 へ値上げ**し、
   index.html の料金表を実態化（Obsidian Dashboard のリリースTODO 参照）

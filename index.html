@@ -14,14 +14,13 @@
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="keepy.css?v=4">
   <style>
     /* ================================================================
        Keepy トップページ — C案（A: soft-skill × B: taste v2 統合）
        2026-08-12 に旧トップから全面刷新。試作＝docs/redesign/proto_hybrid.html
-       ⚠️ このページは keepy.css を読まない自己完結ページ。
-          旧 keepy.css の `header { position: sticky }` が
-          このページの <header class="hero"> に当たって壊れるため。
-          他6ページは従来どおり keepy.css を使う。
+       色・ナビ・フッターは keepy.css（全ページ共通の単一ソース）にある。
+       ここに置くのはトップ固有のものだけ。
        A から: 浮遊ピル型ナビ / 二重ベゼル / 150px級余白 / Eyebrow /
                キャプション付き横スナップレール / rise アニメーション
        B から: ゴシック体 / インディゴ1色ロック / 物語順の機能展開 /
@@ -32,45 +31,10 @@
        ================================================================ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --cream: #FBF7EF;
-      --cream-deep: #F2EDE3;
-      --ink: #26241F;
-      --ink-soft: #57534B;
-      --muted: #8C8880;
-      --indigo: #3B5FCC;
-      --indigo-deep: #24408F;
-      --indigo-tint: #EEF3FF;
-      --indigo-tint-line: #D3DEF7;
-      --hairline: rgba(44, 42, 38, 0.08);
-      --hairline-strong: rgba(44, 42, 38, 0.13);
-      --shell: rgba(44, 42, 38, 0.045);
-      --ease-lux: cubic-bezier(0.32, 0.72, 0, 1);
-      --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-    section[id] { scroll-margin-top: 104px; }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--cream);
-      color: var(--ink);
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      /* 金額・件数の桁を揃える（keepy.css と同じ方針） */
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* キーボード操作の可視化（アクセシビリティ要件） */
-    :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
-
-    /* App Store バッジは href="#" の間だけ無効。
-       リリース時にバッジの href を実 URL へ差し替えると自動で解除される
-       （マーカー行そのものは grep 対象なのでこのコメントには書かない） */
-    a[data-appstore][href="#"] { pointer-events: none; }
-    img { max-width: 100%; height: auto; display: block; }
+    /* 色・ナビ・フッター・基本設定は keepy.css（全ページの単一ソース）。
+       ここに書くのはトップページ固有のものだけ。 */
+    body { line-height: 1.8; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
 
     ::selection { background: rgba(59, 95, 204, 0.18); }
 
@@ -90,150 +54,6 @@
       border-radius: 50%;
       filter: blur(90px);
     }
-
-    /* ================================================================
-       浮遊ピル型ナビ（ガラス）
-       ================================================================ */
-    .nav-island {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 8px 8px 18px;
-      border-radius: 999px;
-      background: rgba(251, 247, 239, 0.72);
-      -webkit-backdrop-filter: blur(20px);
-      backdrop-filter: blur(20px);
-      box-shadow:
-        0 0 0 1px rgba(44, 42, 38, 0.07),
-        inset 0 1px 1px rgba(255, 255, 255, 0.6),
-        0 12px 40px -12px rgba(44, 42, 38, 0.18);
-    }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      text-decoration: none;
-      color: var(--ink);
-      margin-right: 10px;
-    }
-    .nav-brand svg { border-radius: 7px; display: block; }
-    .nav-brand span {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    .nav-links { display: flex; align-items: center; gap: 2px; }
-    .nav-links a {
-      white-space: nowrap;
-      font-size: 13px;
-      color: var(--ink-soft);
-      text-decoration: none;
-      padding: 7px 13px;
-      border-radius: 999px;
-      transition: color 0.5s var(--ease-lux), background-color 0.5s var(--ease-lux);
-    }
-    .nav-links a:hover { color: var(--ink); background: rgba(44, 42, 38, 0.05); }
-    /* ページ内の行き先（アンカー）と、他ページへの移動を視覚的に分ける。
-       同じ見た目で並べると「押した先で何が起きるか」が読めないため。 */
-    .nav-sep {
-      width: 1px; height: 18px;
-      background: rgba(44, 42, 38, 0.14);
-      margin: 0 6px;
-      flex-shrink: 0;
-    }
-    .nav-links a.page { color: var(--ink); font-weight: 500; }
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-      gap: 8px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--cream);
-      background: var(--indigo);
-      padding: 8px 8px 8px 16px;
-      border-radius: 999px;
-      text-decoration: none;
-      margin-left: 8px;
-      cursor: default;
-      opacity: 0.55;
-    }
-    .nav-cta .dot {
-      width: 22px; height: 22px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px;
-    }
-
-    /* ハンバーガー（モバイルのみ） */
-    .nav-burger {
-      display: none;
-      width: 38px; height: 38px;
-      border: 0;
-      border-radius: 999px;
-      background: rgba(44, 42, 38, 0.06);
-      cursor: pointer;
-      position: relative;
-    }
-    .nav-burger span {
-      position: absolute;
-      left: 50%; top: 50%;
-      width: 16px; height: 1.5px;
-      background: var(--ink);
-      border-radius: 2px;
-      transition: transform 0.55s var(--ease-lux);
-    }
-    .nav-burger span:nth-child(1) { transform: translate(-50%, calc(-50% - 3.5px)); }
-    .nav-burger span:nth-child(2) { transform: translate(-50%, calc(-50% + 3.5px)); }
-    body.menu-open .nav-burger span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-    body.menu-open .nav-burger span:nth-child(2) { transform: translate(-50%, -50%) rotate(-45deg); }
-
-    /* フルスクリーンのガラスメニュー */
-    .menu-veil {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
-      background: rgba(251, 247, 239, 0.85);
-      -webkit-backdrop-filter: blur(28px);
-      backdrop-filter: blur(28px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 32px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.7s var(--ease-lux), visibility 0s 0.7s;
-    }
-    body.menu-open .menu-veil {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.7s var(--ease-lux);
-    }
-    .menu-veil a {
-      font-size: clamp(26px, 7.5vw, 38px);
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      text-decoration: none;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--hairline);
-      transform: translateY(48px);
-      opacity: 0;
-      transition: transform 0.8s var(--ease-lux), opacity 0.8s var(--ease-lux);
-    }
-    body.menu-open .menu-veil a { transform: translateY(0); opacity: 1; }
-    body.menu-open .menu-veil a:nth-child(1) { transition-delay: 0.08s; }
-    body.menu-open .menu-veil a:nth-child(2) { transition-delay: 0.14s; }
-    body.menu-open .menu-veil a:nth-child(3) { transition-delay: 0.20s; }
-    body.menu-open .menu-veil a:nth-child(4) { transition-delay: 0.26s; }
-    body.menu-open .menu-veil a:nth-child(5) { transition-delay: 0.32s; }
-    body.menu-open .menu-veil a:nth-child(6) { transition-delay: 0.38s; }
 
     /* ================================================================
        共通パーツ
@@ -796,31 +616,6 @@
     /* ================================================================
        フッター
        ================================================================ */
-    footer {
-      border-top: 1px solid var(--hairline);
-      padding: 56px 32px 48px;
-      text-align: center;
-      background: var(--cream-deep);
-    }
-    footer nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px 28px;
-      margin-bottom: 28px;
-    }
-    footer nav a {
-      font-size: 13px;
-      color: var(--ink-soft);
-      text-decoration: none;
-      transition: color 0.5s var(--ease-lux);
-    }
-    footer nav a:hover, footer nav a.current { color: var(--indigo); }
-    footer p { font-size: 12px; color: var(--muted); }
-    footer p.credit { margin-bottom: 8px; }
-    footer p.credit a { color: var(--muted); text-decoration: none; transition: color 0.5s var(--ease-lux); }
-    footer p.credit a:hover { color: var(--indigo); text-decoration: underline; }
-
     /* ================================================================
        レスポンシブ
        ================================================================ */
@@ -839,9 +634,6 @@
 
     @media (max-width: 768px) {
       .wrap { padding: 0 16px; }
-      .nav-links, .nav-cta { display: none; }
-      .nav-burger { display: block; }
-      .nav-island { top: 16px; padding: 7px 7px 7px 16px; }
 
       .hero { padding: 128px 0 96px; }
       .hero-grid { grid-template-columns: 1fr; gap: 72px; }
@@ -1213,23 +1005,9 @@
       items.forEach(function (el) { io.observe(el); });
     })();
 
-    // ハンバーガー → X モーフ＋フルスクリーンメニュー
-    (function () {
-      var burger = document.getElementById('burger');
-      var veil = document.getElementById('menuVeil');
-      burger.addEventListener('click', function () {
-        var open = document.body.classList.toggle('menu-open');
-        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-      });
-      veil.addEventListener('click', function (e) {
-        if (e.target.tagName === 'A' || e.target === veil) {
-          document.body.classList.remove('menu-open');
-          burger.setAttribute('aria-expanded', 'false');
-        }
-      });
-    })();
+    // ハンバーガーメニューの開閉は keepy.js（全ページ共通）
   </script>
+  <script src="keepy.js?v=1"></script>
 
 </body>
 </html>

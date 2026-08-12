@@ -14,23 +14,10 @@
   <meta property="og:site_name" content="Keepy">
   <meta property="og:image" content="https://keepy.jp/img/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="keepy.css?v=3">
+  <link rel="stylesheet" href="keepy.css?v=4">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ヘッダー（標準・manual.html と同一様式） */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250,250,247,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid #E8E4DC;
-      padding: 12px 24px;
-    }
-    @media (max-width: 680px) {
-      .header-nav { display: none; }
-    }
 
     /* コンテンツ */
     .hero { max-width: 760px; margin: 0 auto; padding: 64px 24px 0; text-align: center; }
@@ -39,7 +26,7 @@
       font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
       margin-bottom: 20px; letter-spacing: 0.3px;
     }
-    .hero h1 { font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px; line-height: 1.25; margin-bottom: 16px; color: #2C2A26; }
+    .hero h1 { font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px; line-height: 1.25; margin-bottom: 16px; color: var(--ink); }
     .hero h1 em { font-style: normal; color: #3B5FCC; }
     .hero-sub { font-size: 16px; color: #8C8880; max-width: 520px; margin: 0 auto; }
 
@@ -63,12 +50,12 @@
     h2 {
       font-size: 15px;
       font-weight: 500;
-      color: #2C2A26;
+      color: var(--ink);
       margin: 40px 0 12px;
       padding-bottom: 10px;
       border-bottom: 0.5px solid #E8E4DC;
     }
-    p { font-size: 14px; color: #2C2A26; margin-bottom: 12px; }
+    p { font-size: 14px; color: var(--ink); margin-bottom: 12px; }
     a { color: #3B5FCC; text-decoration: none; }
 
     /* FAQ */
@@ -83,7 +70,7 @@
       padding: 14px 16px;
       font-size: 14px;
       font-weight: 500;
-      color: #2C2A26;
+      color: var(--ink);
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -147,47 +134,47 @@
       gap: 8px;
     }
     .version-item .label { font-size: 11px; color: #8C8880; margin-bottom: 2px; }
-    .version-item .value { font-size: 14px; font-weight: 500; color: #2C2A26; }
+    .version-item .value { font-size: 14px; font-weight: 500; color: var(--ink); }
 
-    /* フッター */
-    footer {
-      border-top: 0.5px solid #E8E4DC;
-      padding: 28px 24px;
-      text-align: center;
-    }
-    /* Logo.dev 無料プランの帰属表示（商用利用で必須）。
-       ⚠️ rel="noreferrer" を付けないこと＝リファラが渡らないと検証に落ちる */
-    footer p.credit { margin-bottom: 6px; }
   </style>
 </head>
-<body>
+<body class="has-nav">
 
-  <header>
-    <div class="header-inner">
-      <a class="header-logo" href="index.html">
-        <svg width="28" height="28" viewBox="0 0 1024 1024">
-          <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
-          <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
-          <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
-          <path d="M307 85 L409 85 L409 697 L358 724 L307 750 Z" fill="#ffffff" opacity="0.09"/>
-          <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="717" cy="757" r="180" fill="#ffffff"/>
-          <circle cx="717" cy="757" r="162" fill="#D9623A"/>
-          <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
-        </svg>
-        <span class="header-logo-text">Keepy</span>
-      </a>
-      <nav class="header-nav">
-        <a href="index.html">トップ</a>
-        <a href="features.html">使い方</a>
-        <a href="guide.html">引き継ぎガイド</a>
-        <a href="manual.html">マニュアル</a>
-        <a href="support.html" class="current">サポート</a>
-      </nav>
-      <!-- APPSTORE_LINK -->
-      <a class="header-cta" href="#" data-appstore>ダウンロード（準備中）</a>
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page" href="index.html">トップ</a>
+      <a class="page" href="features.html">使い方</a>
+      <a class="page" href="guide.html">引き継ぎガイド</a>
+      <a class="page" href="manual.html">マニュアル</a>
+      <a class="page current" href="support.html">サポート</a>
     </div>
-  </header>
+    <!-- APPSTORE_LINK -->
+    <a class="nav-cta" href="#" data-appstore aria-disabled="true"><span>App Store 準備中</span><span class="dot">↗</span></a>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- モバイル用フルスクリーンメニュー -->
+  <div class="menu-veil" id="menuVeil">
+    <a href="index.html">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">引き継ぎガイド</a>
+    <a href="manual.html">マニュアル</a>
+    <a href="support.html">サポート</a>
+  </div>
 
   <section class="hero">
     <span class="hero-label">サポート</span>
@@ -406,5 +393,6 @@
       el.nextElementSibling.classList.toggle('open');
     }
   </script>
+  <script src="keepy.js?v=1"></script>
 </body>
 </html>
