@@ -138,6 +138,15 @@
       transition: color 0.5s var(--ease-lux), background-color 0.5s var(--ease-lux);
     }
     .nav-links a:hover { color: var(--ink); background: rgba(44, 42, 38, 0.05); }
+    /* ページ内の行き先（アンカー）と、他ページへの移動を視覚的に分ける。
+       同じ見た目で並べると「押した先で何が起きるか」が読めないため。 */
+    .nav-sep {
+      width: 1px; height: 18px;
+      background: rgba(44, 42, 38, 0.14);
+      margin: 0 6px;
+      flex-shrink: 0;
+    }
+    .nav-links a.page { color: var(--ink); font-weight: 500; }
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -224,6 +233,7 @@
     body.menu-open .menu-veil a:nth-child(3) { transition-delay: 0.20s; }
     body.menu-open .menu-veil a:nth-child(4) { transition-delay: 0.26s; }
     body.menu-open .menu-veil a:nth-child(5) { transition-delay: 0.32s; }
+    body.menu-open .menu-veil a:nth-child(6) { transition-delay: 0.38s; }
 
     /* ================================================================
        共通パーツ
@@ -892,8 +902,10 @@
     <div class="nav-links">
       <a href="#subs">サブスク管理</a>
       <a href="#family">引き継ぎ</a>
-      <a href="#security">セキュリティ</a>
       <a href="#pricing">料金</a>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="page" href="features.html">使い方</a>
+      <a class="page" href="support.html">サポート</a>
     </div>
     <span class="nav-cta" aria-disabled="true"><span>App Store 準備中</span><span class="dot">↗</span></span>
     <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
@@ -907,6 +919,7 @@
     <a href="#family">家族への引き継ぎ</a>
     <a href="#security">セキュリティ</a>
     <a href="#pricing">料金</a>
+    <a href="features.html">使い方</a>
     <a href="support.html">サポート</a>
   </div>
 
