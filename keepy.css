@@ -120,8 +120,6 @@ img { height: auto; }
   transition: color 0.5s var(--ease-lux), background-color 0.5s var(--ease-lux);
 }
 .nav-links a:hover { color: var(--ink); background: rgba(44, 42, 38, 0.05); }
-/* いま開いているページ */
-.nav-links a.current { color: var(--indigo); font-weight: 600; }
 
 /* ページ内の行き先と、他ページへの移動を分ける区切り */
 .nav-sep {
@@ -132,6 +130,18 @@ img { height: auto; }
   flex-shrink: 0;
 }
 .nav-links a.page { color: var(--ink); font-weight: 500; }
+
+/* いま開いているページ。
+   ⚠️ この2行は .page より後ろに置くこと。強さが同じなので、
+      前に置くと .page の色に負けて「現在地が分からない」状態に戻る
+      （2026-08-12 に実際そうなっていた）。 */
+.nav-links a.current,
+.nav-links a.page.current {
+  color: var(--indigo);
+  font-weight: 600;
+  background: var(--indigo-tint);
+}
+.nav-links a.current:hover { color: var(--indigo-deep); background: var(--indigo-tint); }
 
 .nav-cta {
   display: inline-flex;
@@ -221,6 +231,17 @@ body.menu-open .menu-veil {
   transition: transform 0.8s var(--ease-lux), opacity 0.8s var(--ease-lux);
 }
 body.menu-open .menu-veil a { transform: translateY(0); opacity: 1; }
+/* いま開いているページ（デスクトップのナビと同じ扱い） */
+.menu-veil a.current { color: var(--indigo); }
+.menu-veil a.current::after {
+  content: "いま見ているページ";
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 2px;
+}
 /* ⚠️ 項目を増やしたら、この遅延も同じ数だけ足すこと。
    足りないと、あふれた項目だけ遅延ゼロで先に飛び出す。 */
 body.menu-open .menu-veil a:nth-child(1) { transition-delay: 0.08s; }
