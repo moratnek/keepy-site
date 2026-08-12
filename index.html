@@ -36,6 +36,12 @@
     body { line-height: 1.8; overflow-x: hidden; }
     img { max-width: 100%; display: block; }
 
+    /* トップだけフッターのダウンロードボタンを出さない。
+       すぐ上のクロージング（「大切なものを、今日から一冊に。」）に
+       同じボタンがあり、250px も離れずに2つ並んで見えるため。
+       他ページはフッターが唯一の導線なので、そちらでは出す。 */
+    footer .footer-cta { display: none; }
+
     ::selection { background: rgba(59, 95, 204, 0.18); }
 
     /* 紙の質感：固定ノイズ（スクロール要素には付けない） */
@@ -692,14 +698,12 @@
       <span>Keepy</span>
     </a>
     <div class="nav-links">
-      <a href="#subs">サブスク管理</a>
-      <a href="#family">引き継ぎ</a>
-      <a href="#pricing">料金</a>
-      <span class="nav-sep" aria-hidden="true"></span>
+      <a class="page current" href="index.html">トップ</a>
       <a class="page" href="features.html">使い方</a>
+      <a class="page" href="guide.html">引き継ぎガイド</a>
+      <a class="page" href="manual.html">マニュアル</a>
       <a class="page" href="support.html">サポート</a>
     </div>
-    <span class="nav-cta" aria-disabled="true"><span>App Store 準備中</span><span class="dot">↗</span></span>
     <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -707,11 +711,10 @@
 
   <!-- モバイル用フルスクリーンメニュー -->
   <div class="menu-veil" id="menuVeil">
-    <a href="#subs">サブスク管理</a>
-    <a href="#family">家族への引き継ぎ</a>
-    <a href="#security">セキュリティ</a>
-    <a href="#pricing">料金</a>
+    <a href="index.html" class="current">トップ</a>
     <a href="features.html">使い方</a>
+    <a href="guide.html">引き継ぎガイド</a>
+    <a href="manual.html">マニュアル</a>
     <a href="support.html">サポート</a>
   </div>
 
@@ -972,6 +975,10 @@
   </section>
 
   <footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="#" data-appstore>App Store でダウンロード（準備中）</a>
+    </div>
     <nav>
       <a href="index.html" class="current">トップ</a>
       <a href="features.html">使い方</a>
