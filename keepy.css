@@ -27,7 +27,15 @@
   --hairline-strong: rgba(44, 42, 38, 0.13);
   --shell: rgba(44, 42, 38, 0.045);
   --ease-lux: cubic-bezier(0.32, 0.72, 0, 1);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  /* 本文書体＝BIZ UDPGothic（モリサワのUD書体・SIL OFL 1.1）。
+   * 実体は fonts/bizudpgothic.css で自前ホスティング（外部CDNを踏まない）。
+   * 各ページの <head> で fonts/bizudpgothic.css を keepy.css より先に読む。
+   * ⚠ このフォントは 400 と 700 の2ウェイトしか無い。各ページに残っている
+   *   500 は 400 に、600/800 は 700 にブラウザが丸めて描画する。
+   *   2026-08-14: 丸められた見た目を承認済みのため、CSS の 500/600/800 の
+   *   記述はあえて元のまま残している（別書体に戻したとき階調を復元できるように）。
+   *   新しく書くときは 400／700 のどちらかで考えること。 */
+  --font-sans: "BIZ UDPGothic", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
 
   /* ---- 旧来の呼び名（既存ページが参照している。値だけ新配色に） ---- */
   --bg: #FBF7EF;
