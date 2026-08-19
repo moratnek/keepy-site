@@ -316,3 +316,25 @@ footer p.credit a:hover { color: var(--indigo); text-decoration: underline; }
   html { scroll-behavior: auto; }
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ── ロゴ取得の但し書き ────────────────────────────────────────────
+ * 「記録は外部に送られない」と言い切る文の直後に置く小さな注記。
+ * 🔴 なぜ要るか＝ロゴ表示のときだけサービス名を送っており（Logo.dev /
+ *    iTunes / favicon）、privacy.html にはそう書いてある。トップや使い方で
+ *    「送信は一切ない」とだけ書くと privacy.html と食い違う（2026-08-19 是正）。
+ * 主張は弱めない＝守る対象を「あなたが登録した記録」に限ったうえで、
+ * 送っているものを具体名で小さく添える。読み飛ばせるが在ることは分かる大きさ。
+ * ⚠️ 3ページ（index / features / support）で使う。各ページに複製しない
+ *    ＝複製した瞬間、次に文言を直すとき片方だけ古くなる。 */
+.note-inline {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  opacity: 0.72;
+}
+.note-inline a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
