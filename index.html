@@ -423,10 +423,26 @@
       margin: auto -36px 0;
       height: 240px;
       overflow: hidden;
+      position: relative;
     }
+    /* 🔴 見せたいのは通知カードなので、それが枠の**縦中央**に来るようにする。
+     * 旧実装は object-position: bottom＝画像の下端合わせだった。通知カードは
+     * 画像の下端ではなく少し上（画像高さの 79% の位置が中心）にあるため、
+     * 枠の上端すれすれ（中心が上から約6px）に張り付いて見えていた。
+     * ⚠️ object-position の % では直せない＝必要な値が枠の幅で変わる
+     *    （440px幅で89%・360px幅で92%）。だから画像自身の高さを基準にする:
+     *      top: 50%            … 画像の上端を枠の縦中央へ
+     *      translateY(-79%)    … 画像の高さの79%だけ引き上げる
+     *    ＝画像の79%地点（通知カードの中心）が枠の中央に一致する。幅に依存しない。
+     * 79% は実測値（750x1630 の原画でカードは y=1208..1378・中心 1293）。
+     * 📌 スクショを差し替えたらこの数値を測り直すこと。 */
     .duo-b .duo-media img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: bottom;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: auto;
+      top: 50%;
+      transform: translateY(-79%);
       border-radius: 0;
     }
 
