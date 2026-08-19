@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安全のしくみ — Keepy</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/favicon-180.png">
+  <meta name="description" content="Keepyがあなたの記録をどう守っているのか。サーバーを持たない設計、アカウント不要、外に出る通信の全部を説明します。">
+  <meta property="og:title" content="安全のしくみ — Keepy">
+  <meta property="og:description" content="Keepyがあなたの記録をどう守っているのか。サーバーを持たない設計、アカウント不要、外に出る通信の全部を説明します。">
+  <meta property="og:url" content="https://keepy.jp/security.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Keepy">
+  <meta property="og:image" content="https://keepy.jp/img/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- 本文書体 BIZ UDPGothic（自前ホスティング・外部CDNを踏まない）。keepy.css より先に読む -->
+  <link rel="stylesheet" href="fonts/bizudpgothic.css?v=1">
+  <link rel="stylesheet" href="keepy.css?v=6">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── ヒーロー（guide.html と同じ骨格） ── */
+    .hero { max-width: 760px; margin: 0 auto; padding: 72px 24px 36px; text-align: center; }
+    .hero-label {
+      display: inline-block; background: var(--indigo-lt); color: var(--indigo);
+      font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px;
+      line-height: 1.25; margin-bottom: 16px; color: var(--text);
+    }
+    .hero h1 em { font-style: normal; color: var(--indigo); }
+    .hero-sub { font-size: 16px; color: var(--text2); max-width: 540px; margin: 0 auto; line-height: 1.8; }
+
+    /* ── 本文 ── */
+    .sec { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+
+    .block { margin-bottom: 48px; }
+    .block > h2 {
+      font-size: clamp(19px, 3.2vw, 23px); font-weight: 500; letter-spacing: -0.4px;
+      line-height: 1.45; color: var(--text); margin-bottom: 14px;
+      display: flex; gap: 12px; align-items: baseline;
+    }
+    .block > h2 .n {
+      flex: 0 0 auto; font-size: 13px; font-weight: 700; color: var(--indigo);
+      background: var(--indigo-lt); border-radius: 100px; padding: 3px 10px;
+      position: relative; top: -2px;
+    }
+    .block p { font-size: 15px; line-height: 1.95; color: var(--text2); margin-bottom: 12px; }
+    .block p strong { color: var(--text); font-weight: 700; }
+    .block p:last-child { margin-bottom: 0; }
+
+    /* 要点を1行で立てる（各節の結論） */
+    .point {
+      border-left: 3px solid var(--indigo); background: var(--indigo-tint);
+      border-radius: 0 12px 12px 0; padding: 14px 18px;
+      font-size: 15px; line-height: 1.85; color: var(--indigo-deep);
+      margin: 4px 0 16px;
+    }
+
+    /* 通信の一覧（§5） */
+    .wire { display: grid; gap: 14px; margin-top: 6px; }
+    .wire-item {
+      background: var(--white); border: 0.5px solid var(--border);
+      border-radius: 16px; padding: 18px 20px;
+    }
+    .wire-item h3 {
+      font-size: 15.5px; font-weight: 700; color: var(--text); margin-bottom: 10px;
+      display: flex; gap: 10px; align-items: baseline;
+    }
+    .wire-item h3 .k {
+      flex: 0 0 auto; font-size: 11.5px; font-weight: 400; color: var(--muted);
+      border: 0.5px solid var(--border); border-radius: 100px; padding: 2px 9px;
+      position: relative; top: -1px;
+    }
+    .wire-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; line-height: 1.8; }
+    .wire-dl dt { color: var(--muted); white-space: nowrap; }
+    .wire-dl dd { color: var(--text2); }
+    .wire-dl dd strong { color: var(--text); font-weight: 700; }
+    .wire-note { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.75; }
+
+    /* 確かめ方（§7）＝いちばん強い節なので色を変える */
+    .verify {
+      background: var(--green-lt); border: 0.5px solid #CFE0B8; border-radius: 18px;
+      padding: 24px 26px;
+    }
+    .verify h2 { margin-bottom: 12px; }
+    .verify h2 .n { background: rgba(255,255,255,0.75); color: #4E6B2E; }
+    .verify p { color: #3F5626; }
+    .verify p strong { color: #2E4019; }
+
+    /* できないこと（§8） */
+    .limits {
+      background: var(--terra-lt); border: 0.5px solid #F0C8B8; border-radius: 18px;
+      padding: 24px 26px;
+    }
+    .limits h2 .n { background: rgba(255,255,255,0.75); color: #A34A24; }
+    .limits ul { list-style: none; margin-top: 4px; }
+    .limits li {
+      font-size: 15px; line-height: 1.9; color: #7A3E22; padding-left: 22px;
+      position: relative; margin-bottom: 10px;
+    }
+    .limits li::before {
+      content: ""; position: absolute; left: 4px; top: 12px;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--terra);
+    }
+    .limits li:last-child { margin-bottom: 0; }
+    .limits li strong { color: #5E2E17; font-weight: 700; }
+
+    /* 末尾 */
+    .tail {
+      margin-top: 8px; padding-top: 26px; border-top: 0.5px solid var(--border);
+      font-size: 13.5px; line-height: 1.9; color: var(--muted);
+    }
+    .tail a { color: var(--indigo); text-decoration: none; }
+    .tail a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body class="has-nav">
+
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page" href="index.html">トップ</a>
+      <a class="page" href="features.html">使い方</a>
+      <a class="page" href="guide.html">引き継ぎガイド</a>
+      <a class="page" href="manual.html">マニュアル</a>
+      <a class="page current" href="security.html">安全のしくみ</a>
+      <a class="page" href="support.html">サポート</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- モバイル用フルスクリーンメニュー -->
+  <div class="menu-veil" id="menuVeil">
+    <a href="index.html">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">引き継ぎガイド</a>
+    <a href="manual.html">マニュアル</a>
+    <a href="security.html">安全のしくみ</a>
+    <a href="support.html">サポート</a>
+  </div>
+
+  <section class="hero">
+    <span class="hero-label">安全のしくみ</span>
+    <h1>預けないから、<br><em>漏れようがない。</em></h1>
+    <p class="hero-sub">金融と終活の記録を預かるアプリだからこそ、「安全に管理します」という約束ではなく、そもそも漏れようのない作りにしました。どういう仕組みなのか、最後まで説明します。</p>
+  </section>
+
+  <div class="sec">
+
+    <div class="block">
+      <h2><span class="n">1</span>Keepyには、あずかる場所がありません</h2>
+      <p>多くのアプリは、あなたが入力した情報を会社のサーバーに預かります。だから安全の話は、どうしても「<strong>漏らさないように管理します</strong>」という約束になります。約束が守られているかどうかは、外からは確かめられません。</p>
+      <p>Keepyは、預かる場所そのものを作っていません。あなたの記録が集まるサーバーが、この世に存在しません。</p>
+      <p class="point">だから「漏らしません」ではなく、<strong>漏らせません</strong>。約束ではなく、構造です。</p>
+      <p>会社が事故を起こしても、従業員が持ち出そうとしても、取り出す元がありません。開発者も、あなたが何を登録したのか知る方法がありません。</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="n">2</span>アカウントを作りません</h2>
+      <p>メールアドレスも、電話番号も要りません。ダウンロードしたら、そのまま使いはじめられます。</p>
+      <p class="point">「<strong>まず個人情報を渡す</strong>」という段階が、はじめから存在しません。</p>
+      <p>やめるときの退会手続きもありません。アプリを消せば、それで終わりです。どこかに残ったアカウントを気にする必要も、削除依頼を出す必要もありません。</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="n">3</span>あなたを追いかける仕組みを、一つも入れていません</h2>
+      <p>アクセス解析も、広告も、不具合の自動送信も、Keepyには入っていません。どの画面を何回開いたか、いつ使ったか、といった情報が集まる場所がありません。</p>
+      <p>Keepyが使っている外部の部品は、<strong>2つだけ</strong>です。記録を保存する仕組みと、それを暗号化する仕組み。どちらも、情報を外に送る機能を持っていません。</p>
+      <p class="point">「知らないうちに送られていた」という経路が、<strong>そもそも作られていません</strong>。</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="n">4</span>端末の中でも、暗号化して保管します</h2>
+      <p>あなたの記録は、iPhoneの中に置かれるときも、そのままの文字では保存されません。AES-256という方式で暗号化されています。暗号を解く鍵は、iOSの「キーチェーン」という専用の金庫に入ります。</p>
+      <p>アプリを開くときは、Face ID・Touch ID・パスコードで本人確認をします。</p>
+      <p class="point">端末を落としても、拾った人は<strong>ロックを超えられません</strong>。</p>
+    </div>
+
+    <div class="block" id="gate5">
+      <h2><span class="n">5</span>外に出る通信は、この3つだけです</h2>
+      <p>安全の話でいちばん大事なのは、「送っていません」と言い切ることではなく、<strong>何を送っているのかを全部書くこと</strong>だと考えています。Keepyが外とやりとりするのは、次の3つです。</p>
+
+      <div class="wire">
+        <div class="wire-item">
+          <h3>サービスのロゴを取ってくるとき<span class="k">自動</span></h3>
+          <dl class="wire-dl">
+            <dt>送るもの</dt>
+            <dd><strong>サービス名かドメイン名だけ</strong>（例: netflix.com）</dd>
+            <dt>送らないもの</dt>
+            <dd>金額、契約日、メモ、氏名、家族の連絡先 — <strong>登録した中身は一つも送りません</strong></dd>
+            <dt>取りに行く先</dt>
+            <dd>Logo.dev ／ Apple ／ そのサービス自身のサイト ／ Google（お客様が「ロゴを取得」を押したときだけ）</dd>
+          </dl>
+          <p class="wire-note">よく使われるサービスのロゴは、あらかじめアプリに入っています。その場合は通信すら起きません。取ってきた画像は端末に保存されるので、次からは通信しません。</p>
+        </div>
+
+        <div class="wire-item">
+          <h3>購入するとき・買い直しを復元するとき<span class="k">操作したとき</span></h3>
+          <dl class="wire-dl">
+            <dt>相手</dt>
+            <dd>Apple（App Storeの決済のしくみ）</dd>
+            <dt>内容</dt>
+            <dd>購入したかどうかの確認だけ。<strong>Keepyがあなたの登録内容を渡すことはできません</strong></dd>
+          </dl>
+          <p class="wire-note">お支払いはAppleが扱います。Keepyがカード番号を受け取ることも、見ることもありません。</p>
+        </div>
+
+        <div class="wire-item">
+          <h3>「解約方法を検索」ボタンを押したとき<span class="k">操作したとき</span></h3>
+          <dl class="wire-dl">
+            <dt>起きること</dt>
+            <dd>Safariが開いて、そのサービス名で検索します</dd>
+            <dt>分かること</dt>
+            <dd>ボタンに「『Netflix』の解約方法を検索」と<strong>そのまま出る</strong>ので、何が検索されるか押す前に分かります</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2><span class="n">6</span>バックアップと、家族への引き継ぎ</h2>
+      <p>バックアップとして書き出されるファイルは、<strong>暗号化されたままの状態</strong>です。だから、iCloud Driveに置いても、パソコンに移しても、家族に渡しても、ファイルを開いただけでは中身が読めません。</p>
+      <p class="point">守っているのは<strong>置き場所ではなく、ファイルそのものの状態</strong>です。どこに置いても中身は読めません。</p>
+      <p>開けるのは、<strong>復活カギ8語</strong>を持っている人だけです。8語は2048語の中から選ばれるので、順番に試して当てることは現実的にできません。だから、カギは記録とは別に保管してください。</p>
+    </div>
+
+    <div class="block verify">
+      <h2><span class="n">7</span>疑うなら、確かめられます</h2>
+      <p>ここまでの説明を信じてもらう必要はありません。<strong>ご自身の手元で確かめられます</strong>。</p>
+      <p>いちばん簡単な方法は、<strong>機内モードにすること</strong>です。通信を全部止めた状態で、Keepyを使ってみてください。</p>
+      <p>記録の追加も、編集も、検索も、家族への引き継ぎの設定も、通知も、バックアップの書き出しも、今までどおりできます。できなくなるのは、<strong>まだ持っていないロゴを取ってくることだけ</strong>です。</p>
+      <p>通信が無くても全部動く、ということは、<strong>ふだんも送っていない</strong>ということです。</p>
+    </div>
+
+    <div class="block limits">
+      <h2><span class="n">8</span>それでも、できないこと</h2>
+      <p>安全の話は、できないことも書かないと意味がありません。Keepyにも守れない場面があります。</p>
+      <ul>
+        <li><strong>端末のパスコードを他の人に教えてしまうと、守れません。</strong>ロックを開けられる人には、中も見えます。</li>
+        <li><strong>復活カギを無くすと、バックアップから戻せません。</strong>Keepyの側にも復元する手立てはありません。預かっていないからです。</li>
+        <li><strong>家族に渡したバックアップは、渡した相手が開けます。</strong>それが引き継ぎの目的ですが、誰に渡すかはご自身で選んでください。</li>
+      </ul>
+    </div>
+
+    <p class="tail">
+      法的な記載は<a href="privacy.html">プライバシーポリシー</a>をご覧ください。ロゴの取得先の詳細は<a href="privacy.html#external">第3項</a>に記載しています。<br>
+      このページの内容は実装と照らして確認しています（最終確認日: 2026年8月19日）。
+    </p>
+
+  </div>
+
+  <footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="#" data-appstore>App Store でダウンロード（準備中）</a>
+    </div>
+    <nav>
+      <a href="index.html">トップ</a>
+      <a href="features.html">使い方</a>
+      <a href="guide.html">引き継ぎガイド</a>
+      <a href="manual.html">マニュアル</a>
+      <a href="security.html" class="current">安全のしくみ</a>
+      <a href="support.html">サポート</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    </nav>
+    <p class="credit"><a href="https://logo.dev">Logos provided by Logo.dev</a></p>
+    <p>© 2026 Keepy. All rights reserved.</p>
+  </footer>
+
+  <script src="keepy.js?v=1"></script>
+</body>
+</html>
