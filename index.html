@@ -498,6 +498,21 @@
       line-height: 1.8;
     }
 
+    /* ロゴ取得の但し書き＝主張を弱めず、事実を隠さないための小さな注記。
+       トップで「送信は一切ない」と言い切ると privacy.html の記述と食い違うため
+       （2026-08-19 に是正）。本文より一段落として、読み飛ばせるが在ることは分かる大きさに。 */
+    .security-item .note-inline {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11.5px;
+      opacity: 0.72;
+    }
+    .security-item .note-inline a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     /* ================================================================
        料金：プレミアム主役
        ================================================================ */
@@ -881,7 +896,7 @@
         <div class="security-core">
           <p class="eyebrow">セキュリティ</p>
           <h2>すべてのデータは、<br><span class="hl">あなたの端末の中</span>だけに。</h2>
-          <p>金融と終活の記録を預かるアプリだから、守りの仕組みを最優先に設計しています。外部サーバーへの送信は一切ありません。</p>
+          <p>金融と終活の記録を預かるアプリだから、守りの仕組みを最優先に設計しています。あなたが登録した記録が外部に送られることは、一切ありません。</p>
           <dl class="security-grid">
             <div class="security-item rise" style="--d: 0.06s">
               <dt>AES-256 暗号化</dt>
@@ -889,7 +904,7 @@
             </div>
             <div class="security-item rise" style="--d: 0.12s">
               <dt>端末内保存</dt>
-              <dd>データは端末内にのみ保存。外部サーバーへの送信は一切行いません。</dd>
+              <dd>データは端末内にのみ保存。記録が外部サーバーへ送られることはありません。<br><span class="note-inline">※ サービスのロゴを表示するときだけ、サービス名（例: netflix.com）を送って画像を取得します。<a href="privacy.html#external">詳しく</a></span></dd>
             </div>
             <div class="security-item rise" style="--d: 0.18s">
               <dt>Face ID</dt>
