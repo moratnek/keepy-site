@@ -427,14 +427,15 @@
     }
     /* 🔴 見せたいのは通知カードなので、それが枠の**縦中央**に来るようにする。
      * 旧実装は object-position: bottom＝画像の下端合わせだった。通知カードは
-     * 画像の下端ではなく少し上（画像高さの 79% の位置が中心）にあるため、
+     * 画像の下端ではなく少し上（画像高さの 84% の位置が中心）にあるため、
      * 枠の上端すれすれ（中心が上から約6px）に張り付いて見えていた。
-     * ⚠️ object-position の % では直せない＝必要な値が枠の幅で変わる
-     *    （440px幅で89%・360px幅で92%）。だから画像自身の高さを基準にする:
+     * ⚠️ object-position の % では直せない＝必要な値が枠の幅で変わる。
+     *    だから画像自身の高さを基準にする:
      *      top: 50%            … 画像の上端を枠の縦中央へ
-     *      translateY(-79%)    … 画像の高さの79%だけ引き上げる
-     *    ＝画像の79%地点（通知カードの中心）が枠の中央に一致する。幅に依存しない。
-     * 79% は実測値（750x1630 の原画でカードは y=1208..1378・中心 1293）。
+     *      translateY(-84%)    … 画像の高さの84%だけ引き上げる
+     *    ＝画像の84%地点（通知カードの中心）が枠の中央に一致する。幅に依存しない。
+     * 84% は実測値（2026-08-22 の撮り直し後・750x1630 の原画でカードは
+     * y=1307..1424・中心 1366＝83.8%）。旧スクショは 79%（y=1208..1378）だった。
      * 📌 スクショを差し替えたらこの数値を測り直すこと。 */
     .duo-b .duo-media img {
       position: absolute;
@@ -442,7 +443,7 @@
       width: 100%;
       height: auto;
       top: 50%;
-      transform: translateY(-79%);
+      transform: translateY(-84%);
       border-radius: 0;
     }
 
@@ -807,7 +808,7 @@
       </figure>
       <figure class="rise" style="--d: 0.32s">
         <div class="device">
-          <img srcset="images/ss_widgets_home-211.png 211w, images/ss_widgets_home-422.png 422w, images/ss_widgets_home.png 750w" sizes="216px" width="750" height="1630" src="images/ss_widgets_home.png" alt="ホームウィジェット" loading="lazy">
+          <img srcset="images/ss_widgets_home-211.png?v=3 211w, images/ss_widgets_home-422.png?v=3 422w, images/ss_widgets_home.png?v=3 750w" sizes="216px" width="750" height="1630" src="images/ss_widgets_home.png?v=3" alt="ホームウィジェット" loading="lazy">
         </div>
         <figcaption>ホームウィジェット</figcaption>
       </figure>
@@ -886,7 +887,7 @@
             <h3>スマート通知</h3>
             <p>無料トライアル終了・縛り解除・有効期限・90日以上使っていないサービスを事前にお知らせ。毎月1日には「先月のまとめ」も届きます。</p>
             <div class="duo-media">
-              <img srcset="images/ss_notification-211.jpg 211w, images/ss_notification-422.jpg 422w, images/ss_notification.jpg 750w" sizes="(max-width: 980px) 90vw, 440px" src="images/ss_notification.jpg" alt="ロック画面に届いたKeepyの更新通知" loading="lazy">
+              <img srcset="images/ss_notification-211.jpg?v=3 211w, images/ss_notification-422.jpg?v=3 422w, images/ss_notification.jpg?v=3 750w" sizes="(max-width: 980px) 90vw, 440px" src="images/ss_notification.jpg?v=3" alt="ロック画面に届いたKeepyの更新通知" loading="lazy">
             </div>
           </div>
         </div>
