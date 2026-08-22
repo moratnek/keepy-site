@@ -25,6 +25,7 @@ fonts/          — 本文書体 BIZ UDPGothic の自前ホスティング（wof
 images/         — 機能紹介・トップ用スクショ（750px・width/height 属性つき）
 img/            — マニュアル・ガイド用スクショ／favicon／OGP（同じく 750px 作法）
 docs/           — 内部の設計メモ・デザイン試作（.gitignore 対象・公開されない）
+tools/          — 運用スクリプト（release_appstore_link.py＝公開時の導線切り替え）
 ```
 
 ## デザイン（2026-08-12 刷新）
@@ -71,10 +72,29 @@ docs/           — 内部の設計メモ・デザイン試作（.gitignore 対�
 
 ## 公開時に残っている作業（App Store 審査通過後）
 
-- `<!-- APPSTORE_LINK -->` マーカー（**全8ページ・13箇所**＝index 3／features 3／guide 2／
-  manual・support・privacy・tokushoho・404 各1。2026-08-12 実測）を実リンク
-  `https://apps.apple.com/jp/app/id6786194974` に差し替え。
-  バッジは `href="#"` の間だけ無効化してあるので、URL を入れれば自動で押せるようになる。
+- **ダウンロード導線を公開状態にする＝スクリプト1本で済む**（2026-08-22 新設）
+
+  ```bash
+  python3 tools/release_appstore_link.py            # 下見（何も書かない）
+  python3 tools/release_appstore_link.py --apply    # 実行
+  ```
+
+  対象は `<!-- APPSTORE_LINK -->` マーカーの **全9ページ・14箇所**
+  （index 3／features 3／guide 2／manual・support・security・privacy・tokushoho・404 各1。
+  **2026-08-22 実測**。⚠️ 以前ここには「8ページ・13箇所」と書いてあったが、
+  8/21 に `security.html` が増えて古くなっていた）。
+
+  🔴 **href を差し替えるだけでは終わらない**。スクリプトは3つまとめてやる:
+  1. `href="#"` → `https://apps.apple.com/jp/app/id6786194974`
+  2. トップのヒーロー2つの ` is-disabled` と `aria-disabled="true"` を外す
+     （これを忘れると**ボタンが灰色のまま押せない**）
+  3. ラベルの「（準備中）」を消す
+
+  実行後は取りこぼしを自動で検算する（href / 無効化 / ラベルの3点）。
+  戻すには `--apply --revert`（往復して元ファイルとバイト一致することを確認済み）。
+
+  ⚠️ `keepy.css` の `a[data-appstore][href="#"]` が無効化の本体なので、**CSS は触らない**
+  （href を入れた時点で自動的に効かなくなる）。
   ⚠️ **トップだけフッターの導線を CSS で隠している**（すぐ上のクロージングに同じボタンがあるため）。
   マーカー自体は残してあるので置換の対象からは外さないこと
 - 1.0 公開から1ヶ月後（または先着100名到達時）に **¥2,480 → ¥3,480 へ値上げ**し、
