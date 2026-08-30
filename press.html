@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プレス関係者の皆さまへ — Keepy</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/favicon-180.png">
+  <meta name="description" content="Keepyのプレスキット。プレスリリース全文、スクリーンショット10点（1320×2868）、アプリアイコン、事業者情報をまとめています。">
+  <meta property="og:title" content="プレス関係者の皆さまへ — Keepy">
+  <meta property="og:description" content="Keepyのプレスキット。プレスリリース全文、スクリーンショット10点（1320×2868）、アプリアイコン、事業者情報をまとめています。">
+  <meta property="og:url" content="https://keepy.jp/press.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Keepy">
+  <meta property="og:image" content="https://keepy.jp/img/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="fonts/bizudpgothic.css?v=1">
+  <link rel="stylesheet" href="keepy.css?v=6">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .hero { max-width: 760px; margin: 0 auto; padding: 64px 24px 0; text-align: center; }
+    .hero-label {
+      display: inline-block; background: #EEF3FF; color: #3B5FCC;
+      font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+    .hero h1 { font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px; line-height: 1.25; margin-bottom: 16px; color: var(--ink); }
+    .hero h1 em { font-style: normal; color: #3B5FCC; }
+    .hero-sub { font-size: 16px; color: #8C8880; max-width: 560px; margin: 0 auto; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 28px 24px 80px; }
+
+    h2 {
+      font-size: 15px; font-weight: 500; color: var(--ink);
+      margin: 48px 0 14px; padding-bottom: 10px;
+      border-bottom: 0.5px solid #E8E4DC;
+    }
+    p { font-size: 14px; color: var(--ink); margin-bottom: 12px; line-height: 1.9; }
+    .note { font-size: 13px; color: #8C8880; line-height: 1.85; }
+
+    /* 一括ダウンロード */
+    .kit {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      background: var(--cream-deep); border-radius: 14px;
+      padding: 20px 22px; margin: 8px 0 4px;
+    }
+    .kit-main { flex: 1 1 260px; }
+    .kit-main strong { display: block; font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .kit-main span { font-size: 13px; color: #8C8880; }
+    .kit a.dl {
+      display: inline-block; background: var(--indigo); color: #fff;
+      font-size: 14px; font-weight: 500; text-decoration: none;
+      padding: 11px 22px; border-radius: 100px; white-space: nowrap;
+    }
+
+    /* スクリーンショット */
+    .shots {
+      display: grid; gap: 26px 20px; margin-top: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    .shots figure { margin: 0; }
+    .shots img {
+      width: 100%; height: auto; display: block;
+      border-radius: 12px; border: 0.5px solid var(--hairline);
+      background: var(--cream-deep);
+    }
+    .shots figcaption { margin-top: 10px; font-size: 13px; line-height: 1.6; }
+    .shots figcaption b { display: block; font-weight: 500; color: var(--ink); }
+    .shots figcaption span { color: #8C8880; font-size: 12px; }
+    .shots figcaption a { font-size: 12px; color: var(--indigo); text-decoration: none; }
+    .shots figcaption a:hover { text-decoration: underline; }
+
+    /* 表 */
+    table.spec { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    table.spec th, table.spec td {
+      text-align: left; font-size: 14px; font-weight: 400;
+      padding: 11px 0; border-bottom: 0.5px solid #E8E4DC; vertical-align: top;
+    }
+    table.spec th { width: 150px; color: #8C8880; font-weight: 400; padding-right: 16px; }
+    table.spec a { color: var(--indigo); text-decoration: none; word-break: break-all; }
+    table.spec a:hover { text-decoration: underline; }
+
+    /* プレスリリース全文 */
+    .release {
+      background: #fff; border: 0.5px solid var(--hairline);
+      border-radius: 14px; padding: 26px 26px 22px; margin-top: 8px;
+    }
+    .release .rel-date { font-size: 12px; color: #8C8880; margin-bottom: 14px; }
+    .release h3 {
+      font-size: 18px; font-weight: 500; line-height: 1.5;
+      letter-spacing: -0.3px; margin-bottom: 18px; color: var(--ink);
+    }
+    .release h4 {
+      font-size: 14px; font-weight: 500; color: var(--indigo);
+      margin: 22px 0 8px;
+    }
+    .release p { font-size: 14px; line-height: 1.95; margin-bottom: 10px; }
+    .release ul { margin: 0 0 10px; padding-left: 1.1em; }
+    .release li { font-size: 14px; line-height: 1.9; margin-bottom: 6px; }
+
+    @media (max-width: 520px) {
+      .shots { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 22px 14px; }
+      table.spec th { width: 108px; }
+    }
+  </style>
+</head>
+<body class="has-nav">
+
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page" href="index.html">トップ</a>
+      <a class="page" href="features.html">使い方</a>
+      <a class="page" href="guide.html">引き継ぎガイド</a>
+      <a class="page" href="manual.html">マニュアル</a>
+      <a class="page" href="security.html">安全のしくみ</a>
+      <a class="page" href="support.html">サポート</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="menu-veil" id="menuVeil">
+    <a href="index.html">トップ</a>
+    <a href="features.html">使い方</a>
+    <a href="guide.html">引き継ぎガイド</a>
+    <a href="manual.html">マニュアル</a>
+    <a href="security.html">安全のしくみ</a>
+    <a href="support.html">サポート</a>
+  </div>
+
+  <section class="hero">
+    <span class="hero-label">プレスキット</span>
+    <h1>プレス関係者の<em>皆さまへ</em></h1>
+    <p class="hero-sub">Keepy の紹介に必要な素材と情報をまとめています。ご自由にお使いください。</p>
+  </section>
+
+  <div class="container">
+
+    <h2>素材の一括ダウンロード</h2>
+    <div class="kit">
+      <div class="kit-main">
+        <strong>Keepy プレスキット（ZIP・約 8.2 MB）</strong>
+        <span>スクリーンショット 10 点（1320 × 2868・PNG）＋ アプリアイコン（1024 × 1024・PNG）</span>
+      </div>
+      <a class="dl" href="press/keepy_press_kit.zip" download>ダウンロード</a>
+    </div>
+    <p class="note">1 点ずつ必要な場合は、下のスクリーンショットの「原寸を開く」からどうぞ。</p>
+
+    <h2>Keepy とは</h2>
+    <p>Keepy（キーピー）は、契約中のサブスクリプションや分割払い、カード・口座・保険などの情報を一冊にまとめる iPhone アプリです。家族用のパスコードを渡すと、閲覧専用で必要な情報だけを見てもらえます。もしものときに「何をどこで契約していたか」が家族に分かる状態にしておく、というのが軸です。</p>
+    <p>データはすべて利用者の iPhone の中に暗号化して保存し、アプリが利用者のデータをサーバーへ送信することはありません。バックアップは利用者自身が任意の場所へ書き出す方式です。</p>
+
+    <h2>アプリの基本情報</h2>
+    <table class="spec">
+      <tr><th>名称</th><td>Keepy（キーピー）</td></tr>
+      <tr><th>公開日</th><td>2026年8月23日</td></tr>
+      <tr><th>対応</th><td>iPhone / iOS 17.0 以上（日本の App Store）</td></tr>
+      <tr><th>価格</th><td>無料（プレミアム機能はアプリ内課金で買い切り 2,480 円・税込）<br><span class="note">2026年9月23日に 3,480 円へ改定予定です。</span></td></tr>
+      <tr><th>App Store</th><td><a href="https://apps.apple.com/jp/app/id6786194974">https://apps.apple.com/jp/app/id6786194974</a></td></tr>
+      <tr><th>公式サイト</th><td><a href="https://keepy.jp">https://keepy.jp</a></td></tr>
+    </table>
+
+    <h2>スクリーンショット</h2>
+    <p class="note">すべて 1320 × 2868 ピクセル（PNG）。App Store 掲載中のものと同じ素材です。</p>
+    <div class="shots">
+
+      <figure>
+        <a href="press/img/keepy_01_subscriptions.png"><img src="press/thumb/keepy_01_subscriptions.png" alt="サブスクの一覧画面。今月の合計と、まもなく更新される契約が並んでいる" loading="lazy"></a>
+        <figcaption><b>サブスクを、一冊に。</b><span>毎月の支払いを、ひと目で把握</span><br><a href="press/img/keepy_01_subscriptions.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_02_report.png"><img src="press/thumb/keepy_02_report.png" alt="レポート画面。支出の推移グラフと、見直し候補のサービスが表示されている" loading="lazy"></a>
+        <figcaption><b>ムダを、見直し候補に。</b><span>解約したら年いくら節約かも提示</span><br><a href="press/img/keepy_02_report.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_03_monthly_summary.png"><img src="press/thumb/keepy_03_monthly_summary.png" alt="月次まとめ画面。支払い合計とカテゴリ内訳、見直しのヒントが並んでいる" loading="lazy"></a>
+        <figcaption><b>毎月1日、まとめが届く。</b><span>増減の理由から、見直しのヒントまで</span><br><a href="press/img/keepy_03_monthly_summary.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_04_widgets.png"><img src="press/thumb/keepy_04_widgets.png" alt="iPhone のホーム画面に置いた Keepy のウィジェット。今月の合計と次の支払いが表示されている" loading="lazy"></a>
+        <figcaption><b>ホーム画面で、見張れる。</b><span>今月の進捗と、次の支払い</span><br><a href="press/img/keepy_04_widgets.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_05_cancel.png"><img src="press/thumb/keepy_05_cancel.png" alt="サブスクの詳細画面。次回更新日、決済方法、支払い履歴と解約手続きへの導線" loading="lazy"></a>
+        <figcaption><b>解約まで、迷わない。</b><span>解約手続きのページへ直行</span><br><a href="press/img/keepy_05_cancel.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_06_notification.png"><img src="press/thumb/keepy_06_notification.png" alt="ロック画面に届いた通知。更新までの日数と引き落とし予定額を知らせている" loading="lazy"></a>
+        <figcaption><b>更新の前に、ひと言。</b><span>「まだ使ってる？」と聞いてくれる</span><br><a href="press/img/keepy_06_notification.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_07_assets.png"><img src="press/thumb/keepy_07_assets.png" alt="資産管理画面。登録したクレジットカードが並んでいる" loading="lazy"></a>
+        <figcaption><b>カードや口座も、まとめて。</b><span>家族に残す保管場所メモにも</span><br><a href="press/img/keepy_07_assets.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_08_contacts.png"><img src="press/thumb/keepy_08_contacts.png" alt="終活ノートの連絡先画面。かかりつけ医や弁護士などが登録されている" loading="lazy"></a>
+        <figcaption><b>大切な連絡先を、家族に。</b><span>かかりつけ医から弁護士まで</span><br><a href="press/img/keepy_08_contacts.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_09_family_view.png"><img src="press/thumb/keepy_09_family_view.png" alt="家族の閲覧モード。編集できない状態でサブスクの一覧が表示されている" loading="lazy"></a>
+        <figcaption><b>もしものとき、家族が見られる。</b><span>閲覧のみ・編集はできません</span><br><a href="press/img/keepy_09_family_view.png">原寸を開く</a></figcaption>
+      </figure>
+
+      <figure>
+        <a href="press/img/keepy_10_checklist.png"><img src="press/thumb/keepy_10_checklist.png" alt="手続きチェックリスト。解約手続きが緊急度順に並んでいる" loading="lazy"></a>
+        <figcaption><b>手続きは、上から順に。</b><span>解約漏れを防ぐチェックリスト</span><br><a href="press/img/keepy_10_checklist.png">原寸を開く</a></figcaption>
+      </figure>
+
+    </div>
+
+    <h2>アプリアイコン</h2>
+    <p class="note">1024 × 1024 ピクセル（PNG）。<a href="press/img/keepy_appicon_1024.png" style="color:var(--indigo);text-decoration:none;">原寸を開く</a></p>
+
+    <h2>プレスリリース全文</h2>
+    <div class="release">
+      <p class="rel-date">2026年8月23日</p>
+      <h3>「使っていないのに解約し忘れ」19.1%<br>サブスクや分割払いを家族に引き継げる iPhone アプリ「Keepy」を公開</h3>
+
+      <p>Keepy（運営責任者：森田健太朗）は、契約中のサブスクリプションや分割払い、カード・口座・保険などの情報を一冊にまとめ、もしものときに家族が引き継げる iPhone アプリ「Keepy（キーピー）」を、2026年8月23日に App Store で公開しました。</p>
+
+      <h4>開発の背景</h4>
+      <p>家計診断・相談サービス「オカネコ」の調査では、契約中のサブスクリプションに「ほとんど使っていないのに解約し忘れているものがある」と答えた人が 19.1% にのぼりました（株式会社400F・2025年12月・330人）。</p>
+      <p>支払いは自動で続く一方、どのサービスをいつ契約し、どのカードから引き落とされているかを把握しているのは本人だけ、という家庭は少なくありません。本人が説明できない状態のまま何かが起きると、残された家族は契約の全体像が分からず、解約も名義変更も手をつけられません。Keepy は「支払いの管理」と「家族への引き継ぎ」を同じ一冊で扱います。</p>
+
+      <h4>主な機能</h4>
+      <ul>
+        <li><b>続く支払いの一覧</b>：契約中のサービスと月額・年額の合計、次の更新日が一画面で分かる</li>
+        <li><b>更新前の確認</b>：更新の数日前に通知し、「まだ使っていますか？」と確認できる</li>
+        <li><b>お金まわりの記録</b>：カード・銀行口座・保険・契約・大切な書類の保管場所もまとめて管理</li>
+        <li><b>家族への引き継ぎ</b>：家族用パスコードを渡すと、閲覧専用で必要な情報だけを見てもらえる。手続きチェックリストと引き継ぎガイド（PDF）も作成できる</li>
+        <li><b>後払い・分割払いへの対応</b>：ペイディなど「解約するものではない支払い」は、家族に「残りの支払いを清算してください」と伝わるよう区別して扱う</li>
+      </ul>
+
+      <h4>プライバシー</h4>
+      <p>データはすべて利用者の iPhone の中に暗号化して保存します。アプリが利用者のデータをサーバーへ送信することはありません。バックアップは利用者自身が任意の場所へ書き出す方式です。</p>
+    </div>
+
+    <h2>統計の出典</h2>
+    <p class="note">上記および当サイトで引用している調査は次のとおりです。</p>
+    <table class="spec">
+      <tr><th>19.1%</th><td>使っていないのに解約し忘れているものがある<br><span class="note">オカネコ（株式会社400F）／2025年12月6〜7日／330人</span></td></tr>
+      <tr><th>69.4%</th><td>サブスクの解約を検討した経験がある<br><span class="note">Appliv（ナイル株式会社）／2024年2月2〜7日／605人（調査実施＝ジャストシステム）</span></td></tr>
+      <tr><th>58.5%</th><td>解約により年1万円ほど節約できた<br><span class="note">Appliv（ナイル株式会社）／2024年2月2〜7日／605人（調査実施＝ジャストシステム）</span></td></tr>
+    </table>
+
+    <h2>お問い合わせ・提供元</h2>
+    <table class="spec">
+      <tr><th>提供元</th><td>Keepy（個人事業主）</td></tr>
+      <tr><th>運営責任者</th><td>森田 健太朗（Kentaro Morita）</td></tr>
+      <tr><th>連絡先</th><td><a href="mailto:info@keepy.jp">info@keepy.jp</a></td></tr>
+      <tr><th>所在地</th><td>ご請求があれば遅滞なく開示いたします</td></tr>
+    </table>
+    <p class="note" style="margin-top:14px;">編集部でお試しいただける場合は、プレミアム機能を無料でご利用いただける引き換えコードをお渡しできます。上記メールアドレスまでお気軽にお申しつけください。</p>
+
+    <h2>素材の利用について</h2>
+    <p class="note">このページの画像は、Keepy を紹介する記事での使用に限り、ご自由にお使いいただけます。サイズの調整やトリミングは差し支えありません。画面の文言や数値を書き換えるなど、実際のアプリと異なる印象になる加工はご遠慮ください。ご不明な点は info@keepy.jp までお問い合わせください。</p>
+
+  </div>
+
+  <footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="https://apps.apple.com/jp/app/id6786194974" data-appstore>App Store でダウンロード</a>
+    </div>
+    <nav>
+      <a href="index.html">トップ</a>
+      <a href="features.html">使い方</a>
+      <a href="guide.html">引き継ぎガイド</a>
+      <a href="manual.html">マニュアル</a>
+      <a href="security.html">安全のしくみ</a>
+      <a href="support.html">サポート</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    </nav>
+    <p class="credit"><a href="https://logo.dev">Logos provided by Logo.dev</a></p>
+    <p>© 2026 Keepy. All rights reserved.</p>
+  </footer>
+
+  <script src="keepy.js?v=3"></script>
+</body>
+</html>
