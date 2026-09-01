@@ -287,6 +287,35 @@
       letter-spacing: -0.015em;
     }
     .rail-hint { font-size: 12px; color: var(--muted); letter-spacing: 0.12em; }
+    /* 矢印ボタン（PC用）。JS が「はみ出していて、かつマウス操作」のときだけ出す。
+       スマホは指でなぞれるので出さず、代わりに .rail-hint を残す。
+       2026-09-01 追加＝PC ではスクロールバーを消しているうえ縦ホイールが横に
+       効かないため、マウスだけの人が5枚目（右端が24px 切れている）に
+       到達できなかった。 */
+    .rail-nav { display: flex; gap: 10px; align-self: center; flex-shrink: 0; }
+    .rail-nav[hidden] { display: none; }
+    .rail-head.has-nav .rail-hint { display: none; }
+    .rail-btn {
+      width: 44px; height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 0 1px var(--hairline-strong), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      transition: transform 0.6s var(--ease-lux), background-color 0.6s var(--ease-lux), opacity 0.4s var(--ease-lux);
+    }
+    .rail-btn:hover:not(:disabled) { background: #fff; transform: translateY(-2px); }
+    .rail-btn:active:not(:disabled) { transform: scale(0.94); }
+    .rail-btn:disabled { opacity: 0.28; cursor: default; }
+    .rail-btn svg { width: 17px; height: 17px; }
+    .rail:focus-visible, .rail-btn:focus-visible {
+      outline: 2px solid var(--indigo);
+      outline-offset: 3px;
+    }
     .rail {
       display: flex;
       gap: 28px;
@@ -779,9 +808,17 @@
       <div class="rail-head rise">
         <h2>アプリの中を、少しだけ。</h2>
         <span class="rail-hint">横にスクロール →</span>
+        <div class="rail-nav" id="railNav" hidden>
+          <button type="button" class="rail-btn" data-rail-dir="-1" aria-label="前のスクリーンショットへ">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 L8 12 L15 19"/></svg>
+          </button>
+          <button type="button" class="rail-btn" data-rail-dir="1" aria-label="次のスクリーンショットへ">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5 L16 12 L9 19"/></svg>
+          </button>
+        </div>
       </div>
     </div>
-    <div class="rail">
+    <div class="rail" id="rail" role="group" aria-label="アプリのスクリーンショット">
       <figure class="rise">
         <div class="device">
           <img srcset="images/ss_02_detail-211.png 211w, images/ss_02_detail-422.png 422w, images/ss_02_detail.png 750w" sizes="216px" width="750" height="1630" src="images/ss_02_detail.png" alt="サブスク詳細画面" loading="lazy">
@@ -1034,6 +1071,61 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
       items.forEach(function (el) { io.observe(el); });
+    })();
+
+    // スクリーンショットのレール：PC 用の矢印ボタンとキーボード操作
+    // （スマホは指でなぞれるので何もしない）
+    (function () {
+      var rail = document.getElementById('rail');
+      var nav = document.getElementById('railNav');
+      if (!rail || !nav) return;
+      var head = nav.parentNode;
+      var prev = nav.querySelector('[data-rail-dir="-1"]');
+      var next = nav.querySelector('[data-rail-dir="1"]');
+      var fine = window.matchMedia('(pointer: fine)');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      function maxScroll() { return rail.scrollWidth - rail.clientWidth; }
+
+      // 1回で送る量＝カード1枚＋すき間
+      function step() {
+        var fig = rail.querySelector('figure');
+        var gap = parseFloat(window.getComputedStyle(rail).columnGap) || 0;
+        return fig ? fig.getBoundingClientRect().width + gap : rail.clientWidth * 0.8;
+      }
+
+      function sync() {
+        var scrollable = maxScroll() > 1;
+        var show = scrollable && fine.matches;
+        nav.hidden = !show;
+        head.classList.toggle('has-nav', show);
+        // はみ出しているときだけキーボードの矢印キーで動かせるようにする
+        if (scrollable) { rail.setAttribute('tabindex', '0'); }
+        else { rail.removeAttribute('tabindex'); }
+        prev.disabled = rail.scrollLeft <= 1;
+        next.disabled = rail.scrollLeft >= maxScroll() - 1;
+      }
+
+      nav.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-rail-dir]');
+        if (!btn) return;
+        rail.scrollBy({
+          left: Number(btn.getAttribute('data-rail-dir')) * step(),
+          behavior: reduce.matches ? 'auto' : 'smooth'
+        });
+      });
+
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () { ticking = false; sync(); });
+      }
+      rail.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      if (fine.addEventListener) { fine.addEventListener('change', sync); }
+      window.addEventListener('load', sync);
+      sync();
     })();
 
     // ハンバーガーメニューの開閉は keepy.js（全ページ共通）
