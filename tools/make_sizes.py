@@ -13,7 +13,7 @@ make_sizes.py — サイト用スクショの3サイズ生成＋HTML の width/h
 
 寸法規則（2026-08-22 の実物から逆算・2026-09-02 実測で確認）:
     幅 750 / 422 / 211 の3枚＝ <basename>.<ext> / <basename>-422.<ext> / <basename>-211.<ext>
-    高さ＝ 750 → images/ は 1630・img/manual/ は 1629（HTML の宣言に合わせる。1320×2868 の比では 1629.5）
+    高さ＝ 750 → images/ は 1630・img/（manual・guide）は 1629（HTML の宣言に合わせる。1320×2868 の比では 1629.5）
           422 → 917・211 → 458（四捨五入）
     リサイズは LANCZOS・**シャープ処理はしない**（2026-08-05 に4回作り直した結論＝目視で Kentaro 確定）
 ⚠️ 原本は必ず `~/Desktop/Keepy/site_screenshots_<日付>/` 等の永続パスに残す（scratchpad に置かない）。
@@ -27,10 +27,14 @@ WIDTHS = (750, 422, 211)
 
 def height_for(width, base_rel):
     if width == 750:
-        return 1629 if base_rel.startswith("img/manual/") else 1630
+        return 1629 if base_rel.startswith("img/") else 1630   # img/manual・img/guide は 1629、images/ は 1630（HTML の宣言どおり）
     return round(SRC_SIZE[1] * width / SRC_SIZE[0])
 
 def make(src, base_rel):
+    if os.path.isabs(base_rel):   # 絶対パスは ROOT 相対に直す（規則の判定は相対パスで行う）
+        base_rel = os.path.relpath(base_rel, ROOT)
+    if base_rel.startswith(".."):
+        print(f"❌ 出力先が keepy-site の外: {base_rel}"); sys.exit(2)
     img = Image.open(src)
     if img.size != SRC_SIZE:
         print(f"❌ 原本の寸法が {img.size}＝{SRC_SIZE} で撮り直す（引き伸ばさない）"); sys.exit(2)
