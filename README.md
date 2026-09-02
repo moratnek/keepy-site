@@ -61,7 +61,8 @@ tools/          — 運用スクリプト（release_appstore_link.py＝公開時
 - **`keepy.css` を直したら、全8ページの `?v=` を1つ上げる**（キャッシュ破棄。2026-08-14 に v=4→v=5）。
   `404.html` だけ参照が**絶対パス**（`/keepy.css` `/fonts/...`）なので置換漏れに注意
 - **画像は 750px にリサイズして置く**（最大表示幅 220px × Retina 3x に十分。原寸を置くと1枚 2MB 超になる）。
-  `<img>` には `width`/`height` 属性と `loading="lazy"` を付ける
+  `<img>` には `width`/`height` 属性と `loading="lazy"` を付ける。
+  **生成＝`python3 tools/make_sizes.py <原本 1320×2868> images/<name>.png`**（750/422/211・`images/` は高さ 1630・`img/` は 1629・シャープ処理なし）／**照合＝`python3 tools/make_sizes.py --check`**（全ページの宣言と実寸）。撮り方・罠・差し替えの手順＝Claude スキル `capture-marketing-screenshots`（2026-09-02 新設。それまでこの手順は daily 2026-08-22 にしか無かった）
 - 料金・機能の記述は**アプリの実態と一致させる**（無料枠=サブスク3件/カード1枚/資産1件・¥2,480 買い切り）
 - 外部リンクの `target="_blank"` には `rel="noopener"` を付ける
 - フッターの **Logo.dev 帰属表示は必須**（無料プランの商用利用条件・2026-08-04 追加）
