@@ -195,45 +195,95 @@
     </div>
 
     <div class="block" id="gate5">
-      <h2><span class="n">5</span>外に出る通信は、この3つだけです</h2>
-      <p>安全の話でいちばん大事なのは、「送っていません」と言い切ることではなく、<strong>何を送っているのかを全部書くこと</strong>だと考えています。Keepyが外とやりとりするのは、次の3つです。</p>
+      <h2><span class="n">5</span>外に出る通信は、これで全部です</h2>
+      <p>安全の話でいちばん大事なのは、「送っていません」と言い切ることではなく、<strong>何を送っているのかを全部書くこと</strong>だと考えています。Keepyが外とやりとりするのは、次の場面です。</p>
 
       <div class="wire">
         <div class="wire-item">
           <h3>サービスのロゴを取ってくるとき<span class="k">自動</span></h3>
           <dl class="wire-dl">
             <dt>送るもの</dt>
-            <dd><strong>サービス名かドメイン名だけ</strong>（例: netflix.com）</dd>
+            <dd><strong>ドメイン名（例: netflix.com）か、App Store のアプリの番号だけ</strong>。「自分でロゴを取得する」を押したときは、サービス名（や入力した言葉）で App Store を検索し、Web サイトから探すときは入力したドメインを問い合わせます</dd>
             <dt>送らないもの</dt>
             <dd>金額、契約日、メモ、氏名、家族の連絡先 — <strong>登録した中身は一つも送りません</strong></dd>
             <dt>取りに行く先</dt>
-            <dd>Logo.dev ／ Apple ／ そのサービス自身のサイト ／ Google（お客様が「ロゴを取得」を押したときだけ）</dd>
+            <dd>Logo.dev ／ Apple ／ そのサービス自身のサイト ／ Google（「自分でロゴを取得する」で Web サイトから探すときだけ）</dd>
           </dl>
           <p class="wire-note">よく使われるサービスのロゴは、あらかじめアプリに入っています。その場合は通信すら起きません。取ってきた画像は端末に保存されるので、次からは通信しません。</p>
         </div>
 
         <div class="wire-item">
-          <h3>購入するとき・買い直しを復元するとき<span class="k">操作したとき</span></h3>
+          <h3>購入の確認・購入するとき・買い直しを復元するとき<span class="k">起動時と操作したとき</span></h3>
           <dl class="wire-dl">
             <dt>相手</dt>
             <dd>Apple（App Storeの決済のしくみ）</dd>
             <dt>内容</dt>
             <dd>購入したかどうかの確認だけ。<strong>Keepyがあなたの登録内容を渡すことはできません</strong></dd>
           </dl>
-          <p class="wire-note">お支払いはAppleが扱います。Keepyがカード番号を受け取ることも、見ることもありません。</p>
+          <p class="wire-note">お支払いはAppleが扱います。Keepyがカード番号を受け取ることも、見ることもありません。はじめてバックアップを作ったときなどに、App Store のレビューの画面が出ることがあります（Apple の仕組みで、評価するかはご自身で選べます）。</p>
         </div>
 
         <div class="wire-item">
           <h3>解約の手続きに進むボタンを押したとき<span class="k">操作したとき</span></h3>
           <dl class="wire-dl">
             <dt>起きること</dt>
-            <dd>Safariが開いて、<strong>そのサブスクの支払い方法に合った窓口</strong>を表示します。Apple ID決済なら App Store の登録一覧、Google Play決済なら Google Play の定期購入一覧、それ以外は<strong>そのサービス名で検索</strong>します。</dd>
+            <dd>Safariが開いて、<strong>そのサブスクの支払い方法に合った窓口</strong>を表示します。Apple ID決済なら App Store の登録一覧、Google Play決済なら Google Play の定期購入一覧、ドコモ・au・ソフトバンクと契約しているならその会社の会員ページ、それ以外は<strong>そのサービス名で検索</strong>します（d払いなど携帯会社の決済では、会員ページも並べて案内します）。</dd>
             <dt>送るもの</dt>
-            <dd>検索のときだけ<strong>サービス名</strong>（例:「Netflix 解約方法」）。金額・契約日・メモは送りません。App Store と Google Play を開くときは、こちらから何も渡しません。</dd>
+            <dd>検索のときだけ<strong>サービス名</strong>（例:「Netflix 解約方法」）。金額・契約日・メモは送りません。App Store・Google Play・携帯会社の会員ページを開くときは、こちらから何も渡しません。</dd>
             <dt>分かること</dt>
             <dd>ボタンに「『Netflix』の解約方法を検索」「Google Playで解約手続き」と<strong>行き先がそのまま出る</strong>ので、何が起きるか押す前に分かります</dd>
           </dl>
           <p class="wire-note">PayPalで払っているサブスクを解約済みにしたときだけ、「PayPalの自動支払いも止める」という案内が出ます。押すと PayPal の自動支払い管理ページが開きます（サービスを解約しても PayPal 側が残ることがあるためです）。</p>
+        </div>
+
+        <div class="wire-item">
+          <h3>バックアップを iCloud Drive に保存するとき<span class="k">自動</span></h3>
+          <dl class="wire-dl">
+            <dt>送るもの</dt>
+            <dd><strong>暗号化したバックアップファイル（.enc）</strong>。復活カギがなければ中身は読めません</dd>
+            <dt>いつ</dt>
+            <dd>復活カギが発行されたあと（はじめてバックアップを作ったとき、または復元したとき）、内容が変わった状態でアプリを離れたとき。iCloud Drive が使える端末だけで、設定の「iCloud Driveに自動保存」で止められます</dd>
+            <dt>相手</dt>
+            <dd>Apple（iCloud Drive）</dd>
+          </dl>
+        </div>
+
+        <div class="wire-item">
+          <h3>共有フォルダに書き出すとき<span class="k">設定したとき</span></h3>
+          <dl class="wire-dl">
+            <dt>置くもの</dt>
+            <dd>暗号化したバックアップ（.enc）と、<strong>引き継ぎガイド（PDF）</strong>。ガイドはご家族が読むための書類なので暗号化していません。家族用パスコード、既定では復活カギ、サービスへのメモなど、ご家族が手続きに使う情報が載ります</dd>
+            <dt>いつ</dt>
+            <dd>「引き継ぎガイドを作成」を押したときや、家族ごとのフォルダを作るとき。そのあとは、復活カギが発行済みなら、内容が変わるとアプリを離れたときなどに自動で書き直します（「iCloud Driveに自動保存」を止めていなければ。家族ごとにフォルダを分けている場合は「共有した」を押したご家族の分だけ）</dd>
+            <dt>相手</dt>
+            <dd>ご自身で選んだフォルダ（iCloud Drive など）と、そのフォルダを共有したご家族</dd>
+          </dl>
+        </div>
+
+        <div class="wire-item">
+          <h3>共有シートで渡すとき<span class="k">操作したとき</span></h3>
+          <dl class="wire-dl">
+            <dt>起きること</dt>
+            <dd>「家族に共有・他の場所に保存」「別の方法で渡す（AirDrop・印刷など）」、共有フォルダを設定していないときの「引き継ぎガイドを作成」から、暗号化したバックアップ（.enc）や引き継ぎガイド（PDF）を、<strong>ご自身で選んだ先</strong>（AirDrop・メール・ファイルなど）へ渡します。「Keepyの使い方を家族に送る」では、ご家族のお名前・App Store の URL・問い合わせ先を書いた文を送ります（パスコードは入りません）</dd>
+          </dl>
+        </div>
+
+        <div class="wire-item">
+          <h3>お問い合わせを送るとき<span class="k">操作したとき</span></h3>
+          <dl class="wire-dl">
+            <dt>送るもの</dt>
+            <dd>ご自身で書いた本文と、アプリの版・iOS の版・機種・最近のエラーの記録（長い数字などは伏せます）</dd>
+            <dt>相手</dt>
+            <dd>開発者（info@keepy.jp）宛てのメール。送る前にメールの画面で中身を確かめられます</dd>
+          </dl>
+        </div>
+
+        <div class="wire-item">
+          <h3>リンクを開くとき<span class="k">操作したとき</span></h3>
+          <dl class="wire-dl">
+            <dt>起きること</dt>
+            <dd>マニュアルや引き継ぎガイドのページ、App Store のレビュー、登録したサービスの URL、連絡先の電話やメールなど、<strong>押したリンクの先</strong>が開きます</dd>
+          </dl>
         </div>
       </div>
     </div>
@@ -243,14 +293,15 @@
       <p>バックアップとして書き出されるファイルは、<strong>暗号化されたままの状態</strong>です。だから、iCloud Driveに置いても、パソコンに移しても、家族に渡しても、ファイルを開いただけでは中身が読めません。</p>
       <p class="point">守っているのは<strong>置き場所ではなく、ファイルそのものの状態</strong>です。どこに置いても中身は読めません。</p>
       <p>開けるのは、<strong>復活カギ8語</strong>を持っている人だけです。8語は2048語の中から選ばれるので、順番に試して当てることは現実的にできません。だから、カギは記録とは別に保管してください。</p>
+<p>ただし、共有フォルダに置く引き継ぎガイドには、<strong>既定で復活カギが載ります</strong>（ご家族が復元するのに必要なためです。「復活カギをガイドに載せる」で変えられます）。そのフォルダを見られる人は、バックアップも開けることになります。共有する相手は、ご自身で選んでください。</p>
     </div>
 
     <div class="block verify">
       <h2><span class="n">7</span>疑うなら、確かめられます</h2>
       <p>ここまでの説明を信じてもらう必要はありません。<strong>ご自身の手元で確かめられます</strong>。</p>
       <p>いちばん簡単な方法は、<strong>機内モードにすること</strong>です。通信を全部止めた状態で、Keepyを使ってみてください。</p>
-      <p>記録の追加も、編集も、検索も、家族への引き継ぎの設定も、通知も、バックアップの書き出しも、今までどおりできます。できなくなるのは、<strong>まだ持っていないロゴを取ってくることだけ</strong>です。</p>
-      <p>通信が無くても全部動く、ということは、<strong>ふだんも送っていない</strong>ということです。</p>
+      <p>記録の追加も、編集も、検索も、家族への引き継ぎの設定も、通知も、バックアップの書き出しも、今までどおりできます。できなくなるのは、<strong>まだ持っていないロゴを取ってくること、購入と購入の復元、iCloud Drive への同期、リンク先を開くこと</strong>です。</p>
+      <p>記録を使うのに通信が要らない、ということは、<strong>記録を預かるサーバーに頼っていない</strong>ということです。</p>
     </div>
 
     <div class="block limits">
