@@ -16,7 +16,7 @@ make_sizes.py — サイト用スクショの3サイズ生成＋HTML の width/h
     高さ＝ 750 → images/ は 1630・img/（manual・guide）は 1629（HTML の宣言に合わせる。1320×2868 の比では 1629.5）
           422 → 917・211 → 458（四捨五入）
     リサイズは LANCZOS・**シャープ処理はしない**（2026-08-05 に4回作り直した結論＝目視で Kentaro 確定）
-⚠️ 原本は必ず `~/Desktop/Keepy/site_screenshots_<日付>/` 等の永続パスに残す（scratchpad に置かない）。
+⚠️ 原本は必ず `~/Desktop/Keepy/サイト画像/site_screenshots_<日付>/` 等の永続パスに残す（scratchpad に置かない）。
 """
 import os, re, sys
 from PIL import Image
