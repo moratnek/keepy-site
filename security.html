@@ -61,6 +61,27 @@
       margin: 4px 0 16px;
     }
 
+    /* 通信の図（§5・下の一覧から作る＝一覧を直したら図も直す） */
+    .flow { margin: 10px 0 22px; }
+    .flow-src { background: var(--indigo-lt); color: var(--indigo-deep); border-radius: 14px; padding: 12px 16px; font-weight: 700; font-size: 15px; }
+    .flow-src small { display: block; font-weight: 400; font-size: 12.5px; color: var(--text2); margin-top: 2px; }
+    .flow-list { list-style: none; margin: 8px 0 0 18px; padding: 0 0 0 14px; border-left: 2px solid var(--indigo-tint-line); display: grid; gap: 8px; }
+    .flow-row { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 10px 14px; display: grid; grid-template-columns: 11em 1fr; gap: 2px 14px; font-size: 13.5px; line-height: 1.7; }
+    .flow-when { font-weight: 700; color: var(--text); }
+    .flow-to { color: var(--text2); }
+    .flow-what { grid-column: 2; color: var(--text2); }
+    .flow-what b { display: inline-block; font-size: 11.5px; font-weight: 700; border-radius: 100px; padding: 0 8px; margin-right: 6px; }
+    .k-e .flow-what b { background: var(--indigo-lt); color: var(--indigo-deep); }
+    .k-w .flow-what b { background: var(--bg2); color: var(--ink-soft); }
+    .k-r .flow-what b { background: var(--terra-lt); color: #A64B2C; }
+    .k-n .flow-what b { background: var(--green-lt); color: #4A6B2A; }
+    .flow-src a { color: var(--indigo); }
+    .flow figcaption { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+    @media (max-width: 620px) {
+      .flow-row { grid-template-columns: 1fr; }
+      .flow-what { grid-column: 1; }
+    }
+
     /* 通信の一覧（§5） */
     .wire { display: grid; gap: 14px; margin-top: 6px; }
     .wire-item {
@@ -187,7 +208,7 @@
       <p class="point">「知らないうちに送られていた」という経路が、<strong>そもそも作られていません</strong>。</p>
     </div>
 
-    <div class="block">
+    <div class="block" id="gate4">
       <h2><span class="n">4</span>端末の中でも、暗号化して保管します</h2>
       <p>あなたの記録は、iPhone・iPadの中に置かれるときも、そのままの文字では保存されません。AES-256という方式で暗号化されています。暗号を解く鍵は、iOSの「キーチェーン」という専用の金庫に入ります。ただし、ホーム画面のウィジェットに表示するための要約（これからの支払いのサービス名・金額・日付、カード名と引き落とし予定額など）は、ウィジェットが読めるよう暗号化せずに端末内に保存されます。設定の「通知設定」で「通知に金額・サービス名を出さない」をオンにすると、この要約にも名前と金額を残しません。</p>
       <p>アプリを開くときは、Face ID・Touch ID・パスコードで本人確認をします。アプリを離れてから短い時間のうちに戻ったときは、確認を省きます（設定の「自動ロックまでの時間」で、すぐ・30秒・1分〔最初の設定〕・5分・10分から選べます）。</p>
@@ -198,6 +219,21 @@
     <div class="block" id="gate5">
       <h2><span class="n">5</span>外に出る通信は、これで全部です</h2>
       <p>安全の話でいちばん大事なのは、「送っていません」と言い切ることではなく、<strong>何を送っているのかを全部書くこと</strong>だと考えています。Keepyが外とやりとりするのは、次の場面です。</p>
+
+      <figure class="flow" aria-label="Keepy が外とやりとりする場面の図">
+        <div class="flow-src">あなたの iPhone・iPad<small>記録は暗号化して、端末の中に置きます（ウィジェット用の要約は<a href="#gate4">第4項</a>）</small></div>
+        <ol class="flow-list">
+          <li class="flow-row k-w"><span class="flow-when">ロゴを取ってくるとき</span><span class="flow-to">→ Logo.dev・Apple・サービスのサイト・Google</span><span class="flow-what"><b>名前などの言葉だけ</b>ドメイン名・アプリの番号（「自分でロゴを取得する」ではサービス名など）</span></li>
+          <li class="flow-row k-n"><span class="flow-when">購入の確認・購入</span><span class="flow-to">→ Apple（App Store）</span><span class="flow-what"><b>登録内容なし</b>購入したかどうかの確認と価格の取得。登録内容は渡しません</span></li>
+          <li class="flow-row k-w"><span class="flow-when">解約の手続きに進むボタン</span><span class="flow-to">→ Safari で開く窓口・Google 検索</span><span class="flow-what"><b>名前などの言葉だけ</b>検索のときだけ、サービス名と目的の言葉</span></li>
+          <li class="flow-row k-e"><span class="flow-when">iCloud Drive へのバックアップ</span><span class="flow-to">→ Apple（iCloud Drive）</span><span class="flow-what"><b>暗号化したまま</b>暗号化したバックアップ（.enc）</span></li>
+          <li class="flow-row k-r"><span class="flow-when">共有フォルダへの書き出し</span><span class="flow-to">→ 選んだフォルダと、共有したご家族</span><span class="flow-what"><b>読める文書を含む</b>暗号化したバックアップ（.enc）と、暗号化していない引き継ぎガイド（PDF）</span></li>
+          <li class="flow-row k-r"><span class="flow-when">共有シートで渡す</span><span class="flow-to">→ ご自身で選んだ先</span><span class="flow-what"><b>読める文書を含む</b>暗号化したバックアップ（.enc）、引き継ぎガイド（PDF）、「Keepyの使い方を家族に送る」の文</span></li>
+          <li class="flow-row k-r"><span class="flow-when">お問い合わせ</span><span class="flow-to">→ 開発者（メール）</span><span class="flow-what"><b>読める文書を含む</b>ご自身で書いた本文と、アプリの版など。送る前に確かめられます</span></li>
+          <li class="flow-row k-n"><span class="flow-when">リンクを開く</span><span class="flow-to">→ 押したリンクの先</span><span class="flow-what"><b>登録内容なし</b>押したリンクの先が開きます</span></li>
+        </ol>
+        <figcaption>くわしくは下の一覧をご覧ください。この一覧にない場面で、外とやりとりすることはありません。</figcaption>
+      </figure>
 
       <div class="wire">
         <div class="wire-item">
@@ -255,7 +291,7 @@
             <dt>置くもの</dt>
             <dd>暗号化したバックアップ（.enc）と、<strong>引き継ぎガイド（PDF）</strong>。ガイドはご家族が読むための書類なので暗号化していません。家族用パスコード、既定では復活カギ、サービスへのメモなど、ご家族が手続きに使う情報が載ります</dd>
             <dt>いつ</dt>
-            <dd>「引き継ぎガイドを作成」を押したときや、家族ごとのフォルダを作るとき。そのあとは、復活カギが発行済みなら、内容が変わるとアプリを離れたときなどに自動で書き直します（「iCloud Driveに自動保存」を止めていなければ。家族ごとにフォルダを分けている場合は「共有した」を押したご家族の分だけ）</dd>
+            <dd>「今すぐバックアップを書き出す」「家族に共有・他の場所に保存」「引き継ぎガイドを作成」を押したとき。そのあとは、復活カギが発行済みなら、内容が変わるとアプリを離れたときなどに自動で書き直します（「iCloud Driveに自動保存」を止めていなければ。家族ごとにフォルダを分けている場合は「共有した」を押したご家族の分だけ）</dd>
             <dt>相手</dt>
             <dd>ご自身で選んだフォルダ（iCloud Drive など）と、そのフォルダを共有したご家族</dd>
           </dl>
