@@ -5,16 +5,22 @@ Keepy アプリの公式サイト。**GitHub Pages が `main` を直配信**し�
 - 公開URL: **https://keepy.jp**（カスタムドメイン・`CNAME` 参照。2026-07-18 に github.io から移行・HTTPS 有効）
 - リポジトリ: https://github.com/moratnek/keepy-site
 
-## ファイル構成（8ページ・2026-08-12 現在）
+## ファイル構成（2026-10-08・骨組みの再構成の途中）
 
 ```
 index.html      — トップ（2026-08-12 に全面刷新。物語順の機能紹介・料金・セキュリティ）
-features.html   — 使い方（機能紹介 9節・交互レイアウト）
-guide.html      — 引き継ぎガイド（#handover＝アプリのオンボーディング④の着地先）
-manual.html     — 使い方マニュアル
+features.html   — 機能を見る（機能紹介 9節・交互レイアウト。2026-10-08 に「使い方」から改名）
+start.html      — 使い始める（新規・準備中・noindex）
+manual.html     — 使い方マニュアルの目次（2026-10-08 から目次だけ。メニュー名は「設定する」）
+manual-<節の名>.html — マニュアルの各節（13 ページ。バックアップ・復活カギ・機種変更・チェックイン・金額変更の予告・外貨建て・レポート・決済方法・解約・家族モード・通知の種類・ウィジェット・プレミアム）
+guide.html      — 引き継ぎガイド（#handover＝アプリの案内の着地先。アドレスと #handover は変えない）
+family.html     — ご家族の方へ（入口・新規・準備中・noindex）
+family-phone.html / family-file.html / family-lost.html — ご家族の方への場面ごとのページ（新規・準備中・noindex）
 support.html    — サポート（FAQ・問い合わせ）
+security.html   — 安全のしくみ
 privacy.html    — プライバシーポリシー
 tokushoho.html  — 特定商取引法に基づく表記（日英併記）
+press.html      — プレス関係者向け
 404.html        — 存在しない URL の受け皿（GitHub Pages がルートの 404.html を自動で使う）
 
 keepy.css       — 共通スタイルの単一ソース（色・浮遊ナビ・フッター・body）

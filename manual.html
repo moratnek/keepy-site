@@ -139,9 +139,9 @@
     </a>
     <div class="nav-links">
       <a class="page" href="index.html">トップ</a>
-      <a class="page" href="features.html">使い方</a>
-      <a class="page" href="guide.html">引き継ぎガイド</a>
-      <a class="page current" href="manual.html">マニュアル</a>
+      <a class="page" href="start.html">使い始める</a>
+      <a class="page current" href="manual.html">設定する</a>
+      <a class="page" href="family.html">ご家族の方へ</a>
       <a class="page" href="security.html">安全のしくみ</a>
       <a class="page" href="support.html">サポート</a>
     </div>
@@ -153,9 +153,9 @@
   <!-- モバイル用フルスクリーンメニュー -->
   <div class="menu-veil" id="menuVeil">
     <a href="index.html">トップ</a>
-    <a href="features.html">使い方</a>
-    <a href="guide.html">引き継ぎガイド</a>
-    <a href="manual.html" class="current">マニュアル</a>
+    <a href="start.html">使い始める</a>
+    <a href="manual.html" class="current">設定する</a>
+    <a href="family.html">ご家族の方へ</a>
     <a href="security.html">安全のしくみ</a>
     <a href="support.html">サポート</a>
   </div>
@@ -172,453 +172,44 @@
   <div class="toc-group">
     <div class="toc-group-label">🔐 データを守る</div>
     <div class="toc-links">
-      <a href="#backup">バックアップの基本</a>
-      <a href="#recovery-code">復活カギ（8語）</a>
-      <a href="#device-change">機種変更・復元</a>
+      <a href="manual-backup.html">バックアップの基本</a>
+      <a href="manual-recovery-code.html">復活カギ（8語）</a>
+      <a href="manual-device-change.html">機種変更・復元</a>
     </div>
   </div>
   <div class="toc-group">
     <div class="toc-group-label">🔔 通知に応える</div>
     <div class="toc-links">
-      <a href="#checkin">「まだ使っていますか？」チェックイン</a>
-      <a href="#price-change">金額変更の予告</a>
-      <a href="#foreign-currency">外貨建てサブスク</a>
+      <a href="manual-checkin.html">「まだ使っていますか？」チェックイン</a>
+      <a href="manual-price-change.html">金額変更の予告</a>
+      <a href="manual-foreign-currency.html">外貨建てサブスク</a>
     </div>
   </div>
   <div class="toc-group">
     <div class="toc-group-label">📊 画面の見方</div>
     <div class="toc-links">
-      <a href="#report">レポートと見直し候補</a>
-      <a href="#payment-method">決済方法（どこから引き落とされるか）</a>
-      <a href="#cancel">解約の記録と再開</a>
+      <a href="manual-report.html">レポートと見直し候補</a>
+      <a href="manual-payment-method.html">決済方法（どこから引き落とされるか）</a>
+      <a href="manual-cancel.html">解約の記録と再開</a>
     </div>
   </div>
   <div class="toc-group">
     <div class="toc-group-label">👨‍👩‍👧 家族</div>
     <div class="toc-links">
-      <a href="#family-mode">家族モード</a>
-      <a href="#handover-link">家族への引き継ぎ設定</a>
+      <a href="manual-family-mode.html">家族モード</a>
+      <a href="guide.html#handover">家族への引き継ぎ設定</a>
     </div>
   </div>
   <div class="toc-group">
     <div class="toc-group-label">⚙️ その他</div>
     <div class="toc-links">
-      <a href="#notifications">通知の種類一覧</a>
-      <a href="#widget">ウィジェット</a>
-      <a href="#premium">プレミアム（買い切り）</a>
+      <a href="manual-notifications.html">通知の種類一覧</a>
+      <a href="manual-widget.html">ウィジェット</a>
+      <a href="manual-premium.html">プレミアム（買い切り）</a>
     </div>
   </div>
 </nav>
 
-<div class="guide">
-
-  <!-- ═══ データを守る ═══ -->
-  <div class="group-head">🔐 データを守る</div>
-
-  <section class="guide-section" id="backup">
-    <h2>バックアップの基本</h2>
-    <p class="lead">Keepy の記録はこの iPhone・iPad の中にあり、開発者のサーバーには預けていません。端末の故障・紛失に備えて、バックアップを作っておきましょう。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>設定 → バックアップ を開く</h3>
-          <p>はじめてバックアップを作るとき、復元に必要な<strong>復活カギ（英単語8語）</strong>が発行されます。必ず控えてください。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>暗号化ファイルとして保存される</h3>
-          <p>「今すぐバックアップを書き出す」を押すと、iCloud Drive の「Keepy」フォルダに<strong>暗号化ファイル（.enc）</strong>として保存されます。ほかの場所に置きたいときは「家族に共有・他の場所に保存」から書き出せます。このファイルは暗号化済みなので、復活カギがない限り誰にも中身を読めません。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>あとは自動で保存される</h3>
-          <p>「iCloud Driveに自動保存」は最初からオンです。一度バックアップを作ったあとは、<strong>データに変更があったときだけ</strong>、アプリを離れたタイミングで自動的に書き出します。変更がなければ何もしないので、電池や通信を無駄にしません。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/backup-211.png?v=20260927 211w, img/manual/backup-422.png?v=20260927 422w, img/manual/backup.png?v=20260927 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/backup.png?v=20260927" width="750" height="1629" loading="lazy" alt="バックアップ画面。iCloud Driveへの自動保存、今すぐバックアップを書き出す、復元、家族に残す・引き継ぎの入り口"></div>
-    </div>
-    <div class="note">オフラインで書き出した場合は「<strong>オンライン時に同期</strong>」と表示されます。ファイル自体は保存済みで、インターネットにつながったときに iCloud へアップロードされます。</div>
-    <p class="body-text">バックアップが30日以上古くなると、通知でお知らせします。</p>
-  </section>
-
-  <section class="guide-section" id="recovery-code">
-    <h2>復活カギ（英単語8語）</h2>
-    <p class="lead">バックアップを開けられる、たったひとつのカギです。</p>
-    <p class="body-text">はじめてバックアップを作るときに、英単語8語の「復活カギ」が発行されます。バックアップファイル（.enc）はこのカギで暗号化されているため、復元にはカギが必要です。</p>
-    <div class="caution"><strong>順番まで含めてカギです。</strong>8語の並び順が1つでも違うと復元できません。また、復活カギをなくすとバックアップは誰にも開けません——開発者にも復元できない設計です。</div>
-    <div class="topic-card tint-terra flip">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">✓</div>
-        <div class="step-body">
-          <h3>おすすめの保管方法</h3>
-          <p>紙に書いて、通帳や重要書類と同じ場所に保管するのが確実です。家族へ渡す「引き継ぎガイドPDF」にも復活カギを載せられます（載せるかどうかは書き出し時に選べます）。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/recovery-211.png 211w, img/manual/recovery-422.png 422w, img/manual/recovery.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/recovery.png" width="750" height="1629" loading="lazy" alt="復活カギの控えシート。英単語8語と「8語をコピー」ボタン"></div>
-    </div>
-  </section>
-
-  <section class="guide-section" id="device-change">
-    <h2>機種変更・復元</h2>
-    <p class="lead">新しい iPhone・iPad への引っ越しは「バックアップ＋復活カギ」で行います。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>旧端末で最新のバックアップを書き出す</h3>
-          <p>設定 → バックアップから手動で書き出し、iCloud Drive に保存されていることを確認します。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>新端末で「バックアップから復元する」</h3>
-          <p>新しい iPhone・iPad に Keepy をインストールして開き、最初の画面で「<strong>バックアップから復元する</strong>」を選びます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>バックアップファイルと復活カギで復元</h3>
-          <p>iCloud Drive から .enc ファイルを選び、<strong>復活カギ（8語）</strong>を順番どおりに入力すると、データがすべて戻ります。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/restore-211.png?v=20260927 211w, img/manual/restore-422.png?v=20260927 422w, img/manual/restore.png?v=20260927 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/restore.png?v=20260927" width="750" height="1629" loading="lazy" alt="初回画面。「新しくはじめる」と「バックアップから復元する」の2択"></div>
-    </div>
-    <div class="note">プレミアム（買い切り）は<strong>同じ Apple ID なら自動で復元</strong>されます。反映されない場合は、設定 → プレミアム購入画面の「購入を復元する」を押してください。</div>
-  </section>
-
-  <!-- ═══ 通知に応える ═══ -->
-  <div class="group-head">🔔 通知に応える</div>
-
-  <section class="guide-section" id="checkin">
-    <h2>「まだ使っていますか？」チェックイン</h2>
-    <p class="lead">しばらく利用状況を聞いていないサブスクは、更新日の前に Keepy から質問が届きます。</p>
-    <p class="body-text">通知「◯◯の更新まで3日。まだ使っていますか？」をタップすると、3択で答えられます。</p>
-    <div class="topic-card tint-terra flip">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>よく使ってる／たまに使う</h3>
-          <p>そのまま利用中として記録されます。次の更新前は、金額をお知らせする通常の通知になります。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>使ってない</h3>
-          <p>その場で「解約すると年間いくら節約になるか」を提示します。レポートの<strong>見直し候補</strong>にも並び、解約を検討しやすくなります。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/checkin-211.png 211w, img/manual/checkin-422.png 422w, img/manual/checkin.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/checkin.png" width="750" height="1629" loading="lazy" alt="チェックインシート。「最近どのくらい使っていますか？」に3択で回答"></div>
-    </div>
-    <p class="body-text">回答はいつでも、サブスクの詳細画面「使用頻度を記録する」から変えられます。回答から時間が経つと（約90日）、更新前にまた質問します。</p>
-  </section>
-
-  <section class="guide-section" id="price-change">
-    <h2>金額変更の予告</h2>
-    <p class="lead">値上げの発表を見かけたら、忘れないうちに Keepy に登録しておきましょう。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>詳細画面 →「金額変更を予告する」</h3>
-          <p>変更日と新しい金額を入力します。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>14日前に通知が届く</h3>
-          <p>「◯◯の料金が変わります」と事前にお知らせします。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>変更日が来たら、金額は自動で切り替わる</h3>
-          <p>予告しておいた新金額が、変更日に月額へ自動反映されます。手で書き換える必要はありません。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/pricechange-211.png 211w, img/manual/pricechange-422.png 422w, img/manual/pricechange.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/pricechange.png" width="750" height="1629" loading="lazy" alt="金額変更を予告するシート。変更予定日と変更後の金額を入力"></div>
-    </div>
-    <div class="note">金額変更の予告は<strong>ご自身で登録する機能</strong>です。Keepy が各サービスの値上げを自動で検知するわけではありません。</div>
-  </section>
-
-  <section class="guide-section" id="foreign-currency">
-    <h2>外貨建てサブスク</h2>
-    <p class="lead">ドル建てなど、毎月の請求額が為替で変わるサブスクのための機能です。</p>
-    <div class="topic-card tint-terra flip">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>登録フォームで「海外通貨決済」をオンにする</h3>
-          <p>通貨と金額に加えて、円の目安額を入力します。合計やレポートには、この円の目安額を使います（Keepy は為替レートで換算しません）。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>請求の翌日、「◯◯の引き落とし額を入力」の通知</h3>
-          <p>詳細画面にも「実績入力待ち」と表示されます。明細を見て、実際に引き落とされた円額を入力してください。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>実績を入れると、目安も賢くなる</h3>
-          <p>入力した実額で支払い履歴が確定し、円換算の目安も直近の実績に合わせて自動更新されます。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/foreign-211.png?v=20260927 211w, img/manual/foreign-422.png?v=20260927 422w, img/manual/foreign.png?v=20260927 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/foreign.png?v=20260927" width="750" height="1629" loading="lazy" alt="登録フォームの海外通貨決済。$USDの金額とJPY目安の2段入力"></div>
-    </div>
-  </section>
-
-  <!-- ═══ 画面の見方 ═══ -->
-  <div class="group-head">📊 画面の見方</div>
-
-  <section class="guide-section" id="report">
-    <h2>レポートと見直し候補</h2>
-    <p class="lead">サブスク画面の上部で「レポート」に切り替えると、支出の全体像が見えます。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>支出推移のグラフ</h3>
-          <p>月ごとの支払い実績をバーで表示します。点線のバーは今後の予定額。<strong>バーをタップすると、その月の内訳に切り替わります</strong>。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>支払済み／予定／合計 と カテゴリ別内訳</h3>
-          <p>選んだ月の支払済み・これからの予定・合計を分けて集計。「カテゴリ別内訳」でエンタメ・仕事などの割合も見られます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>見直し候補</h3>
-          <p>チェックインで「使ってない」と答えたサブスクが、<strong>解約した場合の年間節約額</strong>つきで並びます。その場で「解約する」（記録）か「まだ使う」を選べます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h3>先月のまとめ（毎月1日）</h3>
-          <p>毎月1日の朝に「先月のサブスクレポート」の通知が届き、タップすると先月のまとめが開きます。<strong>支払い合計と前月比・増減の理由・その月の出来事・見直しのヒント・年間換算</strong>を1画面で振り返れます。レポートで過去の月を選び「この月のまとめを見る」からも、いつでも開けます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-body">
-          <h3>年間のまとめ（毎年1月1日）</h3>
-          <p>昨年の記録（または無料期間）があれば、毎年1月1日の朝に「年間サブスクレポート」の通知が届き、タップすると昨年の年間のまとめが開きます。<strong>支払い合計・月ごとの支払い・解約で守った額・無料期間・見直しのヒント</strong>のうち、該当するものを1画面で振り返れます。昨年の記録があれば、レポートの「○○年のまとめを見る」からも、いつでも開けます。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/report-211.png 211w, img/manual/report-422.png 422w, img/manual/report.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/report.png" width="750" height="1629" loading="lazy" alt="レポート画面。支出推移グラフ・支払済み/予定/合計・見直し候補・月の支払い一覧"></div>
-    </div>
-    <p class="body-text">年払いサブスクの更新月には、見逃さないようバナーでお知らせします。</p>
-  </section>
-
-  <section class="guide-section" id="payment-method">
-    <h2>決済方法（どこから引き落とされるか）</h2>
-    <p class="lead">「Apple ID決済（楽天カード）」のような支払いの組み合わせを<strong>決済方法</strong>として登録し、サブスクに紐づけられます。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>サブスクの登録画面で「決済方法を選ぶ」</h3>
-          <p>保存済みの決済方法から選ぶか、その場で新しく作れます。経由サービス（Apple ID決済・Google Play決済・d払い・auかんたん決済・ソフトバンクまとめて支払い・ドコモ／au／ソフトバンクと契約している場合の「◯◯経由」・PayPal など）と、引き落とし元のカード・口座の組み合わせです。<strong>カードから直接引き落とされる場合は、経由サービス「なし」でカードだけを選びます</strong>。未設定のままでも保存できます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>編集すると、使っている全サブスクに反映</h3>
-          <p>資産管理タブの「決済方法」に、登録した組み合わせが使用件数つきで並びます。<strong>編集すると、その決済方法を使っている全サブスクにまとめて反映</strong>されます（カードを乗り換えたときに1回直すだけ）。決済方法の詳細画面には使用中のサブスクの一覧が表示され、タップで詳細に移動できます。過去の支払い記録は変わりません。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>カード・口座の画面で「どこからいくら落ちるか」</h3>
-          <p>決済方法を設定したサブスクは、カード詳細の「このカードから引き落とされるサブスク」や口座詳細の集計に自動で入ります。解約手続きのボタンも決済方法に合わせて変わります（Apple ID決済なら App Store の解約ページへ直行）。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/payment-211.png?v=20260927 211w, img/manual/payment-422.png?v=20260927 422w, img/manual/payment.png?v=20260927 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/payment.png?v=20260927" width="750" height="1629" loading="lazy" alt="資産管理タブの決済方法一覧。組み合わせごとに使用件数を表示"></div>
-    </div>
-  </section>
-
-  <section class="guide-section" id="cancel">
-    <h2>解約の記録と再開</h2>
-    <p class="lead">Keepy の「解約する」は記録です。実際の解約手続きはサービス側で行います。</p>
-    <div class="topic-card tint-terra flip">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>実際の解約手続きへ直行</h3>
-          <p>詳細画面の「<strong>App Storeで解約手続き</strong>」などのボタンから、そのサブスクの決済方法に合った解約ページへ直接移動できます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>Keepy に「解約済み」を記録</h3>
-          <p>「解約する」を押すと Keepy 上で解約済みとして記録され、通知も止まります。<strong>実際の解約が済んだことにはならない</strong>ので、手続きはサービス側で必ず行ってください。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>いつでも再開できる</h3>
-          <p>解約済みのサブスクは一覧の「解約済み」に残ります。また使い始めたら、詳細画面の「利用中に戻す」で再開してください。完全に消したい場合は削除（ゴミ箱へ移動）します。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/cancel-211.png 211w, img/manual/cancel-422.png 422w, img/manual/cancel.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/cancel.png" width="750" height="1629" loading="lazy" alt="詳細画面の解約・削除ボタン。解約は記録のみで後から戻せる"></div>
-    </div>
-  </section>
-
-  <!-- ═══ 家族 ═══ -->
-  <div class="group-head">👨‍👩‍👧 家族</div>
-
-  <section class="guide-section" id="family-mode">
-    <h2>家族モード</h2>
-    <p class="lead">もしものとき、ご家族が「見るだけ」でアクセスできる専用モードです。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>オーナーが家族を登録</h3>
-          <p>設定 →「家族を管理する」からご家族を登録し、それぞれに<strong>家族用パスコード</strong>（4桁の数字・iPhone・iPad のロック解除パスコードとは別）を設定します。見られる範囲もご家族ごとに決められます（<a class="inline" href="guide.html#step1">引き継ぎガイドの STEP 1</a>）。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>家族はロック画面の「ご家族はこちら」（「ご家族の方はこちら」）から</h3>
-          <p>名前を選んで家族用パスコードを入力すると、家族モードで開きます。<strong>閲覧のみで、内容の編集はできません</strong>（手続きが済んだ印の「手続き完了」だけは付けられます）。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>終活ノートの「チェックリスト」で手続きを進める</h3>
-          <p>家族モードで開くと、終活ノートのタブの「メッセージ」が表示されます。隣の「チェックリスト」に、解約や名義変更など手続きが必要なものが並んでいます。上から順に手続きし、済んだものは「手続き完了」を記録できます。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/family-211.png 211w, img/manual/family-422.png 422w, img/manual/family.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/family.png" width="750" height="1629" loading="lazy" alt="家族モードの画面。上部に「閲覧モード（花子）· 編集不可」の帯"></div>
-    </div>
-    <div class="note">メッセージの本文は<strong>宛先に選ばれたご家族だけ</strong>が読めます。ほかのご家族には、題と「このメッセージは◯◯さん宛てです」だけが表示されます。宛先を「全員に公開」にしたメッセージは、全員が読めます。</div>
-    <div class="note"><strong>引き継ぎガイド（PDF）を受け取ったご家族へ</strong>：復元の手順は、PDF の「引き継ぐ手順」にあります。家族モードで見られるのは、オーナーが決めた範囲です（サブスクと資産は、ご家族ごとに見せない設定があります。メッセージ・連絡先・チェックリストはいつでも見られます）。追加・編集・削除はできません（手続きが済んだ印の「手続き完了」だけは付けられます）。復元や操作でお困りのときは<a class="inline" href="support.html">サポート</a>をご覧ください。</div>
-  </section>
-
-  <section class="guide-section" id="handover-link">
-    <h2>家族への引き継ぎ設定</h2>
-    <p class="lead">共有フォルダの作成から書き出しまで、初回にやり切る5ステップと「これで完了」の確認リストは、専用ガイドにまとめています。</p>
-    <p class="body-text"><a class="inline" href="guide.html#handover">→ 家族への引き継ぎ設定ガイドを見る</a></p>
-    <p class="body-text">設定したあとも、年に1回、ご家族がデータを受け取れる状態かを確かめる「引き継ぎの点検」があります（設定の「バックアップ」→「家族に残す・引き継ぎ」→「引き継ぎの点検」。家族を1人以上登録しているとき）。</p>
-  </section>
-
-  <!-- ═══ その他 ═══ -->
-  <div class="group-head">⚙️ その他</div>
-
-  <section class="guide-section" id="notifications">
-    <h2>通知の種類一覧</h2>
-    <p class="lead">Keepy が送る通知は次のとおりです。設定 → 通知設定で「更新前の通知」「月次・年間レポート」「カード引き落とし通知」「引き継ぎの点検」のオン・オフを切り替えられます（iPhone・iPad 側の通知許可も必要です）。</p>
-    <div class="table-wrap">
-      <table>
-        <tr><th>通知</th><th>タイミング</th></tr>
-        <tr><td>更新リマインダー</td><td>請求日の前（サブスクごとに設定・はじめは3日前）。利用状況によって「まだ使っていますか？」の質問や解約の提案に変わります</td></tr>
-        <tr><td>無料トライアル終了</td><td>終了の2日前</td></tr>
-        <tr><td>金額変更</td><td>予告した変更日の14日前</td></tr>
-        <tr><td>縛り期間の終了</td><td>60日前と当日</td></tr>
-        <tr><td>モノ・書類の期限</td><td>3ヶ月前と当日</td></tr>
-        <tr><td>カード引き落とし</td><td>カードに設定した引き落とし日の前日朝。Keepy 登録分の合計金額つき（参考値）</td></tr>
-        <tr><td>月次レポート（先月のまとめ）</td><td>毎月1日の朝。タップするとレポート画面で先月のまとめが開きます</td></tr>
-        <tr><td>年間レポート</td><td>毎年1月1日の朝</td></tr>
-        <tr><td>実績入力（外貨）</td><td>請求日の翌日</td></tr>
-        <tr><td>バックアップが古い</td><td>前回から30日経過</td></tr>
-        <tr><td>引き継ぎガイドが古い</td><td>前回の書き出しから6ヶ月経過</td></tr>
-        <tr><td>引き継ぎの点検</td><td>最後の点検から1年後（はじめは、家族を初めて登録してから1年後）。点検が終わっていないときは1か月後にもう一度。家族を1人以上登録しているとき</td></tr>
-      </table>
-    </div>
-  </section>
-
-  <section class="guide-section" id="widget">
-    <h2>ウィジェット</h2>
-    <p class="lead">アプリを開かなくても、ホーム画面で今月の支払いがわかります。</p>
-    <div class="topic-card tint-terra flip">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>ホーム画面を長押し → 「＋」→ Keepy</h3>
-          <p>中サイズは<strong>今月の合計・支払いの進捗バー・次の支払い</strong>を、小サイズは<strong>次の支払い（サービス名・金額・あと何日か）</strong>を表示します。大・特大サイズでは、月の合計と進捗に加えて<strong>カードの引き落とし（参考値）とこれからの支払い</strong>を表示します（特大は iPad と、iOS 27 の iPhone）。設定 → 通知設定の「<strong>通知に金額・サービス名を出さない</strong>」をオンにすると、ウィジェットの表示も伏字になります。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/widget-211.png?v=2 211w, img/manual/widget-422.png?v=2 422w, img/manual/widget.png?v=2 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/widget.png?v=2" width="750" height="1629" loading="lazy" alt="ホーム画面のKeepyウィジェット。中サイズは今月の合計と進捗バーと次の支払い、大サイズはカードの引き落としとこれからの支払い"></div>
-    </div>
-  </section>
-
-  <section class="guide-section" id="premium">
-    <h2>プレミアム（買い切り）</h2>
-    <p class="lead">無料のまま試して、足りなくなったら一度だけのお支払いで無制限に。</p>
-    <div class="topic-card tint-indigo">
-      <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>無料でできること</h3>
-          <p>サブスク3件・カード1枚・口座1件・契約1件・モノや書類1件・積立1件まで登録できます（ゴミ箱に入っている分も数えます）。終活ノートの連絡先とメッセージはプレミアムで使えます。セキュリティ機能と家族への引き継ぎは、すべて無料で使えます。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>プレミアムで解放されること</h3>
-          <p>登録件数がすべて無制限になり、終活ノートの連絡先・メッセージも登録できるようになります。<strong>買い切り ¥3,480</strong>。月額や追加課金はありません。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>機種変更しても引き継がれる</h3>
-          <p>同じ Apple ID なら自動で復元されます。反映されないときは購入画面の「購入を復元する」を押してください。</p>
-        </div>
-      </div>
-    </div>
-      <div class="phone"><img srcset="img/manual/premium-211.png?v=20260927 211w, img/manual/premium-422.png?v=20260927 422w, img/manual/premium.png?v=20260927 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/premium.png?v=20260927" width="750" height="1629" loading="lazy" alt="プレミアム（買い切り）の購入画面"></div>
-    </div>
-  </section>
-
-</div>
 
 <!-- フッター -->
 <footer>
@@ -628,11 +219,13 @@
     </div>
   <nav>
       <a href="index.html">トップ</a>
-      <a href="features.html">使い方</a>
-      <a href="guide.html">引き継ぎガイド</a>
-      <a href="manual.html" class="current">マニュアル</a>
+      <a href="start.html">使い始める</a>
+      <a href="manual.html" class="current">設定する</a>
+      <a href="family.html">ご家族の方へ</a>
       <a href="security.html">安全のしくみ</a>
       <a href="support.html">サポート</a>
+      <a href="features.html">機能を見る</a>
+      <a href="guide.html">引き継ぎガイド</a>
       <a href="privacy.html">プライバシーポリシー</a>
       <a href="tokushoho.html">特定商取引法に基づく表記</a>
     </nav>
@@ -640,6 +233,15 @@
   <p>© 2026 Keepy. All rights reserved.</p>
 </footer>
 
+  <!-- 旧アドレス（manual.html#節の名）で来た人を、移した先のページへ送る（2026-10-08 の再構成で節を別ページへ移したため） -->
+  <script>
+    (function () {
+      var ids = ["backup", "recovery-code", "device-change", "checkin", "price-change", "foreign-currency", "report", "payment-method", "cancel", "family-mode", "notifications", "widget", "premium"];
+      var h = (location.hash || "").replace("#", "");
+      if (h === "handover-link") { location.replace("guide.html#handover"); return; }
+      if (ids.indexOf(h) !== -1) { location.replace("manual-" + h + ".html"); }
+    })();
+  </script>
   <script src="keepy.js?v=1"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5c902b89275e499ea16642116c59d530"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

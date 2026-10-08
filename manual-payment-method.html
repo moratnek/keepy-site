@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>決済方法（どこから引き落とされるか） — Keepy</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/favicon-180.png">
+  <meta name="description" content="「Apple ID決済（楽天カード）」のような支払いの組み合わせを決済方法として登録し、サブスクに紐づけられます。">
+  <meta property="og:title" content="決済方法（どこから引き落とされるか） — Keepy">
+  <meta property="og:description" content="「Apple ID決済（楽天カード）」のような支払いの組み合わせを決済方法として登録し、サブスクに紐づけられます。">
+  <meta property="og:url" content="https://keepy.jp/manual-payment-method.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Keepy">
+  <meta property="og:image" content="https://keepy.jp/img/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- 本文書体 BIZ UDPGothic（自前ホスティング・外部CDNを踏まない）。keepy.css より先に読む -->
+  <link rel="stylesheet" href="fonts/bizudpgothic.css?v=1">
+  <link rel="stylesheet" href="keepy.css?v=6">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+
+    /* ── ヒーロー ── */
+    .hero { max-width: 760px; margin: 0 auto; padding: 72px 24px 40px; text-align: center; }
+    .hero-label {
+      display: inline-block; background: var(--indigo-lt); color: var(--indigo);
+      font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px); font-weight: 500; letter-spacing: -1px;
+      line-height: 1.25; margin-bottom: 16px; color: var(--text);
+    }
+    .hero h1 em { font-style: normal; color: var(--indigo); }
+    .hero-sub { font-size: 16px; color: var(--text2); max-width: 520px; margin: 0 auto; }
+
+    /* ── 目次 ── */
+    .toc { max-width: 760px; margin: 0 auto; padding: 0 24px 40px; }
+    .toc-group { margin-bottom: 18px; }
+    .toc-group-label {
+      font-size: 12px; font-weight: 600; color: var(--text2); letter-spacing: 0.6px;
+      margin-bottom: 8px;
+    }
+    .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc-links a {
+      background: var(--white); border: 0.5px solid var(--border); border-radius: 100px;
+      font-size: 13px; color: var(--text); text-decoration: none; padding: 7px 16px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .toc-links a:hover { border-color: var(--indigo); color: var(--indigo); }
+
+    /* ── 本文コンテナ ── */
+    .guide { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+
+    /* ── グループ見出し ── */
+    .group-head {
+      font-size: 13px; font-weight: 600; color: var(--indigo); letter-spacing: 0.8px;
+      border-top: 0.5px solid var(--border); padding-top: 36px; margin-bottom: 24px;
+    }
+
+    /* ── セクション ── */
+    .guide-section { margin-bottom: 48px; scroll-margin-top: 72px; }
+    .guide-section > h2 {
+      font-size: clamp(19px, 3vw, 24px); font-weight: 500; letter-spacing: -0.4px;
+      margin-bottom: 8px;
+    }
+    .guide-section > .lead { font-size: 14.5px; color: var(--text2); margin-bottom: 20px; }
+    .guide-section p.body-text { font-size: 14.5px; margin-bottom: 12px; }
+
+    /* ── 番号付きステップ ── */
+    .steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .step {
+      background: var(--white); border: 0.5px solid var(--border); border-radius: 14px;
+      padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--indigo-lt);
+      color: var(--indigo); font-size: 13px; font-weight: 600; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-body h3 { font-size: 14.5px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+    .step-body p { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
+    .topic-card {
+      position: relative; border-radius: 18px; padding: 20px;
+      display: flex; gap: 22px; align-items: center; margin-bottom: 14px;
+    }
+    .topic-card.flip { flex-direction: row-reverse; }
+    .topic-card.tint-indigo { background: var(--indigo-lt); }
+    .topic-card.tint-terra  { background: var(--terra-lt); }
+    .topic-card .steps { flex: 1; margin-bottom: 0; }
+    @media (max-width: 620px) {
+      .topic-card, .topic-card.flip { flex-direction: column; padding: 16px; }
+    }
+
+    /* ── 補足カード・注意 ── */
+    .note {
+      background: var(--indigo-lt); border-radius: 12px; padding: 14px 18px;
+      font-size: 13.5px; color: var(--text); margin-bottom: 16px; line-height: 1.65;
+    }
+    .note strong { color: var(--indigo); }
+    .caution {
+      background: var(--terra-lt); border: 0.5px solid #F0C8B8; border-radius: 12px;
+      padding: 14px 18px; font-size: 13.5px; color: #A64B2C; margin-bottom: 16px; line-height: 1.65;
+    }
+    .caution strong { color: var(--terra); }
+
+    /* ── 通知一覧テーブル ── */
+    .table-wrap { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; background: var(--white); border-radius: 12px; overflow: hidden; }
+    th, td { border-bottom: 0.5px solid var(--border); padding: 10px 14px; font-size: 13px; text-align: left; vertical-align: top; }
+    th { background: var(--bg2); font-weight: 600; color: var(--text); white-space: nowrap; }
+    td:first-child { white-space: nowrap; font-weight: 500; }
+    tr:last-child td { border-bottom: none; }
+
+    /* ── リンク ── */
+    a.inline { color: var(--indigo); }
+
+
+  </style>
+</head>
+<body class="has-nav">
+
+<!-- ヘッダー -->
+  <nav class="nav-island" aria-label="メイン">
+    <a class="nav-brand" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="1024" height="1024" rx="224" fill="#ffffff"/>
+        <circle cx="512" cy="512" r="460" fill="#F2EDE3"/>
+        <path d="M307 85 L307 750 L512 622 L717 750 L717 85 Z" fill="#3B5FCC"/>
+        <path d="M392 443 L476 537 L640 322" fill="none" stroke="#ffffff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="717" cy="757" r="180" fill="#ffffff"/>
+        <circle cx="717" cy="757" r="162" fill="#D9623A"/>
+        <text x="717" y="818" text-anchor="middle" font-size="150" font-weight="500" fill="#ffffff" font-family="-apple-system, sans-serif">¥</text>
+      </svg>
+      <span>Keepy</span>
+    </a>
+    <div class="nav-links">
+      <a class="page" href="index.html">トップ</a>
+      <a class="page" href="start.html">使い始める</a>
+      <a class="page current" href="manual.html">設定する</a>
+      <a class="page" href="family.html">ご家族の方へ</a>
+      <a class="page" href="security.html">安全のしくみ</a>
+      <a class="page" href="support.html">サポート</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- モバイル用フルスクリーンメニュー -->
+  <div class="menu-veil" id="menuVeil">
+    <a href="index.html">トップ</a>
+    <a href="start.html">使い始める</a>
+    <a href="manual.html" class="current">設定する</a>
+    <a href="family.html">ご家族の方へ</a>
+    <a href="security.html">安全のしくみ</a>
+    <a href="support.html">サポート</a>
+  </div>
+
+<!-- ヒーロー -->
+<section class="hero">
+  <span class="hero-label">画面の見方</span>
+  <h1>決済方法（どこから引き落とされるか）</h1>
+  <p class="hero-sub"><a class="inline" href="manual.html">← 使い方マニュアルの目次にもどる</a></p>
+</section>
+
+<div class="guide">
+
+  <section class="guide-section" id="payment-method">
+    
+    <p class="lead">「Apple ID決済（楽天カード）」のような支払いの組み合わせを<strong>決済方法</strong>として登録し、サブスクに紐づけられます。</p>
+    <div class="topic-card tint-indigo">
+      <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>サブスクの登録画面で「決済方法を選ぶ」</h3>
+          <p>保存済みの決済方法から選ぶか、その場で新しく作れます。経由サービス（Apple ID決済・Google Play決済・d払い・auかんたん決済・ソフトバンクまとめて支払い・ドコモ／au／ソフトバンクと契約している場合の「◯◯経由」・PayPal など）と、引き落とし元のカード・口座の組み合わせです。<strong>カードから直接引き落とされる場合は、経由サービス「なし」でカードだけを選びます</strong>。未設定のままでも保存できます。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>編集すると、使っている全サブスクに反映</h3>
+          <p>資産管理タブの「決済方法」に、登録した組み合わせが使用件数つきで並びます。<strong>編集すると、その決済方法を使っている全サブスクにまとめて反映</strong>されます（カードを乗り換えたときに1回直すだけ）。決済方法の詳細画面には使用中のサブスクの一覧が表示され、タップで詳細に移動できます。過去の支払い記録は変わりません。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>カード・口座の画面で「どこからいくら落ちるか」</h3>
+          <p>決済方法を設定したサブスクは、カード詳細の「このカードから引き落とされるサブスク」や口座詳細の集計に自動で入ります。解約手続きのボタンも決済方法に合わせて変わります（Apple ID決済なら App Store の解約ページへ直行）。</p>
+        </div>
+      </div>
+    </div>
+      <div class="phone"><img srcset="img/manual/payment-211.png?v=20260927 211w, img/manual/payment-422.png?v=20260927 422w, img/manual/payment.png?v=20260927 750w" sizes="(max-width: 620px) 186px, 211px" src="img/manual/payment.png?v=20260927" width="750" height="1629" loading="lazy" alt="資産管理タブの決済方法一覧。組み合わせごとに使用件数を表示"></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- フッター -->
+<footer>
+    <div class="footer-cta">
+      <!-- APPSTORE_LINK -->
+      <a class="footer-dl" href="https://apps.apple.com/jp/app/id6786194974" data-appstore>App Store でダウンロード</a>
+    </div>
+  <nav>
+      <a href="index.html">トップ</a>
+      <a href="start.html">使い始める</a>
+      <a href="manual.html" class="current">設定する</a>
+      <a href="family.html">ご家族の方へ</a>
+      <a href="security.html">安全のしくみ</a>
+      <a href="support.html">サポート</a>
+      <a href="features.html">機能を見る</a>
+      <a href="guide.html">引き継ぎガイド</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    </nav>
+  <p class="credit"><a href="https://logo.dev">Logos provided by Logo.dev</a></p>
+  <p>© 2026 Keepy. All rights reserved.</p>
+</footer>
+
+  <script src="keepy.js?v=1"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5c902b89275e499ea16642116c59d530"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
