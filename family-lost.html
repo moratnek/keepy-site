@@ -2,14 +2,13 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ご家族の方へ（見つからない・分からない） — Keepy</title>
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="apple-touch-icon" href="img/favicon-180.png">
-  <meta name="description" content="（準備中）">
+  <meta name="description" content="復活カギ・暗号化ファイル・家族用パスコードが見つからないとき、試せることと、できないこと。">
   <meta property="og:title" content="ご家族の方へ（見つからない・分からない） — Keepy">
-  <meta property="og:description" content="（準備中）">
+  <meta property="og:description" content="復活カギ・暗号化ファイル・家族用パスコードが見つからないとき、試せることと、できないこと。">
   <meta property="og:url" content="https://keepy.jp/family-lost.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Keepy">
@@ -164,9 +163,63 @@
 <!-- ヒーロー -->
 <section class="hero">
   <span class="hero-label">ご家族の方へ</span>
-  <h1>見つからない・分からない</h1>
-  <p class="hero-sub">このページは準備中です。</p>
+  <h1>何があるのか、よく分からない・何も見つからない</h1>
+  <p class="hero-sub">見つからなくても、あなたのせいではありません。試せることと、できないことを、お伝えします。</p>
 </section>
+
+<div class="guide">
+
+  <section class="guide-section" id="what-to-try">
+    <p class="body-text"><a class="inline" href="family.html">← ご家族の方へ に戻る</a></p>
+    
+    <h2>試せること</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>引き継ぎガイド（PDF）を探す</h3>
+          <p>共有フォルダに、keepy_引き継ぎガイド.pdf が入っているかもしれません。家族用パスコードや、復活カギが載っていることがあります。載せない設定にしている場合は、載っていません。その場合も、書類や、パスワード管理アプリなど、ご本人が控えた場所に、復活カギがあるかもしれません。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>暗号化ファイルを探す</h3>
+          <p>共有フォルダに、keepy_backup.enc があるかもしれません。ご本人の iPhone に、iCloud が使える設定があると、ご本人の Apple ID の iCloud Drive の「Keepy」フォルダにも保存されています。ご家族の iPhone から見られるのは、その iCloud にサインインできる場合か、共有フォルダとして共有されていた場合だけです。ファイルが見つからなくて、ご本人の iPhone が手元にあるときは、iPhone の中に、記録が残っています。<a class="inline" href="family-phone.html">iPhone が手元にある</a>のページをご覧ください。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>ほかのご家族に聞く</h3>
+          <p>複数のご家族が登録されていることがあります。どなたかが、パスコードや、引き継ぎガイドを、受け取っているかもしれません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-section" id="phone-locked">
+    <h2>iPhone のロックが開かないとき</h2>
+    <p class="body-text">Keepy の鍵は、iPhone のロックが開いている間だけ、読める作りです。ロックが開かないときは、その iPhone の Keepy は使えません。iPhone 本体を開く方法は、Keepy の外の話になります。お使いの iPhone の販売元（Apple や携帯会社）のサポート窓口などに、ご相談ください。</p>
+    <p class="body-text">暗号化ファイルと復活カギの両方があれば、別の iPhone で、記録を戻せます。<a class="inline" href="family-file.html">暗号化ファイルを受け取った</a>のページをご覧ください。</p>
+    <p class="body-text">ご本人が、Keepy に iPhone のロック解除パスコードを登録し、ご家族に見せる設定にしていたときは、別の iPhone に記録を戻したあと、Keepy の中で、そのパスコードを見られることがあります。</p>
+  </section>
+
+  <section class="guide-section" id="cannot">
+    <h2>できないこと</h2>
+    <div class="caution">
+      <strong>復活カギが無い暗号化ファイルは、誰にも開けません。開発者にも開けません。</strong><br>
+      <strong>家族用パスコードが止まったあと、その iPhone で解けるのは、ご本人による再設定だけです。</strong>ご本人が亡くなっていて、お願いできない場合は、その iPhone では解けません。
+    </div>
+    <p class="body-text">Keepy は、記録を開発者のサーバーに置かず、ご本人の iPhone と、ご本人が書き出した暗号化ファイル（iCloud Drive や共有フォルダなど）にだけ持つ作りです。そのため、開発者にも、記録や復活カギを取り出す手段がありません。</p>
+  </section>
+
+  <section class="guide-section" id="contact">
+    <h2>相談するとき</h2>
+    <p class="body-text"><a class="inline" href="support.html">サポート</a>のページから、お問い合わせください。操作で迷っている点を、お知らせください。記録そのものは、開発者にも見えません。</p>
+  </section>
+<section class="guide-section" id="help"><p class="body-text">困ったときは、いつでも<a class="inline" href="support.html">サポート</a>へお問い合わせください。</p></section><p class="body-text"><a class="inline" href="family.html">← ご家族の方へ に戻る</a></p>
+</div>
 
 <!-- フッター -->
 <footer>

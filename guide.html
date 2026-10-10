@@ -173,6 +173,31 @@
 
 <div class="guide">
 
+  <!-- この手順で使う言葉 -->
+  <section class="guide-section" id="words">
+    <h2>はじめに：この手順で使う言葉</h2>
+    <div class="share-tips">
+      <p><strong>オーナー</strong>：Keepy に記録を入れている、あなたご自身のことです（アプリの画面でも「オーナー」と出ます）。この手順は、オーナーが今のうちに済ませておくものです。</p>
+      <p><strong>ご家族</strong>：もしものときに、あなたの Keepy の記録を受け取る方です。1人でも、何人でもかまいません。</p>
+      <p><strong>共有フォルダ</strong>：iCloud Drive に作る、ご家族と一緒に開けるフォルダです。あなたの Keepy が、ここに暗号化したバックアップと引き継ぎガイド（PDF）を書き出します。</p>
+      <p><strong>復活カギ</strong>：英単語8語の合言葉です。バックアップを開くためのたった1つのカギで、順番まで含めてカギです。なくすとバックアップは誰にも開けません（開発者にも開けません）。くわしくは<a class="inline" href="manual-recovery-code.html">復活カギのページ</a>へ。</p>
+      <p><strong>家族用パスコード</strong>：ご家族が Keepy の家族モードに入るための4桁の数字です。iPhone・iPad のロック解除パスコードとは別のものです。</p>
+    </div>
+  </section>
+
+  <!-- 全体の流れ -->
+  <section class="guide-section" id="flow">
+    <h2>全体の流れ</h2>
+    <p class="lead">5つのステップを、上から順に進めます。ご家族が1人か、2人以上かで、STEP 2 と STEP 3 のやり方が少し変わります（それぞれの中に書いてあります）。</p>
+    <ol>
+      <li><a class="inline" href="#step1">STEP 1</a>　Keepy にご家族を登録する</li>
+      <li><a class="inline" href="#step2">STEP 2</a>　共有フォルダを作り、Keepy で選ぶ</li>
+      <li><a class="inline" href="#step3">STEP 3</a>　「ファイル」App でご家族にフォルダを共有する</li>
+      <li><a class="inline" href="#step4">STEP 4</a>　最初の1回を書き出す（そのあとは自動）</li>
+      <li><a class="inline" href="#step5">STEP 5</a>　もしものとき、ご家族がアプリで復元する（あなたがやることはありません。流れを知っておくためのステップです）</li>
+    </ol>
+  </section>
+
   <!-- 注意喚起 -->
   <div class="warn">
     <div class="warn-icon">
@@ -199,7 +224,7 @@
             <p class="share-tips-title">登録するときに決めること</p>
             <ol>
               <li><strong>家族用パスコード</strong>（4桁の数字）：ご家族が Keepy の家族モードに入るための番号です。<strong>iPhone・iPad のロック解除パスコードとは別</strong>のものを、あなたが決めてご家族に伝えます。忘れたときは、「家族を管理する」でそのご家族を開き、「パスコードをリセット」で決め直せます。</li>
-              <li><strong>閲覧できる範囲</strong>：「サブスクを閲覧できる」「資産を閲覧できる」を、ご家族ごとにオン・オフできます。終活ノート（メッセージ・連絡先）とチェックリストは、いつでも見られます。</li>
+              <li><strong>閲覧できる範囲</strong>：「サブスクを閲覧できる」「資産を閲覧できる」を、ご家族ごとにオン・オフできます。連絡先とチェックリストは、いつでも見られます。終活ノートのメッセージは、メッセージごとに決めた宛先のご家族（「全員」にしたものは全員）が読めます。</li>
               <li><strong>ロック解除パスコードを見せるか</strong>：オンにすると、そのご家族は Keepy の中で、この iPhone・iPad のロック解除パスコードを確かめられます（あなたが Keepy に登録している場合）。端末を開けてよい相手にだけオンにしてください。</li>
             </ol>
           </div>
@@ -222,7 +247,7 @@
             </ol>
           </div>
         </div>
-        <div class="phone"><img srcset="img/guide/step2_folder-211.png 211w, img/guide/step2_folder-422.png 422w, img/guide/step2_folder.png 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step2_folder.png" width="750" height="1629" loading="lazy" alt="バックアップ画面の「家族と共有するフォルダ」。「共有フォルダを設定」から家族がアクセスできるフォルダを選ぶ"></div>
+        <div class="phone"><img srcset="img/guide/step2_folder-211.png?v=2 211w, img/guide/step2_folder-422.png?v=2 422w, img/guide/step2_folder.png?v=2 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step2_folder.png?v=2" width="750" height="1629" loading="lazy" alt="バックアップ画面の「家族と共有するフォルダ」。「共有フォルダを設定」から家族がアクセスできるフォルダを選ぶ"></div>
       </div>
       <div class="step-card tint-indigo" id="step3">
         <span class="step-watermark" aria-hidden="true">3</span>
@@ -233,16 +258,24 @@
           <div class="share-tips">
             <p class="share-tips-title">どのフォルダを共有するか</p>
             <ol>
-              <li><strong>分けないとき</strong>：STEP 2 で作ったフォルダを共有します。共有したら Keepy の「家族を管理する」で<strong>「共有した」</strong>を押してください（記録のためです。押す前から書き出しは行われます）。</li>
+              <li><strong>分けないとき</strong>：STEP 2 で作ったフォルダを共有します。共有したら Keepy の「家族を管理する」で<strong>「共有した」</strong>を押してください（記録のためです。押す前から書き出しは行われます）。「共有した」はご家族の行ごとにあるので、ご家族が2人以上のときは、それぞれの行で押します。</li>
               <li><strong>分けるとき</strong>：STEP 2 で作ったフォルダ（親フォルダ）は<strong>共有しないでください</strong>。親フォルダを共有すると、<strong>ご家族全員が全員分を見られます</strong>。中の「Keepy○○」フォルダを、それぞれのご家族とだけ共有し、Keepy に戻って<strong>「共有した」</strong>を押します（家族管理、またはバックアップ画面の「家族ごとの共有フォルダ」）。<strong>押すまで、その「Keepy○○」フォルダは空のまま</strong>で、バックアップもガイドも書き出されません。ただし、分けない状態で「共有した」を押してから、あとで分けるようにしたときは、押したご家族の「Keepy○○」には押し直さなくても書き出されます。分けるかを<a class="inline" href="#step2">STEP 2</a> で先に決めておくのは、このためです。</li>
             </ol>
             <p class="share-tips-title">共有するときの注意</p>
             <ol>
-              <li>共有方法は必ず<strong>「共同作業」</strong>を選んでください。「コピーを送信」を選ぶと、その時点のコピーが送られるだけで、<strong>以後の更新がご家族に届きません</strong>。</li>
-              <li>アクセス権は「参加依頼した人のみ」＋<strong>「閲覧のみ」</strong>がおすすめです（ご家族は読むだけなので、誤ってファイルを消す事故を防げます）。</li>
+              <li>共有は、必ず<strong>ご家族と共同で開く形</strong>にしてください。<strong>「コピーを送信」は選ばないでください</strong>。その時点のコピーが送られるだけで、<strong>以後の更新がご家族に届きません</strong>。</li>
+              <li>アクセス権は、参加依頼した人だけ＋<strong>閲覧のみ</strong>がおすすめです（ご家族は読むだけなので、誤ってファイルを消す事故を防げます）。</li>
               <li><strong>ご家族が参加依頼を承諾したら完了</strong>です。送っただけではまだ共有されていません。</li>
               <li>送る前に、<strong>宛先の人とフォルダの名前</strong>をもう一度確かめてください。</li>
             </ol>
+            <p class="share-tips-title">iOS のバージョンで、画面の言葉が違います</p>
+            <p>「ファイル」App で、そのフォルダをタッチして押さえたままにして始めます。Apple の公式ガイドに書かれている言葉は、バージョンごとに次のとおりです（2026年10月9日に確かめました）。</p>
+            <ol>
+              <li><strong>iOS 17</strong>：共有のボタンをタップ →「共同作業」を選ぶ →「共有オプション」→「参加依頼した人のみ」→「閲覧のみ」→ 送る方法を選ぶ。</li>
+              <li><strong>iOS 18・iOS 26</strong>：共有のボタンをタップ →「共同作業」を選ぶ → 項目名の下のメニューをタップ →「参加依頼された人だけ」→「閲覧のみ」→「完了」→ 送る方法を選ぶ。</li>
+              <li><strong>iOS 27</strong>：共有のボタンをタップ → 項目名の下のメニューをタップ →「リンクを共有」。人を限るには「あなたが選択した人は編集ができます」をタップして「選択した人」を選びます。「閲覧のみ」にするときの画面の言葉は、Apple の iOS 27 の説明に書かれていないので、下の公式ガイドで確かめてください。</li>
+            </ol>
+            <p class="step-hint">どのバージョンでも共通の大事な点は、<strong>「コピーを送信」ではなく、ご家族と共同で開く形で送る</strong>ことと、<strong>送る相手を、ご家族に限る</strong>ことです。</p>
             <p class="share-tips-title">まちがえたとき</p>
             <p>共有は止められます。「ファイル」App でそのフォルダをタッチして押さえたまま →「共有フォルダを管理」→「共有を停止」です。止めたあとは、そのフォルダは相手から見えなくなります。ただし、<strong>止める前に相手が開いたり保存したりした分は、取り消せません</strong>。「家族ごとにフォルダを分ける」を使っているときは、Keepy の同じ場所の「共有をやめる」も押し、案内に従ってください。</p>
             <p class="share-tips-links">くわしい画面操作（Apple 公式ガイド）：<br>
@@ -252,7 +285,7 @@
             </p>
           </div>
         </div>
-        <div class="phone"><img srcset="img/guide/step3_share-211.png?v=3 211w, img/guide/step3_share-422.png?v=3 422w, img/guide/step3_share.png?v=3 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step3_share.png?v=3" width="750" height="1629" loading="lazy" alt="バックアップ画面の「家族ごとの共有フォルダ」。「Keepy花子」が未共有と表示され、「ファイル」App で共有したら「共有した」を押す"></div>
+        <div class="phone"><img srcset="img/guide/step3_share-211.png?v=4 211w, img/guide/step3_share-422.png?v=4 422w, img/guide/step3_share.png?v=4 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step3_share.png?v=4" width="750" height="1629" loading="lazy" alt="バックアップ画面の「家族ごとの共有フォルダ」。「Keepy花子」が未共有と表示され、「ファイル」App で共有したら「共有した」を押す"></div>
       </div>
       <div class="step-card tint-terra flip" id="step4">
         <span class="step-watermark" aria-hidden="true">4</span>
@@ -268,12 +301,12 @@
             <ol>
               <li><strong>共有フォルダを選び直したとき</strong>：全員が「未共有」に戻ります。STEP 3 からやり直してください。</li>
               <li><strong>家族を増やしたとき（分けている場合）</strong>：新しい「Keepy○○」フォルダを共有し、「共有した」を押してください。</li>
-              <li><strong>ご家族の名前を変えたとき（分けている場合）</strong>：フォルダの名前が変わり、そのご家族は「未共有」に戻ります。新しい「Keepy○○」フォルダを共有し、「共有した」を押してください。同じ名前のご家族を足したり消したりしたときも、フォルダの名前が変わることがあります。</li>
+              <li><strong>ご家族の名前を変えたとき</strong>：<strong>分けている場合</strong>は、フォルダの名前が変わり、そのご家族は「未共有」に戻ります。新しい「Keepy○○」フォルダを共有し、「共有した」を押してください。同じ名前のご家族を足したり消したりしたときも、フォルダの名前が変わることがあります。<strong>分けていない場合</strong>もフォルダの名前は変わりませんが、そのご家族の行が「フォルダ未共有」に戻り、ガイドは「要更新」になります。共有はそのままなので、「共有した」を押し直し、ガイドを作り直してください。</li>
               <li><strong>「別の方法で渡す（AirDrop・印刷など）」で渡したガイド</strong>：自動では新しくなりません。内容が変わったら作り直して渡し直してください（印刷したものは刷り直してください）。</li>
             </ol>
           </div>
         </div>
-        <div class="phone"><img srcset="img/guide/step4_export-211.png?v=2 211w, img/guide/step4_export-422.png?v=2 422w, img/guide/step4_export.png?v=2 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step4_export.png?v=2" width="750" height="1629" loading="lazy" alt="「家族への引き継ぎ」の「引き継ぎガイドを作成」ボタン。家族向けPDFを書き出す"></div>
+        <div class="phone"><img srcset="img/guide/step4_export-211.png?v=3 211w, img/guide/step4_export-422.png?v=3 422w, img/guide/step4_export.png?v=3 750w" sizes="(max-width: 620px) 186px, 211px" src="img/guide/step4_export.png?v=3" width="750" height="1629" loading="lazy" alt="バックアップ画面の「手動バックアップ」。「今すぐバックアップを書き出す」で iCloud Drive の Keepy に書き出す"></div>
       </div>
       <div class="step-card tint-indigo" id="step5">
         <span class="step-watermark" aria-hidden="true">5</span>
@@ -302,11 +335,6 @@
     </ul>
     <p class="body-text">困ったときは<a class="inline" href="support.html">サポート</a>のよくある質問をご覧ください。</p>
   </section>
-
-  <!-- 将来拡張の器（後から追記） -->
-  <!-- TODO: 初回セットアップ（オンボーディング）の要約セクション -->
-  <!-- TODO: バックアップ・復元の詳細セクション -->
-  <!-- TODO: 機種変更のときのセクション -->
 
 </div>
 
